@@ -15,8 +15,8 @@ const LoginForm = () => {
             <input type="emuil" />
             <input type="password" />
            
-            <button type="submit">Register</button>
-            <Link to="/register">Login</Link>
+            <button type="submit">Login</button>
+            <Link to="/register">Register</Link>
           </StyledForm>
         </div>
       );
