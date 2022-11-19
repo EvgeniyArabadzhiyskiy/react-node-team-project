@@ -29,27 +29,24 @@ const Router = () => {
         }
       />
 
-      <Route
-        path="/home"
-        element={
-          <PrivateRoute>
-            <DashboardPage>
+      <Route path="/" element={<DashboardPage />}>
+        <Route
+          path="home"
+          element={
+            <PrivateRoute>
               <Home />
-            </DashboardPage>
-          </PrivateRoute>
-        }
-      />
-
-      <Route
-        path="/diagram"
-        element={
-          <PrivateRoute>
-            <DashboardPage>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="diagram"
+          element={
+            <PrivateRoute>
               <Diagram />
-            </DashboardPage>
-          </PrivateRoute>
-        }
-      />
+            </PrivateRoute>
+          }
+        />
+      </Route>
     </Routes>
   );
 };
