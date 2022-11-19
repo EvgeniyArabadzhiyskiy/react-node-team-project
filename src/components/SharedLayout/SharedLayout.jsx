@@ -1,6 +1,8 @@
 import Currency from 'components/Currency/Currency';
 import Header from 'components/Header/Header';
 import Navigation from 'components/Navigation/Navigation';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const SharedLayout = ({ children }) => {
   return (
@@ -13,7 +15,10 @@ const SharedLayout = ({ children }) => {
           <Currency />
         </div>
 
-        {children}
+    <Suspense fallback={null}>
+      <Outlet />
+    </Suspense>
+        
       </div>
     </div>
   );
