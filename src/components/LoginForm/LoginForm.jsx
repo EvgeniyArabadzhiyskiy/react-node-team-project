@@ -9,17 +9,17 @@ const StyledForm = styled.form`
 `;
 
 const LoginForm = () => {
-    return (
-        <div>
-          <StyledForm>
-            <input type="emuil" />
-            <input type="password" />
-           
-            <button type="submit">Login</button>
-            <Link to="/register">Register</Link>
-          </StyledForm>
-        </div>
-      );
-}
- 
+  return (
+    <div>
+      <StyledForm>
+        <input type="emuil" />
+        <input type="password" />
+
+        <button type="submit">Login</button>
+        <Link to="/register">Register</Link>
+      </StyledForm>
+    </div>
+  );
+};
+
 export default LoginForm;
