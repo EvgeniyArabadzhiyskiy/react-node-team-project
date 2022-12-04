@@ -1,9 +1,7 @@
 import { useRef, useEffect, useCallback, lazy, Suspense } from 'react';
-// import { useMedia } from 'react-use';
+import { useMedia } from 'react-use';
 import { useDispatch, useSelector } from 'react-redux';
-import { 
-  // Navigate,
-   Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,22 +10,22 @@ import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
 
 import HomeTab from './HomeTab';
-// import Currency from './Currency';
+import Currency from './Currency';
 import DiagramTab from './DiagramTab';
-// import PublicRoute from './PublicRoute';
-// import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
 import Spinner from './Spinner';
 
-// const LoginPage = lazy(() => import('../pages/LoginPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 export const App = () => {
-  // const isMobie = useMedia('(max-width: 767px)');
+  const isMobie = useMedia('(max-width: 767px)');
 
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
@@ -72,9 +70,9 @@ export const App = () => {
       <Suspense fallback={null}>
         
         <Routes>
-          {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+          <Route path="/" element={<Navigate to="/login" />} />
 
-          {/* <Route
+          <Route
             path="/login"
             element={
               <PublicRoute restricted navigateTo="/home">
@@ -87,28 +85,26 @@ export const App = () => {
               <PublicRoute restricted navigateTo="/home">
                 <LoginPage />
               </PublicRoute>}
-          /> */}
+          />
 
           <Route path="/" element={<DashboardPage />}>
             <Route
               path="home"
               element={
-                <div>
+                <PrivateRoute>
                   <HomeTab data={transactions} ref={lastElement} />
                   <ButtonAddTransactions />
-                </div>
-                }
+                </PrivateRoute>}
             />
             <Route
               path="statistic"
               element={
-                <div>
+                <PrivateRoute>
                   <DiagramTab />
-                </div>
-                }
+                </PrivateRoute>}
             />
 
-            {/* <Route
+            <Route
               path="currency"
               element={
                 <PrivateRoute>
@@ -120,7 +116,7 @@ export const App = () => {
                     </div>
                   }
                 </PrivateRoute>}
-            ></Route> */}
+            ></Route>
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
