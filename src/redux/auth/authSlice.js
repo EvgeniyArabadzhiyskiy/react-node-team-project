@@ -9,8 +9,8 @@ import {
 const initialState = {
   user: { firstName: null, email: null, balance: 0 },
   token: null,
-  isLoggedIn: true,
-  isRefreshingUser: true,
+  isLoggedIn: false,
+  isRefreshingUser: false,
   isLoading: false,
   isError: null,
 };
