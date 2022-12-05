@@ -14,7 +14,8 @@ ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 const Chart = () => {
   const res = useSelector(selectAllStatistic);
-  const { totalBalance } = useSelector(state => state.transactions);
+  const { user } = useSelector(state => state.auth);
+  const totalBalance = user.balance;
 
   const expenseResults = res.statistic.filter(
     result => result.type === 'expense'
@@ -58,29 +59,27 @@ const Chart = () => {
   };
 
   return (
-    <div>
-      <div style={{ maxWidth: '336px', margin: '0 auto' }}>
-        <Doughnut
-          width={336}
-          height={336}
-          data={data}
-          options={{
-            cutout: '70%',
-            plugins: {
-              legend: {
-                display: false,
-              },
+    <div style={{ maxWidth: '336px', margin: '0 auto' }}>
+      <Doughnut
+        width={336}
+        height={336}
+        data={data}
+        options={{
+          cutout: '70%',
+          plugins: {
+            legend: {
+              display: false,
             },
-          }}
-          plugins={[
-            {
-              beforeDraw: function (chart) {
-                drawInnerText(chart);
-              },
+          },
+        }}
+        plugins={[
+          {
+            beforeDraw: function (chart) {
+              drawInnerText(chart);
             },
-          ]}
-        />
-      </div>
+          },
+        ]}
+      />
     </div>
   );
 };

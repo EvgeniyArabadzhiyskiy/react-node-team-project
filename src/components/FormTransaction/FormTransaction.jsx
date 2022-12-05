@@ -54,21 +54,13 @@ const FormTransaction = () => {
   const { pageNum } = useSelector(state => state.transactions);
 
   const selectInputRef = useRef();
-  const [switcher, setSwitcher] = useState(false);
+  const [isIncome, setIsIncome] = useState(false);
   const [isNextOperations, setIsNextOperations] = useState(true)
-
-  const initialValues = {
-    comment: '',
-    amount: '',
-    category: 'Regular income',
-    typeOperation: false,
-    date: new Date().toString(),
-  };
 
   const currentDate = moment().format('DD.MM.YYYY');
 
   const onChangeSwitch = e => {
-    setSwitcher(e.target.checked)
+    setIsIncome(e.target.checked)
     selectInputRef.current.clearValue();
   };
 
@@ -89,8 +81,16 @@ const FormTransaction = () => {
     dispatch(toggleModalAdd(false));
   };
 
+  const initialValues = {
+    comment: '',
+    amount: '',
+    category: '',
+    // typeOperation: false,
+    date: new Date().toString(),
+  };
+
   const onSubmitFormTransaction = async (values, {resetForm}) => {
-    const typeOperation = onChangeType(switcher);
+    const typeOperation = onChangeType(isIncome);
 
     const transaction = {
       ...values,
@@ -98,7 +98,6 @@ const FormTransaction = () => {
       typeOperation,
     };
     
-    console.log("onSubmitFormTransaction  transaction", transaction);
     if (isNextOperations) {
       setIsNextOperations(false)
       
@@ -129,31 +128,31 @@ const FormTransaction = () => {
           <TransactionForm>
             <ImputsWrapper>
               <CheckBoxWrapper>
-                <TextIncome isChecked={switcher}>Income</TextIncome>
+                <TextIncome isChecked={isIncome}>Income</TextIncome>
 
                 <CheckBoxLabel>
                   <CheckBox
                     type="checkbox"
                     name="typeOperation"
                     role="switch"
-                    checked={switcher}
+                    checked={isIncome}
                     onChange={onChangeSwitch}
                   />
 
                   <Switch 
-                    isChecked={switcher}>
-                    {switcher ? <Plus /> : <Minus />}
+                    isChecked={isIncome}>
+                    {isIncome ? <Plus /> : <Minus />}
                   </Switch>
                 </CheckBoxLabel>
 
-                <TextExpense isChecked={switcher}>Expense</TextExpense>
+                <TextExpense isChecked={isIncome}>Expense</TextExpense>
               </CheckBoxWrapper>
 
               
                 <Select
                   ref={selectInputRef}
                   name="category"
-                  options={ switcher ? optionsIncome : optionsExpense}
+                  options={ isIncome ? optionsIncome : optionsExpense}
                   // isClearable
                   // isSearchable
                   placeholder="Select a category"

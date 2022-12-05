@@ -1,4 +1,14 @@
+import Select from 'react-select';
+import { useMedia } from 'react-use';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { months } from 'helpers/monthList';
+import { years } from 'helpers/yearList';
+import { getCategoryColor } from 'helpers/getCategoryColor';
+import { getStatistic } from 'redux/statistic/statisticOperation';
+import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
+
 import {
   StyledTable,
   StyledTableHeader,
@@ -8,26 +18,15 @@ import {
   StyledItem,
   StyledInnerSpan,
 } from './Table.styled';
-import { useMedia } from 'react-use';
-import { Formik } from 'formik';
-import Select from 'react-select';
-import { months } from 'helpers/monthList';
-import { years } from 'helpers/yearList';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
-
-import { getCategoryColor } from 'helpers/getCategoryColor';
-import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const Table = () => {
-  const [month, setMonth] = useState(null);
-  const [year, setYear] = useState(null);
-
   const dispatch = useDispatch();
-
-  const isMobie = useMedia('(max-width: 767px)');
-
   const res = useSelector(selectAllStatistic);
+  const isMobie = useMedia('(max-width: 767px)');
+  
+  const [year, setYear] = useState(null);
+  const [month, setMonth] = useState(null);
+
   const data = res.statistic;
 
   const incomeTotal = data
@@ -44,11 +43,9 @@ const Table = () => {
 
   return (
     <>
-      {/* {isLoading && <b>Loading tasks...</b>}
-        {error && <b>{error}</b>} */}
       {isMobie ? (
         <StyledTable>
-          <Formik>
+          <div>
             <StyledFilters>
               <Select
                 name="month"
@@ -135,7 +132,7 @@ const Table = () => {
                 }}
               />
             </StyledFilters>
-          </Formik>
+          </div>
           <StyledTableHeader>
             <p>Category</p>
             <p>Sum</p>
@@ -180,7 +177,7 @@ const Table = () => {
         </StyledTable>
       ) : (
         <StyledTable>
-          <Formik>
+          <div>
             <StyledFilters>
               <Select
                 name="month"
@@ -259,7 +256,7 @@ const Table = () => {
                 }}
               />
             </StyledFilters>
-          </Formik>
+          </div>
           <StyledTableHeader>
             <p>Category</p>
             <p>Sum</p>
