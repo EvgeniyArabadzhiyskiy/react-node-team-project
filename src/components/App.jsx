@@ -70,7 +70,7 @@ export const App = () => {
       <Suspense fallback={null}>
         
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
+          {/* <Route path="/" element={<Navigate to="/login" />} /> */}
 
           <Route
             path="/login"
@@ -88,6 +88,7 @@ export const App = () => {
           />
 
           <Route path="/" element={<DashboardPage />}>
+            <Route index element={<Navigate to="/login" />} />
             <Route
               path="home"
               element={
