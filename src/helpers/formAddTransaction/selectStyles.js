@@ -1,16 +1,26 @@
 export const selectStyles = {
-  control: (baseStyles, state) => ({
+  control: (baseStyles) => ({
     ...baseStyles,
     border: 'none',
-    outline: 'none',
+    boxShadow: 'none',
+    borderRadius: 0,
     borderBottom: '1px solid #bdbdbd',
-    backgroundColor: 'transparent',
+    cursor: 'pointer',
+
+    '&:hover': {
+      borderBottom: '1px solid blue',
+    },
   }),
-  option: (baseStyles, state) => ({
+  option: (baseStyles, { isFocused, isSelected }) => ({
     ...baseStyles,
     fontSize: '18px',
     fontWeight: '500',
-    color: '#000',
+    color: isSelected ? '#FF6596' : '#111a83',
+    padding: '14px 20px',
+    cursor: 'pointer',
+    background: isSelected && '#FFF',
+    borderBottom: isSelected && "1px solid #bdbdbd",
+
     ':hover': {
       color: '#FF6596',
     },
@@ -24,5 +34,15 @@ export const selectStyles = {
     ...baseStyles,
     color: '#bdbdbd',
     fontSize: '18px',
+  }),
+
+  menu: baseStyles => ({
+    ...baseStyles,
+    boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+  }),
+
+  dropdownIndicator: baseStyles => ({
+    ...baseStyles,
+    color: '#121112',
   }),
 };

@@ -10,7 +10,7 @@ import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 import { ReactComponent as Calendar } from '../../images/calender.svg';
 
-import { options } from 'helpers/formAddTransaction/options';
+import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
 import {
   resetTransactions,
   toggleModalAdd,
@@ -46,11 +46,15 @@ import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
 import { addNewTransaction, getAllTransactions } from 'redux/transactions/transactionOperations';
 import { Box } from 'components/Box';
 import { useState } from 'react';
+import { useRef } from 'react';
+
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
   const { pageNum } = useSelector(state => state.transactions);
 
+  const selectInputRef = useRef();
+  const [switcher, setSwitcher] = useState(false);
   const [isNextOperations, setIsNextOperations] = useState(true)
 
   const initialValues = {
@@ -62,6 +66,11 @@ const FormTransaction = () => {
   };
 
   const currentDate = moment().format('DD.MM.YYYY');
+
+  const onChangeSwitch = e => {
+    setSwitcher(e.target.checked)
+    selectInputRef.current.clearValue();
+  };
 
   const onChangeType = value => {
     switch (value) {
@@ -81,14 +90,15 @@ const FormTransaction = () => {
   };
 
   const onSubmitFormTransaction = async (values, {resetForm}) => {
-    const typeOperation = onChangeType(values.typeOperation);
+    const typeOperation = onChangeType(switcher);
 
     const transaction = {
       ...values,
       amount: Number(values.amount),
       typeOperation,
     };
-
+    
+    console.log("onSubmitFormTransaction  transaction", transaction);
     if (isNextOperations) {
       setIsNextOperations(false)
       
@@ -119,35 +129,37 @@ const FormTransaction = () => {
           <TransactionForm>
             <ImputsWrapper>
               <CheckBoxWrapper>
-                <TextIncome isChecked={values.typeOperation}>Income</TextIncome>
+                <TextIncome isChecked={switcher}>Income</TextIncome>
 
                 <CheckBoxLabel>
                   <CheckBox
                     type="checkbox"
                     name="typeOperation"
                     role="switch"
-                    // checked={values.typeOperation}
+                    checked={switcher}
+                    onChange={onChangeSwitch}
                   />
 
                   <Switch 
-                    isChecked={values.typeOperation}>
-                    {values.typeOperation ? <Plus /> : <Minus />}
+                    isChecked={switcher}>
+                    {switcher ? <Plus /> : <Minus />}
                   </Switch>
                 </CheckBoxLabel>
 
-                <TextExpense isChecked={values.typeOperation}>Expense</TextExpense>
+                <TextExpense isChecked={switcher}>Expense</TextExpense>
               </CheckBoxWrapper>
 
-              {!values.typeOperation && (
+              
                 <Select
+                  ref={selectInputRef}
                   name="category"
-                  options={options}
-                  isClearable
-                  isSearchable
+                  options={ switcher ? optionsIncome : optionsExpense}
+                  // isClearable
+                  // isSearchable
                   placeholder="Select a category"
                   onChange={data => setFieldValue('category', data?.label)}
                   styles={selectStyles}
-                />)}
+                />
 
               <DateWrapper>
                 <LabelSum>
