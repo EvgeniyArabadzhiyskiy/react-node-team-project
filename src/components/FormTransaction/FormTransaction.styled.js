@@ -130,21 +130,6 @@ export const InputSum = styled(Field)`
   outline: none;
   border-bottom: 1px solid #bdbdbd;
 
-  @media screen and (min-width: 768px) {
-  }
-`;
-
-export const DatetimeInput = styled.input`
-  width: 100%;
-  border: ${p => p.theme.borders.none};
-  outline: none;
-  background-color: inherit;
-`;
-
-export const IconWrapper = styled.div`
-  display: flex;
-  border-bottom: 1px solid #bdbdbd;
-  justify-content: space-between;
 `;
 
 export const LabelComment = styled.label`

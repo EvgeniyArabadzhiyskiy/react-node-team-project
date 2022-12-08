@@ -1,10 +1,10 @@
-import Select from 'react-select';
+// import Select from 'react-select';
 import { useMedia } from 'react-use';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { months } from 'helpers/monthList';
-import { years } from 'helpers/yearList';
+// import { months } from 'helpers/monthList';
+// import { years } from 'helpers/yearList';
 import { getCategoryColor } from 'helpers/getCategoryColor';
 import { getStatistic } from 'redux/statistic/statisticOperation';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
@@ -18,6 +18,7 @@ import {
   StyledItem,
   StyledInnerSpan,
 } from './Table.styled';
+import FilterDate from './FilterDate';
 
 const Table = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,11 @@ const Table = () => {
         <StyledTable>
           <div>
             <StyledFilters>
-              <Select
+
+              <FilterDate setMonth={setMonth}  />
+              <FilterDate  setYear={setYear} value={"Year"}/>
+
+              {/* <Select
                 name="month"
                 options={months}
                 selected={month}
@@ -88,8 +93,8 @@ const Table = () => {
                     fill: '#000000',
                   }),
                 }}
-              />
-              <Select
+              /> */}
+              {/* <Select
                 name="year"
                 options={years}
                 selected={year}
@@ -130,7 +135,7 @@ const Table = () => {
                     fill: '#000000',
                   }),
                 }}
-              />
+              /> */}
             </StyledFilters>
           </div>
           <StyledTableHeader>
@@ -179,7 +184,12 @@ const Table = () => {
         <StyledTable>
           <div>
             <StyledFilters>
-              <Select
+              
+              <FilterDate setMonth={setMonth}  />
+              <FilterDate  setYear={setYear} value={"Year"}/>
+             
+
+              {/* <Select
                 name="month"
                 options={months}
                 selected={month}
@@ -216,12 +226,15 @@ const Table = () => {
                     fill: '#000000',
                   }),
                 }}
-              />
-              <Select
+              /> */}
+              {/* <Select
                 name="year"
                 options={years}
                 selected={year}
-                onChange={e => setYear(e?.value)}
+                onChange={e => {
+                  console.log(e?.value)
+                  setYear(e?.value)
+                }}
                 isClearable
                 isSearchable
                 placeholder={<div>Year</div>}
@@ -254,7 +267,7 @@ const Table = () => {
                     fill: '#000000',
                   }),
                 }}
-              />
+              /> */}
             </StyledFilters>
           </div>
           <StyledTableHeader>

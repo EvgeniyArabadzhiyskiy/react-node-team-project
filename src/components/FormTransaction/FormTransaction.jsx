@@ -1,14 +1,13 @@
+import './rdt-styles.css';
 import moment from 'moment';
 import Select from 'react-select';
 import { Formik } from 'formik';
 import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
 import { toast } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
-import { ReactComponent as Calendar } from '../../images/calender.svg';
 
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
 import {
@@ -23,12 +22,10 @@ import {
   CheckBoxLabel,
   CheckBoxWrapper,
   CommentWrapper,
-  DatetimeInput,
   DateWrapper,
   ErrorAmount,
   ErrorComment,
   FormWrapper,
-  IconWrapper,
   ImputsWrapper,
   InputComment,
   InputSum,
@@ -47,7 +44,7 @@ import { addNewTransaction, getAllTransactions } from 'redux/transactions/transa
 import { Box } from 'components/Box';
 import { useState } from 'react';
 import { useRef } from 'react';
-
+import DateInput from './DateInput';
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
@@ -85,7 +82,6 @@ const FormTransaction = () => {
     comment: '',
     amount: '',
     category: '',
-    // typeOperation: false,
     date: new Date().toString(),
   };
 
@@ -113,7 +109,6 @@ const FormTransaction = () => {
       toast.success("Successful transaction")
     }
 
-    
   };
 
   return (
@@ -148,7 +143,6 @@ const FormTransaction = () => {
                 <TextExpense isChecked={isIncome}>Expense</TextExpense>
               </CheckBoxWrapper>
 
-              
                 <Select
                   ref={selectInputRef}
                   name="category"
@@ -170,7 +164,7 @@ const FormTransaction = () => {
                 </LabelSum>
                 <ErrorAmount component="div" name="amount" />
 
-                <IconWrapper>
+                <>
                   <Datetime
                     name="date"
                     closeOnSelect
@@ -178,13 +172,13 @@ const FormTransaction = () => {
                     dateFormat="DD.MM.YYYY"
                     timeFormat={false}
                     isValidDate={checksFutureDate}
-                    onChange={e =>setFieldValue('date', new Date(e).toString())}
+                    onChange={e => setFieldValue('date', new Date(e).toString())}
                     inputProps={{onKeyDown: e => e.preventDefault()}}
-                    renderInput={props => <DatetimeInput {...props} />}
+                    renderInput={(p, openCalendar) => (
+                    <DateInput  props={p} onOpen={openCalendar}  />)}
                   />
 
-                  <Calendar />
-                </IconWrapper>
+                </>
               </DateWrapper>
 
               <CommentWrapper>
