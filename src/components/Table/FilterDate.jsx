@@ -36,7 +36,7 @@ const FilterDate = ({ setMonth, setYear, value = 'Month' }) => {
     return (
       <InputWrapper>
         <Filter {...props} />
-        <ClearButton onClick={clear}>
+        <ClearButton type='button' onClick={clear}>
           <RxCross2  />
         </ClearButton>
       </InputWrapper>
