@@ -14,6 +14,8 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import themeReducer from './theme/themeSlice';
 import { statisticReducer } from './statistic';
+import { walletsApi } from './WalletApiServise/wallet-api';
+
 
 const authPersistConfig = {
   key: 'auth',
@@ -28,18 +30,26 @@ const themePersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
-    theme: persistReducer(themePersistConfig, themeReducer),
     transactions: transactionsReducer,
     statistic: statisticReducer,
+    auth: persistReducer(authPersistConfig, authReducer),
+    theme: persistReducer(themePersistConfig, themeReducer),
+    [walletsApi.reducerPath]: walletsApi.reducer,
   },
-  middleware: getDefaultMiddleware => [
-    ...getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-  ],
+  // middleware: getDefaultMiddleware => [
+  //   ...getDefaultMiddleware({
+  //     serializableCheck: {
+  //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+  //     },
+  //   }),
+  // ],
+
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }).concat(walletsApi.middleware),
 });
 
 export const persistor = persistStore(store);
