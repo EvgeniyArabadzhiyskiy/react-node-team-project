@@ -11,7 +11,7 @@ import { FontStyles } from 'components/FontStyles';
 axios.defaults.baseURL = 'https://wallet-project.onrender.com/api';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/react-node-team-project">
@@ -20,5 +20,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
