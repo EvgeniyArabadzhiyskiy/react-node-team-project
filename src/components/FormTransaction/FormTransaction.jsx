@@ -5,13 +5,16 @@ import { Formik } from 'formik';
 import Datetime from 'react-datetime';
 import { toast } from 'react-toastify';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,
+  //  useSelector 
+  } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
 import {
-  resetTransactions,
+  // resetTransactions,
+  // testOperation,
   toggleModalAdd,
 } from 'redux/transactions/transactionsSlice';
 
@@ -40,15 +43,20 @@ import {
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-import { addNewTransaction, getAllTransactions } from 'redux/transactions/transactionOperations';
+// import { addNewTransaction, getAllTransactions } from 'redux/transactions/transactionOperations';
 import { Box } from 'components/Box';
 import { useState } from 'react';
 import { useRef } from 'react';
 import DateInput from './DateInput';
+import { useAddTransactMutation } from 'redux/WalletApiServise/wallet-api';
 
-const FormTransaction = () => {
+const FormTransaction = ({setAllTrans, setPage}) => {
   const dispatch = useDispatch();
-  const { pageNum } = useSelector(state => state.transactions);
+  // const { pageNum } = useSelector(state => state.transactions);
+
+
+  const [addNewTransaction_RTK] =  useAddTransactMutation()
+
 
   const selectInputRef = useRef();
   const [isIncome, setIsIncome] = useState(false);
@@ -97,12 +105,21 @@ const FormTransaction = () => {
     if (isNextOperations) {
       setIsNextOperations(false)
       
-      await dispatch(addNewTransaction(transaction));
-      resetForm()
       
-      await dispatch(resetTransactions());
+      await addNewTransaction_RTK(transaction).unwrap()
+      resetForm()
+      setAllTrans([])
+      setPage(1)
+      
+      // await dispatch(addNewTransaction(transaction));
+      // resetForm()
+      // await dispatch(resetTransactions());
 
-      if (pageNum === 1) await dispatch(getAllTransactions(1));
+      // if (pageNum === 1) await dispatch(getAllTransactions(1));
+
+      // console.log(data);
+
+      // if (pageNum === 1) await dispatch(testOperation(data));
 
       dispatch(toggleModalAdd(false));
 
