@@ -33,7 +33,7 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
   );
 
   const content = ref 
-  ? <li ref={ref}>{bodyTransaction}</li>
+  ? <li ref={ref} style={{background: 'tomato'}}>{bodyTransaction}</li>
   : <li>{bodyTransaction}</li>;
 
   return content;
