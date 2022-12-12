@@ -5,9 +5,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { refreshUser } from 'redux/auth/authOperation';
-// import { getNextPage, testOperation } from 'redux/transactions/transactionsSlice';
-// import { getAllTransactions } from 'redux/transactions/transactionOperations';
+import { getNextPage, getTransaction } from 'redux/transactions/transactionsSlice';
 
 import HomeTab from './HomeTab';
 import Currency from './Currency';
@@ -20,7 +20,6 @@ import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
 import Spinner from './Spinner';
 import { useGetAllTransactionsQuery } from 'redux/WalletApiServise/wallet-api';
-import { useState } from 'react';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
@@ -36,86 +35,45 @@ export const App = () => {
 
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
-  const { isError, isRefreshingUser } = useSelector(state => state.auth);
-  const { isModalAddOpen } = useSelector(state => state.transactions);
-  
- 
+  const { isLoggedIn, isError, isRefreshingUser } = useSelector(state => state.auth);
+  const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  const [page, setPage] = useState(1)
-  const [allTrans, setAllTrans] = useState([])
-  const [hasPage, setHasPage] = useState(false)
-
-  
-
+ 
   const observer = useRef(null);
 
   const lastElement = useCallback(item => {
 
     observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && hasPage ) {
-        observer.current.unobserve(entries[0].target);
-        // dispatch(getNextPage());
-        setPage(prev => prev + 1)
+      if (entries[0].isIntersecting ) {
+        // console.log('ОЧИСТИЛИ НАБЛЮДЕНИЕ :', entries[0].target,);
 
+        observer.current.unobserve(entries[0].target);
+        dispatch(getNextPage());
       }
       }, { rootMargin: '5px',threshold: 1});
 
-      if (item)  observer.current.observe(item);
-      
+      if (item)  {
+        // console.log('НАБЛЮДЕНИЕ ВЕДЕТСЯ ЗА :', item);
+        observer.current.observe(item);
+      }
     },
-    [hasPage]
+    [dispatch]
   );
 
-  // useEffect(() => {
-  //   if (isLoggedIn) dispatch(getAllTransactions(pageNum));
-  // }, [dispatch, isLoggedIn, pageNum]);
-
-  
-
-  
-  const { data  } = useGetAllTransactionsQuery(page, 
-  //   {
-  //   selectFromResult: (response) => {
-  //     return  {
-  //       transactions: response.data?.transactions
-  //       // transactions: {
-  //       //   allTransactions: response.data?.transactions,
-  //       //   balance: response.data?.userBalance,
-  //       //   user: 'Djon',
-  //       //   age: 30,
-  //       // }
-  //     }
-  //   }
-  // }
-  )
-
-  // const transactions = useMemo(() => {
-  //   return  data?.transactions 
-  // },[data?.transactions])
-  const transactions = data?.transactions 
-
-
-  // const balance = useMemo(() => {
-  //   return  data?.userBalance || 0
-  // },[data?.userBalance])
-
-  const balance = data?.userBalance 
+ 
+  const { data = {} } = useGetAllTransactionsQuery(pageNum)
   
   useEffect(() => {
-    setHasPage(Boolean(transactions?.length))
-
-    if (transactions?.length > 0) {
-      setAllTrans(prev => [...prev, ...transactions])
+    if (data.transactions && isLoggedIn) {
+      dispatch(getTransaction(data));
     }
-  }, [transactions]);
     
-
-  // if (transactions.length < 0) return null;
-  if (!transactions) return null;
-
+  }, [data, dispatch, isLoggedIn]);
+  
 
   if (isError)  toast.error(isError)
   
@@ -124,11 +82,7 @@ export const App = () => {
   ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Suspense fallback={null}>
-
-      
-
         <Routes>
-
           <Route
             path="/login"
             element={
@@ -144,18 +98,14 @@ export const App = () => {
               </PublicRoute>}
           />
 
-          <Route path="/" element={<DashboardPage totalBalance={balance} />}>
+          <Route path="/" element={<DashboardPage />}>
             <Route index element={<Navigate to="/login" />} />
             <Route
               path="home"
               element={
                 <PrivateRoute>
-                 
-                  <HomeTab 
-                  data={allTrans} 
-                  totalBalance={balance}
-                  // data={transactions} 
-                  ref={lastElement} />
+                  { transactions.length > 0 && 
+                  <HomeTab data={transactions} ref={lastElement} />}
                   <ButtonAddTransactions />
                 </PrivateRoute>}
             />
@@ -187,7 +137,7 @@ export const App = () => {
 
       {isModalAddOpen && (
         <ModalAddTransaction>
-          <FormTransaction setAllTrans={setAllTrans} setPage={setPage} />
+          <FormTransaction />
         </ModalAddTransaction>
       )}
       <ToastContainer autoClose={2500} theme="colored" />
@@ -220,3 +170,24 @@ export const App = () => {
 // <button type='button' onClick={handleAddPost}>Add Post</button> 
 
 // <ul>{data.map(item => { return <li key={item._id}>{item.category}</li>})}</ul> 
+
+
+//============================================================
+
+// const [page, setPage] = useState(1)
+  // const [allTrans, setAllTrans] = useState([])
+  // const [hasPage, setHasPage] = useState(false)
+
+  // useEffect(() => {
+  //   setHasPage(Boolean(transactions?.length))
+
+  //   if (transactions?.length > 0) {
+  //     setAllTrans(prev => [...prev, ...transactions])
+  //   }
+  // }, [transactions]);
+
+  //==============================================
+
+   // useEffect(() => {
+  //   if (isLoggedIn) dispatch(getAllTransactions(pageNum));
+  // }, [dispatch, isLoggedIn, pageNum]);
