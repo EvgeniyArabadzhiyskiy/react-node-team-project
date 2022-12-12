@@ -3,10 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isModalAddOpen: false,
+  transactions: [],
   totalBalance: 0,
-  transactions: [1,2,9],
   pageNum: 1,
-  hasNextPage: false,
+  
   isLoading: false,
   error: null,
 };
@@ -25,6 +25,14 @@ const transactionsSlice = createSlice({
 
     resetTransactions: (state, _) => {
       state.pageNum = 1;
+      state.transactions = [];
+    },
+
+    getTransaction: (state, action) => {
+      // console.log("action.payload", action.payload.transactions);
+      state.transactions = [...state.transactions, ...action.payload.transactions];
+
+      state.totalBalance = action.payload.userBalance;
     },
   },
 
@@ -73,6 +81,11 @@ const transactionsSlice = createSlice({
   // },
 });
 
-export const { toggleModalAdd, getNextPage, resetTransactions, testOperation } = transactionsSlice.actions;
+export const {
+  toggleModalAdd,
+  getNextPage,
+  resetTransactions,
+  getTransaction,
+} = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;
