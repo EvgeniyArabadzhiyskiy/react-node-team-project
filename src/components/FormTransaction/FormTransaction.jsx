@@ -12,11 +12,7 @@ import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
-import {
-  // resetTransactions,
-  // testOperation,
-  toggleModalAdd,
-} from 'redux/transactions/transactionsSlice';
+import { resetTransactions, toggleModalAdd } from 'redux/transactions/transactionsSlice';
 
 import {
   ButtonAdd,
@@ -52,15 +48,12 @@ import { useAddTransactMutation } from 'redux/WalletApiServise/wallet-api';
 
 const FormTransaction = ({setAllTrans, setPage}) => {
   const dispatch = useDispatch();
-  // const { pageNum } = useSelector(state => state.transactions);
-
-
-  const [addNewTransaction_RTK] =  useAddTransactMutation()
-
-
   const selectInputRef = useRef();
+
   const [isIncome, setIsIncome] = useState(false);
   const [isNextOperations, setIsNextOperations] = useState(true)
+  const [addNewTransaction_RTK] =  useAddTransactMutation()
+
 
   const currentDate = moment().format('DD.MM.YYYY');
 
@@ -108,18 +101,14 @@ const FormTransaction = ({setAllTrans, setPage}) => {
       
       await addNewTransaction_RTK(transaction).unwrap()
       resetForm()
-      setAllTrans([])
-      setPage(1)
+
+      await dispatch(resetTransactions());
+     
       
       // await dispatch(addNewTransaction(transaction));
       // resetForm()
-      // await dispatch(resetTransactions());
 
       // if (pageNum === 1) await dispatch(getAllTransactions(1));
-
-      // console.log(data);
-
-      // if (pageNum === 1) await dispatch(testOperation(data));
 
       dispatch(toggleModalAdd(false));
 
