@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { userLogout } from '../../redux/auth/authOperation';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'components/Spinner';
+import { resetTransactions } from 'redux/transactions/transactionsSlice';
 
 const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
   const { isLoading } = useSelector(state => state.auth);
@@ -36,8 +37,9 @@ const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
     setIsOpenExitModal(false);
   };
 
-  const LogOut = () => {
-    dispatch(userLogout());
+  const LogOut = async () => {
+    await  dispatch(userLogout());
+    await  dispatch(resetTransactions())
     enablePageScroll();
     setIsOpenExitModal(false);
   };
