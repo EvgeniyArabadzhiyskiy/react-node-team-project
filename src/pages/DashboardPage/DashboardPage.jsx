@@ -20,7 +20,7 @@ import {
 } from './Dashboard.styled';
 import { useState } from 'react';
 
-const DashboardPage = ({totalBalance}) => {
+const DashboardPage = () => {
   const isMobie = useMedia('(max-width: 767px)');
   const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   const isDesktop = useMedia('(min-width: 1280px)');
@@ -42,7 +42,7 @@ const DashboardPage = ({totalBalance}) => {
                 <Wrapper>
                   <Navigation />
                   <Routes>
-                    <Route path="/home" element={<Balance totalBalance={totalBalance}/>} />
+                    <Route path="/home" element={<Balance />} />
                   </Routes>
                   <Suspense fallback={null}>
                     <Outlet />
@@ -57,7 +57,7 @@ const DashboardPage = ({totalBalance}) => {
                 <Wrapper>
                   <TabletWrapper>
                     <Navigation />
-                    <Balance totalBalance={totalBalance}/>
+                    <Balance />
                   </TabletWrapper>
                   <Currency />
                 </Wrapper>
@@ -75,7 +75,7 @@ const DashboardPage = ({totalBalance}) => {
                 <Wrapper>
                   <SideBar>
                     <Navigation />
-                    <Balance totalBalance={totalBalance}/>
+                    <Balance />
                     <Currency />
                   </SideBar>
                   <Separator />
