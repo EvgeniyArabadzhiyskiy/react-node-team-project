@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { useMedia } from 'react-use';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { HomeTabItem, HomeTabMobItem } from './HomeTabItem';
 import {
@@ -11,17 +11,11 @@ import {
   CategoryName,
 } from './HomeTab.styled';
 import { getBalances } from 'helpers/formAddTransaction/getBalance';
-// import { useGetAllTransactionsQuery } from 'redux/WalletApiServise/wallet-api';
 
-const HomeTab = forwardRef(({ data, totalBalance }, ref) => {
+const HomeTab = forwardRef(({ data }, ref) => {
   const isMobie = useMedia('(max-width: 767px)');
-  // const { totalBalance } = useSelector(state => state.transactions);
+  const { totalBalance } = useSelector(state => state.transactions);
 
-  // const { totalBalance = 0 } = useGetAllTransactionsQuery(undefined, {
-  //   selectFromResult: (response) => ({totalBalance: response.data?.userBalance})
-  // })
- 
-    
   const balances = getBalances(data, totalBalance);
 
   return (
