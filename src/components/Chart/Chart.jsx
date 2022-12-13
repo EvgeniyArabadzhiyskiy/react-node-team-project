@@ -14,8 +14,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 const Chart = () => {
   const res = useSelector(selectAllStatistic);
-  const { user } = useSelector(state => state.auth);
-  const totalBalance = user.balance;
+  const { totalBalance } = useSelector(state => state.transactions);
 
   const expenseResults = res.statistic.filter(
     result => result.type === 'expense'
