@@ -1,8 +1,8 @@
 import { Formik, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
-import { userLogin } from 'redux/auth/authOperation';
+// import { userLogin } from 'redux/auth/authOperation';
 import schema from 'helpers';
 import Logo from 'components/Logo';
 import Spinner from 'components/Spinner';
@@ -18,6 +18,7 @@ import {
   SubmitBtn,
   StyledNavLink,
 } from './LoginForm.styled';
+import { useUserLoginMutation } from 'redux/WalletApiServise/wallet-api';
 
 const initialValues = {
   email: '',
@@ -26,12 +27,13 @@ const initialValues = {
 
 const LoginForm = () => {
   const [isHidePassword, setIsHidePassword] = useState(true);
-  const { isLoading } = useSelector(state => state.auth);
+  const [login_RTKQ, {isLoading}] = useUserLoginMutation()
 
-  const dispatch = useDispatch();
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(userLogin(values));
+  const handleSubmit = async (values, { resetForm }) => {
+    await login_RTKQ(values)
     resetForm();
+
+    // dispatch(userLogin(values));
   };
 
   return (
