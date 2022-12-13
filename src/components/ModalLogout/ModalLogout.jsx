@@ -9,14 +9,15 @@ import {
 } from './ModalLogout.styled';
 import { enablePageScroll } from 'scroll-lock';
 import { useEffect } from 'react';
-import { userLogout } from '../../redux/auth/authOperation';
-import { useDispatch, useSelector } from 'react-redux';
+// import { userLogout } from '../../redux/auth/authOperation';
+import { useDispatch } from 'react-redux';
 import Spinner from 'components/Spinner';
 import { resetTransactions } from 'redux/transactions/transactionsSlice';
+import { useUserLogoutMutation } from 'redux/WalletApiServise/wallet-api';
 
 const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
-  const { isLoading } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const [logout_RTKQ, { isLoading }] = useUserLogoutMutation();
 
   useEffect(() => {
     document.addEventListener('keydown', closeModalEsc);
@@ -37,9 +38,12 @@ const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
     setIsOpenExitModal(false);
   };
 
-  const LogOut = async () => {
-    await  dispatch(userLogout());
+  const logOut = async () => {
+    // await  dispatch(userLogout());
+
+    await logout_RTKQ()
     await  dispatch(resetTransactions())
+
     enablePageScroll();
     setIsOpenExitModal(false);
   };
@@ -51,7 +55,7 @@ const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
         <ModalTitle>Are you sure you want to sign out?</ModalTitle>
         <Wrapper>
           <WrapperItem>
-            <Exit onClick={LogOut}>Exit </Exit>
+            <Exit onClick={logOut}>Exit </Exit>
           </WrapperItem>
           <WrapperItem>
             <Stay onClick={disableScrollOn}>Cancel</Stay>
