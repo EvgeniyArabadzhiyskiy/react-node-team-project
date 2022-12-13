@@ -55,7 +55,7 @@ const HomeTab = forwardRef(({ data }, ref) => {
             <CategoryName>Balance</CategoryName>
           </StyledTableHeader>
 
-          <StyledTableBody>
+          { data.length > 0 && <StyledTableBody>
             {data.map(({ _id, date, typeOperation, category, comment, amount }, idx ) => {
               const itemBalance = balances[idx];
 
@@ -76,7 +76,7 @@ const HomeTab = forwardRef(({ data }, ref) => {
                 />
               )}
             )}
-          </StyledTableBody>
+          </StyledTableBody>}
         </StyledTable>
       )}
     </div>
