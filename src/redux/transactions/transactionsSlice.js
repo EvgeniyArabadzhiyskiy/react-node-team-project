@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { addNewTransaction, getAllTransactions } from './transactionOperations';
 
 const initialState = {
   isModalAddOpen: false,
@@ -7,13 +6,12 @@ const initialState = {
   totalBalance: 0,
   pageNum: 1,
   
-  isLoading: false,
-  error: null,
 };
 
 const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
+
   reducers: {
     toggleModalAdd: (state, action) => {
       state.isModalAddOpen = action.payload;
@@ -25,13 +23,12 @@ const transactionsSlice = createSlice({
 
     resetTransactions: (state, _) => {
       state.pageNum = 1;
+      state.totalBalance = 0;
       state.transactions = [];
     },
 
-    getTransaction: (state, action) => {
-      // console.log("action.payload", action.payload.transactions);
+    getTransactions: (state, action) => {
       state.transactions = [...state.transactions, ...action.payload.transactions];
-
       state.totalBalance = action.payload.userBalance;
     },
   },
@@ -81,11 +78,5 @@ const transactionsSlice = createSlice({
   // },
 });
 
-export const {
-  toggleModalAdd,
-  getNextPage,
-  resetTransactions,
-  getTransaction,
-} = transactionsSlice.actions;
-
+export const { toggleModalAdd, getNextPage, resetTransactions, getTransactions } = transactionsSlice.actions;
 export default transactionsSlice.reducer;
