@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getStatistic } from './statisticOperation';
 
 const initialState = {
   statistic: [],
@@ -10,16 +9,25 @@ const initialState = {
 const statisticSlice = createSlice({
   name: 'statistic',
   initialState,
-  extraReducers: builder => {
-    builder.addCase(getStatistic.fulfilled, (state, action) => {
-      state.isLoading = false;
+
+  reducers: {
+    getStatistic: (state, action) => {
       state.statistic = action.payload;
-      state.error = null;
-    });
-    builder.addCase(getStatistic.rejected, (state, action) => {
-      state.error = action.payload;
-    });
+    }
   },
+
+  // extraReducers: builder => {
+  //   builder.addCase(getStatistic.fulfilled, (state, action) => {
+  //     state.isLoading = false;
+  //     state.statistic = action.payload;
+  //     state.error = null;
+  //   });
+  //   builder.addCase(getStatistic.rejected, (state, action) => {
+  //     state.error = action.payload;
+  //   });
+  // },
 });
+
+export const { getStatistic } = statisticSlice.actions
 
 export default statisticSlice.reducer;
