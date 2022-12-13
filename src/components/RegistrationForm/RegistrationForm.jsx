@@ -1,6 +1,6 @@
 import { Formik, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { userRegistration } from 'redux/auth/authOperation';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { userRegistration } from 'redux/auth/authOperation';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
@@ -20,6 +20,7 @@ import {
   StyledNavLink,
   PasswordIndicator,
 } from './RegistrationForm.styled';
+import { useUserRegistrationMutation } from 'redux/WalletApiServise/wallet-api';
 
 const initialValues = {
   email: '',
@@ -31,14 +32,13 @@ const initialValues = {
 const RegisterForm = () => {
   const [isHideFirstPass, setIsHideFirstPass] = useState(true);
   const [isHideSecondPass, setIsHideSecondPass] = useState(true);
-  const { isLoading } = useSelector(state => state.auth);
+  const [register_RTKQ, {isLoading}] = useUserRegistrationMutation()
 
-  const dispatch = useDispatch();
-  const handleSubmit = (
-    { email, password, name: firstName },
-    { resetForm }
-  ) => {
-    dispatch(userRegistration({ email, password, firstName }));
+  const handleSubmit = async ({ email, password, name: firstName },{ resetForm }) => {
+    const user = { email, password, firstName }
+
+    await register_RTKQ(user)
+    // dispatch(userRegistration({ email, password, firstName }));
     resetForm();
   };
 
