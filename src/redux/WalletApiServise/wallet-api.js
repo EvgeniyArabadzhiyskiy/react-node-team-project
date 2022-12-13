@@ -1,27 +1,14 @@
-import {
-  createApi,
-  //  fetchBaseQuery
-} from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 import { store } from "../store";
-
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { userRegistration, userLogin, userLogout, userRefresh } from 'redux/auth/authSlice';
+import { getQueryString } from 'helpers/getQueryString';
+import { headerAuth } from 'helpers/headerAuth';
 
 const BASE_URL = 'https://wallet-project.onrender.com/api';
 
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-
-const axiosBaseQuery =
-  ({ baseUrl }) =>
+const axiosBaseQuery = ({ baseUrl }) =>
   async ({ url, method, data, params }) => {
-
     try {
       const result = await axios({ url: baseUrl + url, method, data, params });
       return { data: result.data };
@@ -43,14 +30,19 @@ export const walletsApi = createApi({
   tagTypes: ['Transaction'],
 
   endpoints: builder => ({
+
     userRegistration: builder.mutation({
       query: user => {
         return { url: '/users/register', method: 'POST', data: user };
-        // return { url: '/users/register', method: 'POST', body: user };
+
+        // body если используется fetchBaseQuery 
+        // return { url: '/users/register', method: 'POST', body: user }; 
       },
 
-      transformResponse: (response, meta, arg) => {
-        token.set(response.token);
+      transformResponse: (response) => {
+        store.dispatch(userRegistration(response))
+        headerAuth.set(response.token);
+
         return response;
       },
     }),
@@ -61,7 +53,9 @@ export const walletsApi = createApi({
       },
 
       transformResponse: (response, meta, arg) => {
-        token.set(response.token);
+        store.dispatch(userLogin(response))
+        headerAuth.set(response.token);
+
         return response;
       },
     }),
@@ -71,45 +65,54 @@ export const walletsApi = createApi({
         return { url: '/users/logout', method: 'POST' };
       },
 
-      transformResponse: (response, meta, arg) => {
-        token.unset();
+      transformResponse: (response) => {
+        store.dispatch(userLogout(response))
+        headerAuth.unset();
+
         return response;
       },
     }),
 
     userRefresh: builder.query({
       query: () => {
+        const state = store.getState()
+        const persistedToken = state.auth.token;
+        headerAuth.set(persistedToken);
+
         return { url: '/users/current', method: 'GET' };
       },
       
-      transformResponse: (response, meta, arg) => {
-        const state = store.getState()
-        const persistedToken = state.auth.token;
+      transformResponse: (response) => {
+        store.dispatch(userRefresh(response))
 
-        token.set(persistedToken);
         return response;
       },
     }),
 
     getAllTransactions: builder.query({
-      query: (page) => {
-        
-        
-        return { url: `/transactions?page=${page}&limit=10`, method: 'GET' };
-      },
+      query: (page) => ({ url: `/transactions?page=${page}&limit=10`, method: 'GET' }),
 
       providesTags: ['Transaction'],
-
-      transformResponse: (response, meta, arg) => {
-        // console.log( 'Response', response);
-        return response
-      },
     }),
 
     addTransact: builder.mutation({
       query: body => ({ url: '/transactions', method: 'POST', data: body }),
+
       invalidatesTags: ['Transaction'],
     }),
+
+    getStatistic: builder.query({
+      query: (data = {}) => {
+        const query = getQueryString(data);
+
+        return { url: query, method: 'GET' }
+      },
+
+      providesTags: ['Transaction'],
+
+    }),
+      
+
   }),
 });
 
@@ -121,6 +124,6 @@ export const {
 
   useGetAllTransactionsQuery,
   useAddTransactMutation,
-} = walletsApi;
 
-// export const { reducer, reducerPath } = walletsApi;
+  useGetStatisticQuery,
+} = walletsApi;
