@@ -1,13 +1,12 @@
 import './rdt-styles.css';
 import moment from 'moment';
 import Select from 'react-select';
-import { Formik } from 'formik';
 import Datetime from 'react-datetime';
+import { Formik } from 'formik';
 import { toast } from 'react-toastify';
+import { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { useDispatch,
-  //  useSelector 
-  } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 
@@ -39,10 +38,7 @@ import {
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-// import { addNewTransaction, getAllTransactions } from 'redux/transactions/transactionOperations';
 import { Box } from 'components/Box';
-import { useState } from 'react';
-import { useRef } from 'react';
 import DateInput from './DateInput';
 import { useAddTransactMutation } from 'redux/WalletApiServise/wallet-api';
 
@@ -51,14 +47,14 @@ const FormTransaction = ({setAllTrans, setPage}) => {
   const selectInputRef = useRef();
 
   const [isIncome, setIsIncome] = useState(false);
-  const [isNextOperations, setIsNextOperations] = useState(true)
-  const [addNewTransaction_RTK] =  useAddTransactMutation()
+  const [isNextOperations, setIsNextOperations] = useState(true);
+  const [addNewTransaction_RTKQ] = useAddTransactMutation();
 
 
   const currentDate = moment().format('DD.MM.YYYY');
 
   const onChangeSwitch = e => {
-    setIsIncome(e.target.checked)
+    setIsIncome(e.target.checked);
     selectInputRef.current.clearValue();
   };
 
@@ -96,11 +92,11 @@ const FormTransaction = ({setAllTrans, setPage}) => {
     };
     
     if (isNextOperations) {
-      setIsNextOperations(false)
+      setIsNextOperations(false);
       
       
-      await addNewTransaction_RTK(transaction).unwrap()
-      resetForm()
+      await addNewTransaction_RTKQ(transaction).unwrap();
+      resetForm();
 
       await dispatch(resetTransactions());
      
@@ -112,7 +108,7 @@ const FormTransaction = ({setAllTrans, setPage}) => {
 
       dispatch(toggleModalAdd(false));
 
-      toast.success("Successful transaction")
+      toast.success("Successful transaction");
     }
 
   };
