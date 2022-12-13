@@ -12,7 +12,7 @@ const FilterDate = ({ setMonth, setYear, value = 'Month' }) => {
       setYear && setYear(currentYear);
     }
 
-    if (!isNaN(currentMonth) && currentMonth) {
+    if (!isNaN(currentMonth) ?? currentMonth) {
       setMonth && setMonth(String(currentMonth));
     }
   };
