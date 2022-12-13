@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, lazy, Suspense } from 'react';
+import { useRef, useCallback, lazy, Suspense } from 'react';
 import { useMedia } from 'react-use';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -6,10 +6,8 @@ import { ThemeProvider } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { refreshUser } from 'redux/auth/authOperation';
-import { getNextPage, getTransaction } from 'redux/transactions/transactionsSlice';
-
 import HomeTab from './HomeTab';
+import Spinner from './Spinner';
 import Currency from './Currency';
 import DiagramTab from './DiagramTab';
 import PublicRoute from './PublicRoute';
@@ -18,31 +16,43 @@ import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
-import Spinner from './Spinner';
-import { useGetAllTransactionsQuery } from 'redux/WalletApiServise/wallet-api';
+import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
+import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
+import { useEffect } from 'react';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 
-
+// user@ma.com
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGEyYTA1OGQ4MmIyMjMxNWY2OWNlZSIsImlhdCI6MTY3MDE3ODg0NiwiZXhwIjoxNjcxMzg4NDQ2fQ.YeyuFPN6T0sjdm7X5onQhuYGfZhT73OoNHyBxkJGvtE'
 // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
+  const dispatch = useDispatch();
   const isMobie = useMedia('(max-width: 767px)');
 
-  const dispatch = useDispatch();
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
-  const { isLoggedIn, isError, isRefreshingUser } = useSelector(state => state.auth);
+  const { isLoggedIn } = useSelector(state => state.auth);
   const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
+  
+  const { isLoading, isError } = useUserRefreshQuery(undefined, {
+    skip: !isLoggedIn,
+  })
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
+  const { data = {},  } = useGetAllTransactionsQuery(pageNum, {
+    skip: !isLoggedIn,
+  })
  
+  useEffect(() => {
+    if(data.transactions) dispatch(getTransactions(data));
+  }, [data, dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+    
   const observer = useRef(null);
 
   const lastElement = useCallback(item => {
@@ -60,24 +70,12 @@ export const App = () => {
         // console.log('НАБЛЮДЕНИЕ ВЕДЕТСЯ ЗА :', item);
         observer.current.observe(item);
       }
-    },
-    [dispatch]
+    },[dispatch]
   );
 
- 
-  const { data = {} } = useGetAllTransactionsQuery(pageNum)
+  if (isError)  toast.error("Error")
   
-  useEffect(() => {
-    if (data.transactions && isLoggedIn) {
-      dispatch(getTransaction(data));
-    }
-    
-  }, [data, dispatch, isLoggedIn]);
-  
-
-  if (isError)  toast.error(isError)
-  
-  return isRefreshingUser ? (
+  return isLoading ? (
     <Spinner />
   ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
@@ -104,8 +102,7 @@ export const App = () => {
               path="home"
               element={
                 <PrivateRoute>
-                  { transactions.length > 0 && 
-                  <HomeTab data={transactions} ref={lastElement} />}
+                  <HomeTab data={transactions} ref={lastElement} />
                   <ButtonAddTransactions />
                 </PrivateRoute>}
             />
@@ -144,50 +141,3 @@ export const App = () => {
     </ThemeProvider>
   );
 };
-
-
-
-// const [addNewTransaction_RTK] =  useAddTransactMutation()
-
-// const handleAddPost = async () => {
-//   const trans = {
-//     comment: 'Mutation',
-//     amount: 200,
-//     category: 'Children',
-//     typeOperation: "expense",
-//     date: new Date().toString(),
-//   }
-
-//   await addNewTransaction_RTK(trans).un
-  
-// };
-
-
-// const handleAddPost =  () => {
-//   setPage(prev => prev + 1)
-// };
-
-// <button type='button' onClick={handleAddPost}>Add Post</button> 
-
-// <ul>{data.map(item => { return <li key={item._id}>{item.category}</li>})}</ul> 
-
-
-//============================================================
-
-// const [page, setPage] = useState(1)
-  // const [allTrans, setAllTrans] = useState([])
-  // const [hasPage, setHasPage] = useState(false)
-
-  // useEffect(() => {
-  //   setHasPage(Boolean(transactions?.length))
-
-  //   if (transactions?.length > 0) {
-  //     setAllTrans(prev => [...prev, ...transactions])
-  //   }
-  // }, [transactions]);
-
-  //==============================================
-
-   // useEffect(() => {
-  //   if (isLoggedIn) dispatch(getAllTransactions(pageNum));
-  // }, [dispatch, isLoggedIn, pageNum]);
