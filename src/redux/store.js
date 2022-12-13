@@ -20,7 +20,7 @@ import { walletsApi } from './WalletApiServise/wallet-api';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'isLoggedIn'],
 };
 
 const themePersistConfig = {
@@ -36,13 +36,6 @@ export const store = configureStore({
     theme: persistReducer(themePersistConfig, themeReducer),
     [walletsApi.reducerPath]: walletsApi.reducer,
   },
-  // middleware: getDefaultMiddleware => [
-  //   ...getDefaultMiddleware({
-  //     serializableCheck: {
-  //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-  //     },
-  //   }),
-  // ],
 
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({
