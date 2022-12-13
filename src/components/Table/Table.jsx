@@ -1,13 +1,11 @@
-// import Select from 'react-select';
 import { useMedia } from 'react-use';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import { months } from 'helpers/monthList';
-// import { years } from 'helpers/yearList';
+import { getStatistic } from 'redux/statistic/statisticSlice';
 import { getCategoryColor } from 'helpers/getCategoryColor';
-import { getStatistic } from 'redux/statistic/statisticOperation';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
+import { useGetStatisticQuery } from 'redux/WalletApiServise/wallet-api';
 
 import {
   StyledTable,
@@ -20,6 +18,7 @@ import {
 } from './Table.styled';
 import FilterDate from './FilterDate';
 
+
 const Table = () => {
   const dispatch = useDispatch();
   const res = useSelector(selectAllStatistic);
@@ -27,6 +26,17 @@ const Table = () => {
   
   const [year, setYear] = useState(null);
   const [month, setMonth] = useState(null);
+
+  const {data: stats } = useGetStatisticQuery({ month, year })
+
+  useEffect(() => {
+    if (stats) dispatch(getStatistic(stats))
+    
+  }, [dispatch, stats]);
+
+  // useEffect(() => {
+  //   dispatch(getStatistic({ month, year }));
+  // }, [dispatch, month, year]);
 
   const data = res.statistic;
 
@@ -37,10 +47,6 @@ const Table = () => {
   const expensesTotal = data
     .filter(data => data.type !== 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
-
-  useEffect(() => {
-    dispatch(getStatistic({ month, year }));
-  }, [dispatch, month, year]);
 
   return (
     <>
