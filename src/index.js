@@ -8,7 +8,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { FontStyles } from 'components/FontStyles';
 
-axios.defaults.baseURL = 'https://wallet-project.onrender.com/api';
+// axios.defaults.baseURL = 'https://wallet-project.onrender.com/api';
+axios.defaults.baseURL = 'https://wallet-backend-xmk0.onrender.com/api';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
