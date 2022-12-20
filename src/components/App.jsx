@@ -19,7 +19,6 @@ import { nightTheme, dayTheme } from '../theme';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
 import { useEffect } from 'react';
-import axios from 'axios';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
