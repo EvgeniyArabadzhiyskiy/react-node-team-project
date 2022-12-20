@@ -19,14 +19,14 @@ import { nightTheme, dayTheme } from '../theme';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
-
 // user@ma.com
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGEyYTA1OGQ4MmIyMjMxNWY2OWNlZSIsImlhdCI6MTY3MDE3ODg0NiwiZXhwIjoxNjcxMzg4NDQ2fQ.YeyuFPN6T0sjdm7X5onQhuYGfZhT73OoNHyBxkJGvtE'
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTA2OTA0NTAxMTUzMGZlNDQwMzNiYyIsImlhdCI6MTY3MTQ1NzAyOSwiZXhwIjoxNjcyNjY2NjI5fQ.VVIFI6wsU2edbnVOgRIXVc64J3M79dVUghQAg_2VT1A'
 // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
