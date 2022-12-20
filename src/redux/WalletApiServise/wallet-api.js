@@ -5,7 +5,8 @@ import { userRegistration, userLogin, userLogout, userRefresh } from 'redux/auth
 import { getQueryString } from 'helpers/getQueryString';
 import { headerAuth } from 'helpers/headerAuth';
 
-const BASE_URL = 'https://wallet-project.onrender.com/api';
+// const BASE_URL = 'https://wallet-project.onrender.com/api';
+const BASE_URL = 'https://wallet-backend-xmk0.onrender.com/api';
 
 const axiosBaseQuery = ({ baseUrl }) =>
   async ({ url, method, data, params }) => {
