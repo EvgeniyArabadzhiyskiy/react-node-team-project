@@ -25,7 +25,6 @@ const Header = ({ setIsOpenExitModal }) => {
     <StyledHeader>
       <Container>
         <Logo />
-        <a href="https://wallet-backend-xmk0.onrender.com/auth-google/google">SING in GOOGLE</a>
         <UserBox>
           <ThemeToggle />
           <TextName>{ firstName }</TextName>
