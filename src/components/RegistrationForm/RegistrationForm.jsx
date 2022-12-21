@@ -115,6 +115,7 @@ const RegisterForm = () => {
           </StyledForm>
         )}
       </Formik>
+      <a href="https://wallet-backend-xmk0.onrender.com/auth-google/google" rel="noreferrer">SING in GOOGLE</a>
       <StyledNavLink to="/login">log in</StyledNavLink>
     </FormWrap>
   );
