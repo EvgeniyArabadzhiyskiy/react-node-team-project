@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Spinner from 'components/Spinner';
 import { resetTransactions } from 'redux/transactions/transactionsSlice';
-import { useUserLogoutMutation } from 'redux/walletApiServise/wallet-api';
+import { useUserLogoutMutation } from 'redux/WalletApiServise/wallet-api';
 
 const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
   const dispatch = useDispatch();

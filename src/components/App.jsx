@@ -17,7 +17,7 @@ import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
-import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/walletApiServise/wallet-api';
+import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
 import { useEffect } from 'react';
 import { setToken } from 'redux/auth/authSlice';
 

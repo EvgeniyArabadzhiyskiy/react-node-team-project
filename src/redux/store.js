@@ -14,7 +14,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import themeReducer from './theme/themeSlice';
 import { statisticReducer } from './statistic';
-import { walletsApi } from './walletApiServise/wallet-api';
+import { walletsApi } from './WalletApiServise/wallet-api';
 
 
 const authPersistConfig = {
