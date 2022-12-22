@@ -41,7 +41,7 @@ export const walletsApi = createApi({
       },
 
       transformResponse: (response) => {
-        store.dispatch(userRegistration(response))
+        store.dispatch(userRegistration(response));
         headerAuth.set(response.token);
 
         return response;
@@ -54,7 +54,7 @@ export const walletsApi = createApi({
       },
 
       transformResponse: (response, meta, arg) => {
-        store.dispatch(userLogin(response))
+        store.dispatch(userLogin(response));
         headerAuth.set(response.token);
 
         return response;
@@ -67,7 +67,7 @@ export const walletsApi = createApi({
       },
 
       transformResponse: (response) => {
-        store.dispatch(userLogout(response))
+        store.dispatch(userLogout(response));
         headerAuth.unset();
 
         return response;
@@ -76,7 +76,7 @@ export const walletsApi = createApi({
 
     userRefresh: builder.query({
       query: () => {
-        const state = store.getState()
+        const state = store.getState();
         const persistedToken = state.auth.token;
         headerAuth.set(persistedToken);
 
@@ -84,7 +84,7 @@ export const walletsApi = createApi({
       },
       
       transformResponse: (response) => {
-        store.dispatch(userRefresh(response))
+        store.dispatch(userRefresh(response));
 
         return response;
       },
