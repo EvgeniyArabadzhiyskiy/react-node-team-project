@@ -20,7 +20,7 @@ import {
   StyledNavLink,
   PasswordIndicator,
 } from './RegistrationForm.styled';
-import { useUserRegistrationMutation } from 'redux/WalletApiServise/wallet-api';
+import { useUserRegistrationMutation } from 'redux/walletApiServise/wallet-api';
 
 const initialValues = {
   email: '',
