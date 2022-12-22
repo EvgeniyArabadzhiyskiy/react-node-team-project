@@ -18,7 +18,7 @@ import {
   SubmitBtn,
   StyledNavLink,
 } from './LoginForm.styled';
-import { useUserLoginMutation } from 'redux/WalletApiServise/wallet-api';
+import { useUserLoginMutation } from 'redux/walletApiServise/wallet-api';
 
 const initialValues = {
   email: '',
