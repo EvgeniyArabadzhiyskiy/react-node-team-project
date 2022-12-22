@@ -1,7 +1,7 @@
 import { useRef, useCallback, lazy, Suspense } from 'react';
 import { useMedia } from 'react-use';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,8 +17,9 @@ import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
-import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
+import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/walletApiServise/wallet-api';
 import { useEffect } from 'react';
+import { setToken } from 'redux/auth/authSlice';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
@@ -31,21 +32,32 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const isMobie = useMedia('(max-width: 767px)');
+  const [searchParams] = useSearchParams();
 
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
-  const { isLoggedIn } = useSelector(state => state.auth);
+  const { token } = useSelector(state => state.auth);
   const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
   
   const { isLoading, isError } = useUserRefreshQuery(undefined, {
-    skip: !isLoggedIn,
+    skip: !token,
   })
 
   const { data = {},  } = useGetAllTransactionsQuery(pageNum, {
-    skip: !isLoggedIn,
+    skip: !token,
   })
+
+  useEffect(() => {
+    const accessToken = searchParams.get('accessToken');
+    if (!accessToken) return
+    
+    dispatch(setToken(accessToken))
+    
+  },[dispatch, searchParams])
  
   useEffect(() => {
-    if(data.transactions) dispatch(getTransactions(data));
+    if(!data.transactions) return
+
+    dispatch(getTransactions(data));
   }, [data, dispatch]);
 
   // useEffect(() => {
