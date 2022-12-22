@@ -43,7 +43,7 @@ export const Wrapper = styled.div`
   }
   @media screen and (min-width: 1280px) {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 `;
 
@@ -55,12 +55,14 @@ export const TabletWrapper = styled.div`
 
 export const SideBar = styled.div`
   padding-top: 46px;
+  padding-right: 70px;
+  border-right: 1px solid rgb(231, 229, 242);
 `;
 
-export const Separator = styled.div`
-  min-height: 100vh;
-  margin: 0 69px;
-  border: ${p => p.theme.borders.normal} #e7e5f2;
-  box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
-    1px 0px 0px rgba(255, 255, 255, 0.6);
-`;
+// export const Separator = styled.div`
+//   min-height: 100vh;
+//   margin: 0 69px;
+//   border: ${p => p.theme.borders.normal} #e7e5f2;
+//   box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+//     1px 0px 0px rgba(255, 255, 255, 0.6);
+// `;

@@ -15,7 +15,7 @@ import {
   Container,
   Wrapper,
   TabletWrapper,
-  Separator,
+  // Separator,
   SideBar,
 } from './Dashboard.styled';
 import { useState } from 'react';
@@ -78,7 +78,7 @@ const DashboardPage = () => {
                     <Balance />
                     <Currency />
                   </SideBar>
-                  <Separator />
+                  {/* <Separator /> */}
                   <div>
                     <Suspense fallback={null}>
                       <Outlet />
