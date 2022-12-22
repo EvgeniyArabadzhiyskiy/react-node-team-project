@@ -40,7 +40,7 @@ import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
 import { Box } from 'components/Box';
 import DateInput from './DateInput';
-import { useAddTransactMutation } from 'redux/WalletApiServise/wallet-api';
+import { useAddTransactMutation } from 'redux/walletApiServise/wallet-api';
 
 const FormTransaction = ({setAllTrans, setPage}) => {
   const dispatch = useDispatch();
