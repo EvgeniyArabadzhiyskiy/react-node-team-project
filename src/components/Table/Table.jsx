@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getStatistic } from 'redux/statistic/statisticSlice';
 import { getCategoryColor } from 'helpers/getCategoryColor';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
-import { useGetStatisticQuery } from 'redux/WalletApiServise/wallet-api';
+import { useGetStatisticQuery } from 'redux/walletApiServise/wallet-api';
 
 import {
   StyledTable,
