@@ -22,7 +22,7 @@ import SharedLayout from 'components/SharedLayout';
 const LoginPage = () => {
   const isWideMobie = useMedia('(max-width: 767px)');
   const isWideTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
-  const isWideСomputer = useMedia('(min-width: 1280px)');
+  const isWideComputer = useMedia('(min-width: 1280px)');
   const location = useLocation();
 
   return (
@@ -59,7 +59,7 @@ const LoginPage = () => {
             </Wrapper>
           </Container>
         ) : null}
-        {isWideСomputer ? (
+        {isWideComputer ? (
           <Blur>
             <Container>
               <Wrapper>

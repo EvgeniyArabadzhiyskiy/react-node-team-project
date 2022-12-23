@@ -33,23 +33,14 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
-  @media screen and (max-width: 767px) {
-    align-items: center;
-    height: 100%;
-    max-width: 480px;
-  }
+
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     flex-direction: column;
     padding: 38px 0;
-    max-width: none;
-    height: 100%;
   }
+
   @media screen and (min-width: 1280px) {
-    flex-direction: row;
-    height: 100%;
-    max-width: none;
-    align-items: center;
-    padding: 0;
+    justify-content: space-between;
   }
 `;
 
@@ -76,7 +67,6 @@ export const ImageContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-right: 66px;
   }
 `;
 export const Text = styled.p`

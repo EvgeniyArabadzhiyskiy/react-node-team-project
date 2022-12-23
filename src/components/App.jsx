@@ -39,7 +39,7 @@ export const App = () => {
   const { token } = useSelector(state => state.auth);
   const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
   
-  const { isLoading, isError } = useUserRefreshQuery(undefined, {
+  const {  isError, isLoading } = useUserRefreshQuery(undefined, {
     skip: !token,
   })
 
