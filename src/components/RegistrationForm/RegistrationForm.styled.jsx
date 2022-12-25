@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Form, Field } from 'formik';
 import {
   changeMainLineColor,
@@ -16,8 +16,7 @@ export const FormWrap = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 533px;
-    height: 616px;
-    padding: 40px 58px 66px 65px;
+    padding: 40px 58px 40px 65px;
     border-radius: 20px;
   }
 `;
@@ -85,9 +84,8 @@ export const ErrorMsg = styled.div`
   background-color: transparent;
 `;
 
-export const SubmitBtn = styled.button`
-  display: block;
-  margin-top: 40px;
+export const BaseBtn = styled.div`
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   min-width: 280px;
@@ -95,18 +93,26 @@ export const SubmitBtn = styled.button`
   cursor: pointer;
   text-align: center;
   text-transform: uppercase;
-  border: 1px solid ${p => p.theme.colors.primaryBgBtn};
   border-radius: 20px;
   font-family: ${p => p.theme.fonts.body};
   font-style: normal;
   font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.5;
   letter-spacing: 0.1em;
+  font-size: ${p => p.theme.fontSizes.m};
+
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
+`;
+
+export const SubmitBtn = styled(BaseBtn)`
+  display: block;
+  border: 1px solid ${p => p.theme.colors.primaryBgBtn};
   color: ${p => p.theme.colors.primaryBtn};
   background-color: ${p => p.theme.colors.primaryBgBtn};
 
-  :disabled {
+   :disabled {
     opacity: 0.5;
 
     :hover,
@@ -122,44 +128,39 @@ export const SubmitBtn = styled.button`
     background-color: ${p => p.theme.colors.primaryBtn};
     color: ${p => p.theme.colors.primaryBgBtn};
     border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-  }
-
-  @media screen and (min-width: 768px) {
-    min-width: 300px;
-  }
+  } 
 `;
 
-export const StyledNavLink = styled(Link)`
+export const StyledNavLink = styled(BaseBtn)`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 280px;
-  height: 50px;
-  text-align: center;
-  text-transform: uppercase;
-  border: 1px solid ${p => p.theme.colors.secondaryBtn};
-  border-radius: 20px;
-  font-family: ${p => p.theme.fonts.body};
-  font-style: normal;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: 1.5;
-  letter-spacing: 0.1em;
+
+  border: 1px solid #15275160;
   color: ${p => p.theme.colors.secondaryBtn};
   background-color: ${p => p.theme.colors.primaryBtn};
+  border-bottom: 5px solid #15275160;
+  transition: all 250ms linear;
 
   :hover,
   :focus {
-    background-color: ${p => p.theme.colors.secondaryBtn};
-    color: ${p => p.theme.colors.primaryBtn};
+    border-color: #3187cd;
+    border-bottom: 5px solid #3187cd;
+    color: #3187cd;
+  }
+`;
+
+export const GoogleLink = styled(StyledNavLink)`
+  span {
+    margin-top: 5px;
   }
 
-  @media screen and (min-width: 768px) {
-    width: 300px;
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
   }
+
 `;
 
 export const PasswordIndicator = styled.div`

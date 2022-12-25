@@ -9,6 +9,7 @@ import Spinner from 'components/Spinner';
 import { ReactComponent as EmailIcon } from 'images/email.svg';
 import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import { ReactComponent as UserIcon } from 'images/user.svg';
+import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 import {
   FormWrap,
   LogoWrap,
@@ -19,8 +20,10 @@ import {
   SubmitBtn,
   StyledNavLink,
   PasswordIndicator,
+  GoogleLink,
 } from './RegistrationForm.styled';
 import { useUserRegistrationMutation } from 'redux/WalletApiServise/wallet-api';
+import { Link } from 'react-router-dom';
 
 const initialValues = {
   email: '',
@@ -109,14 +112,17 @@ const RegisterForm = () => {
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
               />
             </Label>
-            <SubmitBtn type="submit" disabled={!(isValid && dirty)}>
+            <SubmitBtn as="button" type="submit" disabled={!(isValid && dirty)}>
               register
             </SubmitBtn>
           </StyledForm>
         )}
       </Formik>
-      <a href="https://wallet-backend-xmk0.onrender.com/auth-google/google" rel="noreferrer">SING in GOOGLE</a>
-      <StyledNavLink to="/login">log in</StyledNavLink>
+      <StyledNavLink as={Link} to="/login">log in</StyledNavLink>
+      <GoogleLink as="a" href="https://wallet-backend-xmk0.onrender.com/auth-google/google" rel="noreferrer">
+        <GoogleIcon />
+        <span>GOOGLE</span>
+      </GoogleLink>
     </FormWrap>
   );
 };
