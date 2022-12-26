@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
+/* padding-top: 50px; */
   /* padding-top: ${p => p.theme.space[4]}px;
   padding-bottom: ${p => p.theme.space[7]}px; */
   width: 320px;
@@ -32,6 +33,7 @@ export const InnerCard = styled.div`
 `;
 
 const CardFace = styled.div`
+  padding-top: ${p => p.theme.space[6]}px;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -39,17 +41,18 @@ const CardFace = styled.div`
   -webkit-backface-visibility: hidden;
   overflow:hidden;
   border-radius: 20px;
+  background-color: #fff;
 
 
 `;
 
 export const CardFront = styled(CardFace)`
-  background-color: #fff;
+  /* background-color: #fff; */
   /* height: 200px; */
 `;
 
 export const CardBack = styled(CardFace)`
-  background-color: #fff;
+  /* background-color: #fff; */
   transform: rotateY(180deg);
   /* height: 200px; */
 `
