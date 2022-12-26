@@ -17,7 +17,6 @@ import {
   ButtonAdd,
   ButtonCancel,
   CardBack,
-  CardFace,
   CardFront,
   CheckBox,
   CheckBoxLabel,
@@ -57,7 +56,7 @@ const FormTransaction = () => {
 
   const currentDate = moment().format('DD.MM.YYYY');
 
-  const [isFlipped, setIsFlipped] = useState(false)
+  // const [isFlipped, setIsFlipped] = useState(false)
 
   const onChangeSwitch = e => {
     setIsIncome(e.target.checked);
@@ -83,9 +82,9 @@ const FormTransaction = () => {
     dispatch(toggleModalAdd(false));
   };
 
-  const handleClick = () => {
-    setIsFlipped(prev => !prev)
-  }
+  // const handleClick = () => {
+  //   setIsFlipped(prev => !prev)
+  // }
 
   const initialValues = {
     comment: '',
