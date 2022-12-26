@@ -1,61 +1,25 @@
-import { ErrorMessage, Field, Form } from 'formik';
 import styled from 'styled-components';
+import { ErrorMessage, Field, Form } from 'formik';
 
 export const FormWrapper = styled.div`
 /* padding-top: 50px; */
-  /* padding-top: ${p => p.theme.space[4]}px;
-  padding-bottom: ${p => p.theme.space[7]}px; */
-  width: 320px;
-  /* border-radius: 20px; */
-  /* background-color: ${p => p.theme.colors.primaryBg}; */
+  /* padding-top: ${p => p.theme.space[4]}px; */
+  /* padding-bottom: ${p => p.theme.space[7]}px;  */
+  /* width: 320px;
+  border-radius: 20px;
+  background-color: ${p => p.theme.colors.primaryBg}; */
 
-  height: 580px;
-  perspective: 800px;
+  /* height: 580px; */
+  /* perspective: 800px; */
 
   @media screen and (min-width: 768px) {
-    /* padding-top: 48px;
-    padding-bottom: ${p => p.theme.space[6]}px; */
-    width: 540px;
+    /* padding-top: 36px; */
+    /* padding-bottom: ${p => p.theme.space[6]}px; */
+    /* width: 540px; */
 
-    height: 580px;
+    /* height: 580px; */
   }
 `;
-
-export const InnerCard = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  cursor: pointer;
-
-  transform:  ${p => p.isFlipped && "rotateY(180deg)"};
-`;
-
-const CardFace = styled.div`
-  padding-top: ${p => p.theme.space[6]}px;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  overflow:hidden;
-  border-radius: 20px;
-  background-color: #fff;
-
-
-`;
-
-export const CardFront = styled(CardFace)`
-  /* background-color: #fff; */
-  /* height: 200px; */
-`;
-
-export const CardBack = styled(CardFace)`
-  /* background-color: #fff; */
-  transform: rotateY(180deg);
-  /* height: 200px; */
-`
 
 
 export const ImputsWrapper = styled.div`
@@ -68,20 +32,7 @@ export const ImputsWrapper = styled.div`
   }
 `;
 
-export const Title = styled.h2`
-  font-family: ${p => p.theme.fonts.heading};
-  font-size: 24px;
-  line-height: 35px;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  text-align: center;
 
-  margin-bottom: 40px;
-
-  @media screen and (min-width: 768px) {
-    font-size: ${p => p.theme.fontSizes.l};
-    line-height: 45px;
-  }
-`;
 
 export const TransactionForm = styled(Form)`
   display: inline-flex;
