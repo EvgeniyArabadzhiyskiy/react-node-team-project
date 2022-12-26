@@ -16,6 +16,9 @@ import { resetTransactions, toggleModalAdd } from 'redux/transactions/transactio
 import {
   ButtonAdd,
   ButtonCancel,
+  CardBack,
+  CardFace,
+  CardFront,
   CheckBox,
   CheckBoxLabel,
   CheckBoxWrapper,
@@ -25,6 +28,7 @@ import {
   ErrorComment,
   FormWrapper,
   ImputsWrapper,
+  InnerCard,
   InputComment,
   InputSum,
   LabelComment,
@@ -42,7 +46,7 @@ import { Box } from 'components/Box';
 import DateInput from './DateInput';
 import { useAddTransactMutation } from 'redux/WalletApiServise/wallet-api';
 
-const FormTransaction = ({setAllTrans, setPage}) => {
+const FormTransaction = () => {
   const dispatch = useDispatch();
   const selectInputRef = useRef();
 
@@ -53,9 +57,13 @@ const FormTransaction = ({setAllTrans, setPage}) => {
 
   const currentDate = moment().format('DD.MM.YYYY');
 
+  const [isFlipped, setIsFlipped] = useState(false)
+
   const onChangeSwitch = e => {
     setIsIncome(e.target.checked);
     selectInputRef.current.clearValue();
+     console.log("FormTransaction  isIncome", isIncome);
+    
   };
 
   const onChangeType = value => {
@@ -74,6 +82,10 @@ const FormTransaction = ({setAllTrans, setPage}) => {
   const onCancelClick = () => {
     dispatch(toggleModalAdd(false));
   };
+
+  const handleClick = () => {
+    setIsFlipped(prev => !prev)
+  }
 
   const initialValues = {
     comment: '',
@@ -111,11 +123,193 @@ const FormTransaction = ({setAllTrans, setPage}) => {
       toast.success("Successful transaction");
     }
 
+   
+
   };
 
   return (
     <FormWrapper>
-      <Title>Add transaction</Title>
+      <InnerCard    isFlipped={isIncome}>
+      <CardFront>
+        <Title>Add transaction</Title>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmitFormTransaction}
+          validationSchema={transactionShema}
+        >
+          {({ setFieldValue, values }) => (
+           !isIncome &&  <TransactionForm>
+              <ImputsWrapper>
+                <CheckBoxWrapper>
+                  <TextIncome isChecked={isIncome}>Income</TextIncome>
+
+                  <CheckBoxLabel>
+                    <CheckBox
+                      type="checkbox"
+                      name="typeOperation"
+                      role="switch"
+                      checked={isIncome}
+                      onChange={onChangeSwitch}
+                    />
+
+                    <Switch 
+                      isChecked={isIncome}>
+                      {isIncome ? <Plus /> : <Minus />}
+                    </Switch>
+                  </CheckBoxLabel>
+
+                  <TextExpense isChecked={isIncome}>Expense</TextExpense>
+                </CheckBoxWrapper>
+
+                  <Select
+                    ref={selectInputRef}
+                    name="category"
+                    options={ isIncome ? optionsIncome : optionsExpense}
+                    // isClearable
+                    // isSearchable
+                    placeholder="Select a category"
+                    onChange={data => setFieldValue('category', data?.label)}
+                    styles={selectStyles}
+                  />
+
+                <DateWrapper>
+                  <LabelSum>
+                    <InputSum
+                      type="number"
+                      name="amount"
+                      placeholder="0.00"
+                    />
+                  </LabelSum>
+                  <ErrorAmount component="div" name="amount" />
+
+                  <>
+                    <Datetime
+                      name="date"
+                      closeOnSelect
+                      initialValue={currentDate}
+                      dateFormat="DD.MM.YYYY"
+                      timeFormat={false}
+                      isValidDate={checksFutureDate}
+                      onChange={e => setFieldValue('date', new Date(e).toString())}
+                      inputProps={{onKeyDown: e => e.preventDefault()}}
+                      renderInput={(p, openCalendar) => (
+                      <DateInput  props={p} onOpen={openCalendar}  />)}
+                    />
+
+                  </>
+                </DateWrapper>
+
+                <CommentWrapper>
+                  <LabelComment>
+                    <InputComment
+                      type="text"
+                      name="comment"
+                      placeholder="Comment"
+                    />
+                  </LabelComment>
+                  <ErrorComment component="div" name="comment" />
+                </CommentWrapper>
+              </ImputsWrapper>
+
+              <Box width="300px" margin="0 auto">
+                <ButtonAdd type="submit">Add</ButtonAdd>
+                <ButtonCancel type="button" onClick={onCancelClick}>Cancel</ButtonCancel>
+              </Box>
+            </TransactionForm>
+          )}
+        </Formik>
+      </CardFront>
+       <CardBack>
+        <Title>Add transaction</Title>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmitFormTransaction}
+          validationSchema={transactionShema}
+        >
+          {({ setFieldValue, values }) => (
+            isIncome && <TransactionForm>
+              <ImputsWrapper>
+                <CheckBoxWrapper>
+                  <TextIncome isChecked={isIncome}>Income</TextIncome>
+
+                  <CheckBoxLabel>
+                    <CheckBox
+                      type="checkbox"
+                      name="typeOperation"
+                      role="switch"
+                      checked={isIncome}
+                      onChange={onChangeSwitch}
+                    />
+
+                    <Switch 
+                      isChecked={isIncome}>
+                      {isIncome ? <Plus /> : <Minus />}
+                    </Switch>
+                  </CheckBoxLabel>
+
+                  <TextExpense isChecked={isIncome}>Expense</TextExpense>
+                </CheckBoxWrapper>
+
+                  <Select
+                    ref={selectInputRef}
+                    name="category"
+                    options={ isIncome ? optionsIncome : optionsExpense}
+                    // isClearable
+                    // isSearchable
+                    placeholder="Select a category"
+                    onChange={data => setFieldValue('category', data?.label)}
+                    styles={selectStyles}
+                  />
+
+                <DateWrapper>
+                  <LabelSum>
+                    <InputSum
+                      type="number"
+                      name="amount"
+                      placeholder="0.00"
+                    />
+                  </LabelSum>
+                  <ErrorAmount component="div" name="amount" />
+
+                  <>
+                    <Datetime
+                      name="date"
+                      closeOnSelect
+                      initialValue={currentDate}
+                      dateFormat="DD.MM.YYYY"
+                      timeFormat={false}
+                      isValidDate={checksFutureDate}
+                      onChange={e => setFieldValue('date', new Date(e).toString())}
+                      inputProps={{onKeyDown: e => e.preventDefault()}}
+                      renderInput={(p, openCalendar) => (
+                      <DateInput  props={p} onOpen={openCalendar}  />)}
+                    />
+
+                  </>
+                </DateWrapper>
+
+                <CommentWrapper>
+                  <LabelComment>
+                    <InputComment
+                      type="text"
+                      name="comment"
+                      placeholder="Comment"
+                    />
+                  </LabelComment>
+                  <ErrorComment component="div" name="comment" />
+                </CommentWrapper>
+              </ImputsWrapper>
+
+              <Box width="300px" margin="0 auto">
+                <ButtonAdd type="submit">Add</ButtonAdd>
+                <ButtonCancel type="button" onClick={onCancelClick}>Cancel</ButtonCancel>
+              </Box>
+            </TransactionForm>
+          )}
+        </Formik>
+      </CardBack>
+
+      {/* <Title>Add transaction</Title>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmitFormTransaction}
@@ -201,7 +395,9 @@ const FormTransaction = ({setAllTrans, setPage}) => {
             </Box>
           </TransactionForm>
         )}
-      </Formik>
+      </Formik> */}
+      </InnerCard>
+
     </FormWrapper>
   );
 };
