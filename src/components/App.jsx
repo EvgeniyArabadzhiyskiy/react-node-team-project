@@ -87,9 +87,9 @@ export const App = () => {
 
   if (isError)  toast.error("Error")
   
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  return  (
+  //   <Spinner />
+  // ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Suspense fallback={null}>
         <Routes>
