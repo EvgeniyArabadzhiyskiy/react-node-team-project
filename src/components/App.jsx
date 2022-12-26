@@ -14,12 +14,12 @@ import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
-import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
 import { useEffect } from 'react';
 import { setToken } from 'redux/auth/authSlice';
+import FlipCard from './FlipCard/FlipCard';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
@@ -144,9 +144,15 @@ export const App = () => {
         </Routes>
       </Suspense>
 
-      {isModalAddOpen && (
+      {/* {isModalAddOpen && (
         <ModalAddTransaction>
           <FormTransaction />
+        </ModalAddTransaction>
+      )} */}
+
+      {isModalAddOpen && (
+        <ModalAddTransaction>
+          <FlipCard />
         </ModalAddTransaction>
       )}
       <ToastContainer autoClose={2500} theme="colored" />
