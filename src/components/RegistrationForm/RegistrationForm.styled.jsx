@@ -140,12 +140,12 @@ export const StyledNavLink = styled(BaseBtn)`
   color: ${p => p.theme.colors.secondaryBtn};
   background-color: ${p => p.theme.colors.primaryBtn};
   border-bottom: 5px solid #15275160;
-  transition: all 250ms linear;
+  transition: all 150ms linear;
 
   :hover,
   :focus {
-    border-color: #3187cd;
-    border-bottom: 5px solid #3187cd;
+    border-color: #31a1cd;
+    border-bottom: 1px solid #3187cd;
     color: #3187cd;
   }
 `;
