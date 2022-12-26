@@ -2,18 +2,58 @@ import { ErrorMessage, Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
-  padding-top: ${p => p.theme.space[4]}px;
-  padding-bottom: ${p => p.theme.space[7]}px;
+  /* padding-top: ${p => p.theme.space[4]}px;
+  padding-bottom: ${p => p.theme.space[7]}px; */
   width: 320px;
-  border-radius: 20px;
-  background-color: ${p => p.theme.colors.primaryBg};
+  /* border-radius: 20px; */
+  /* background-color: ${p => p.theme.colors.primaryBg}; */
+
+  height: 580px;
+  perspective: 800px;
 
   @media screen and (min-width: 768px) {
-    padding-top: 48px;
-    padding-bottom: ${p => p.theme.space[6]}px;
+    /* padding-top: 48px;
+    padding-bottom: ${p => p.theme.space[6]}px; */
     width: 540px;
+
+    height: 580px;
   }
 `;
+
+export const InnerCard = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+
+  transform:  ${p => p.isFlipped && "rotateY(180deg)"};
+`;
+
+const CardFace = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow:hidden;
+  border-radius: 20px;
+
+
+`;
+
+export const CardFront = styled(CardFace)`
+  background-color: #fff;
+  /* height: 200px; */
+`;
+
+export const CardBack = styled(CardFace)`
+  background-color: #fff;
+  transform: rotateY(180deg);
+  /* height: 200px; */
+`
+
 
 export const ImputsWrapper = styled.div`
   padding-left: ${p => p.theme.space[4]}px;
