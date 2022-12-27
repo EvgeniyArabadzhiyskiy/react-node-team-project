@@ -32,6 +32,7 @@ import {
   Switch,
   TextExpense,
   TextIncome,
+  Title,
   TransactionForm,
 } from './FormTransaction.styled';
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
@@ -110,6 +111,7 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
 
   return (
     <FormWrapper>
+      <Title>Add transaction</Title>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmitFormTransaction}
