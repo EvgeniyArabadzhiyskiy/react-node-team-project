@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FormTransaction from 'components/FormTransaction/FormTransaction';
-import { Card, CardBack, CardFront, InnerCard, Title } from './FlipCard.styled';
+import { Card, CardBack, CardFront, InnerCard } from './FlipCard.styled';
 
 const FlipCard = () => {
   const [isIncome, setIsIncome] = useState(false);
@@ -9,17 +9,17 @@ const FlipCard = () => {
     <Card>
       <InnerCard isFlipped={isIncome}>
         <CardFront>
-          <Title>Add transaction</Title>
-          {!isIncome && 
+          {/* <Title>Add transaction</Title> */}
+          {/* {!isIncome &&  */}
           <FormTransaction setIsIncome={setIsIncome} isIncome={isIncome} />
-          }
+          {/* } */}
         </CardFront>
 
         <CardBack>
-          <Title>Add transaction</Title>
-          {isIncome && 
+          {/* <Title>Add transaction</Title> */}
+          {/* {isIncome &&  */}
           <FormTransaction setIsIncome={setIsIncome} isIncome={isIncome} />
-          }
+          {/* } */}
         </CardBack>
       </InnerCard>
     </Card>
