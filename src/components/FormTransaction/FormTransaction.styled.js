@@ -21,6 +21,20 @@ export const FormWrapper = styled.div`
   }
 `;
 
+export const Title = styled.h2`
+  font-family: ${p => p.theme.fonts.heading};
+  font-size: 24px;
+  line-height: 35px;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  text-align: center;
+
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.l};
+    line-height: 45px;
+  }
+`;
 
 export const ImputsWrapper = styled.div`
   padding-left: ${p => p.theme.space[4]}px;
