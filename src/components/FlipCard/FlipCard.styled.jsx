@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Card = styled.div`
   width: 320px;
-  height: 580px;
+  height: 620px;
   perspective: 700px;
 
   @media screen and (min-width: 768px) {
@@ -30,6 +30,7 @@ const CardFace = styled.div`
   overflow: hidden;
   border-radius: 20px;
   background-color: #fff;
+  transform-style: preserve-3d;
 `;
 
 export const CardFront = styled(CardFace)`
@@ -40,17 +41,17 @@ export const CardBack = styled(CardFace)`
 `;
 
 
-export const Title = styled.h2`
-  font-family: ${p => p.theme.fonts.heading};
-  font-size: 24px;
-  line-height: 35px;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  text-align: center;
+// export const Title = styled.h2`
+//   font-family: ${p => p.theme.fonts.heading};
+//   font-size: 24px;
+//   line-height: 35px;
+//   font-weight: ${p => p.theme.fontWeights.normal};
+//   text-align: center;
 
-  margin-bottom: 40px;
+//   margin-bottom: 40px;
 
-  @media screen and (min-width: 768px) {
-    font-size: ${p => p.theme.fontSizes.l};
-    line-height: 45px;
-  }
-`;
+//   @media screen and (min-width: 768px) {
+//     font-size: ${p => p.theme.fontSizes.l};
+//     line-height: 45px;
+//   }
+// `;
