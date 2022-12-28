@@ -84,6 +84,8 @@ export const walletsApi = createApi({
       },
       
       transformResponse: (response) => {
+        // console.log("response", response);
+        
         store.dispatch(userRefresh(response));
 
         return response;
