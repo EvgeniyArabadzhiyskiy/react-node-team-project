@@ -18,7 +18,9 @@ import { nightTheme, dayTheme } from '../theme';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
 import { useEffect } from 'react';
-import { setToken } from 'redux/auth/authSlice';
+import { setToken,
+  //  userRefresh
+} from 'redux/auth/authSlice';
 import FlipCard from './FlipCard/FlipCard';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
@@ -39,9 +41,10 @@ export const App = () => {
   const { token } = useSelector(state => state.auth);
   const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
   
-  const {  isError, isLoading } = useUserRefreshQuery(undefined, {
+  const { data: user,  isError, isLoading } = useUserRefreshQuery(undefined, {
     skip: !token,
   })
+  console.log("App  user", user);
 
   const { data = {},  } = useGetAllTransactionsQuery(pageNum, {
     skip: !token,
@@ -60,6 +63,10 @@ export const App = () => {
 
     dispatch(getTransactions(data));
   }, [data, dispatch]);
+
+  // useEffect(() => {
+  //   if(user)  dispatch(userRefresh(user));
+  // }, [dispatch, user]);
 
   // useEffect(() => {
   //   dispatch(refreshUser());
