@@ -12,7 +12,7 @@ export const FormWrap = styled.div`
   @media screen and (min-width: 768px) {
     width: 533px;
     padding: 40px 58px 40px 65px;
-    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.7);
   }
 `;
 
@@ -51,6 +51,7 @@ export const Input = styled(Field)`
   line-height: 1.5;
   color: ${p => p.theme.colors.primaryText};
   background-color: transparent;
+  color: ${p => p.theme.colors.white};
 
   &:focus {
     outline: none;
