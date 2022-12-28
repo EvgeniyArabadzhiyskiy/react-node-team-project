@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+// import EwalletBg from '../../images/e-wallet-1280.png'
+import EwalletBg2 from '../../images/ewallet-2.jpg'
 
 export const Overlay = styled.div`
   position: fixed;
@@ -9,7 +11,9 @@ export const Overlay = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #3935356e;
+  background: url(${EwalletBg2});
+  background-size: cover;
+  background-repeat: no-repeat;
   z-index: 6;
 `;
 
