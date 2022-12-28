@@ -156,6 +156,7 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                     type="number"
                     name="amount"
                     placeholder="0.00"
+                    autoComplete="off"
                   />
                 </LabelSum>
                 <ErrorAmount component="div" name="amount" />
@@ -183,13 +184,14 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                     type="text"
                     name="comment"
                     placeholder="Comment"
+                    autoComplete="off"
                   />
                 </LabelComment>
                 <ErrorComment component="div" name="comment" />
               </CommentWrapper>
             </ImputsWrapper>
 
-            <Box width="300px" margin="0 auto">
+            <Box width="280px" margin="0 auto">
               <ButtonAdd type="submit">Add</ButtonAdd>
               <ButtonCancel type="button" onClick={onCancelClick}>Cancel</ButtonCancel>
             </Box>

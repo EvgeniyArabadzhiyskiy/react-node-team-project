@@ -24,6 +24,7 @@ import {
 } from './RegistrationForm.styled';
 import { useUserRegistrationMutation } from 'redux/WalletApiServise/wallet-api';
 import { Link } from 'react-router-dom';
+import { Box } from 'components/Box';
 
 const initialValues = {
   email: '',
@@ -46,7 +47,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <FormWrap>
+    <Box mr="50px" border="10px solid rgba(255, 255, 255, 0.2)">
+      <FormWrap>
       {isLoading && <Spinner />}
       <LogoWrap>
         <Logo />
@@ -74,9 +76,9 @@ const RegisterForm = () => {
                 placeholder="Password"
               />
               {isHideFirstPass ? (
-                <HiEye onClick={() => setIsHideFirstPass(false)} />
+                <HiEye color='white' onClick={() => setIsHideFirstPass(false)} />
               ) : (
-                <HiEyeOff onClick={() => setIsHideFirstPass(true)} />
+                <HiEyeOff color='white' onClick={() => setIsHideFirstPass(true)} />
               )}
               {values.password && <PasswordIndicator lenth={values.password} />}
               <ErrorMessage
@@ -92,9 +94,9 @@ const RegisterForm = () => {
                 placeholder="Confirm password"
               />
               {isHideSecondPass ? (
-                <HiEye onClick={() => setIsHideSecondPass(false)} />
+                <HiEye color='white' onClick={() => setIsHideSecondPass(false)} />
               ) : (
-                <HiEyeOff onClick={() => setIsHideSecondPass(true)} />
+                <HiEyeOff color='white' onClick={() => setIsHideSecondPass(true)} />
               )}
               {values.confirmPassword && (
                 <PasswordIndicator lenth={values.confirmPassword} />
@@ -124,6 +126,8 @@ const RegisterForm = () => {
         <span>GOOGLE</span>
       </GoogleLink>
     </FormWrap>
+    </Box>
+    
   );
 };
 

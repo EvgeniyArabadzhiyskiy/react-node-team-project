@@ -11,9 +11,10 @@ import {
   Text,
 } from './LoginPage.styled';
 import frame from '../../images/frame.png';
-import frameBig from '../../images/frameBig.png';
 import frameReg from '../../images/frameReg.png';
-import frameRegBig from '../../images/frameRegBig.png';
+// import frameBig from '../../images/frameBig.png';
+// import frameRegBig from '../../images/frameRegBig.png';
+// import EWalletBg from '../../images/ewallet-5.png';
 
 import { useMedia } from 'react-use';
 import { useLocation } from 'react-router-dom';
@@ -63,15 +64,16 @@ const LoginPage = () => {
           <Blur>
             <Container>
               <Wrapper>
-                <ImageContainer>
-                  <Frame
-                    src={
-                      location.pathname === '/login' ? frameBig : frameRegBig
-                    }
+                <div>
+                  {/* <Frame
+                    // src={
+                    //   location.pathname === '/login' ? frameBig : frameRegBig
+                    // }
+                    src={EWalletBg}
                     alt="customer orders goods"
-                  />
-                  <Text>Finance App</Text>
-                </ImageContainer>
+                  /> */}
+                  {/* <Text>Finance App</Text> */}
+                </div>
 
                 <FormContainer>
                   {location.pathname === '/login' ? (

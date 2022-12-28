@@ -26,6 +26,7 @@ export const Title = styled.h2`
   font-size: 24px;
   line-height: 35px;
   font-weight: ${p => p.theme.fontWeights.normal};
+  color: white;
   text-align: center;
 
   margin-bottom: 40px;
@@ -137,6 +138,11 @@ export const InputSum = styled(Field)`
   border: ${p => p.theme.borders.none};
   outline: none;
   border-bottom: 1px solid #bdbdbd;
+  color: white;
+
+  &::placeholder{
+    color: #ffffff8f;
+  }
 
 `;
 
@@ -153,13 +159,18 @@ export const InputComment = styled(Field)`
   border: ${p => p.theme.borders.none};
   outline: none;
   border-bottom: 1px solid #bdbdbd;
+  color: white;
+
+  &::placeholder{
+    color: #ffffff8f;
+  }
 `;
 
 export const ButtonAdd = styled.button`
   display: block;
   width: 100%;
   height: 50px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   cursor: pointer;
 
   font-size: ${p => p.theme.fontSizes.m};
@@ -168,23 +179,23 @@ export const ButtonAdd = styled.button`
   text-transform: uppercase;
 
   color: ${p => p.theme.colors.primaryBg};
-  border: none;
+  border: 7px solid rgba(55, 53, 53, 0.2);
   margin-bottom: ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.primaryBgBtn};
 
   &:hover {
-    background-color: ${p => p.theme.colors.hoverBgBtn};
-    border: 1px solid ${p => p.theme.colors.primaryBgBtn};
+    /* background-color: ${p => p.theme.colors.hoverBgBtn}; */
+    border: 7px solid ${p => p.theme.colors.primaryBgBtn};
   }
 
-  transition: border 300ms linear;
+  transition: border 200ms linear;
 `;
 
 export const ButtonCancel = styled.button`
   display: block;
   width: 100%;
   height: 50px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   cursor: pointer;
 
   font-size: ${p => p.theme.fontSizes.m};
@@ -193,7 +204,8 @@ export const ButtonCancel = styled.button`
   text-transform: uppercase;
 
   color: ${p => p.theme.colors.secondaryBtn};
-  border: 1px solid ${p => p.theme.colors.secondaryBtn};
+  border: 7px solid rgba(55, 53, 53, 0.4);
+  /* border: 1px solid ${p => p.theme.colors.secondaryBtn}; */
 
   &:hover {
     color: ${p => p.theme.colors.primaryBgBtn};

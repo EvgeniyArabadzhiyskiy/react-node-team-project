@@ -17,7 +17,7 @@ export const FormWrap = styled.div`
   @media screen and (min-width: 768px) {
     width: 533px;
     padding: 40px 58px 40px 65px;
-    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.7);
   }
 `;
 
@@ -40,7 +40,7 @@ export const Input = styled(Field)`
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 24px;
-  color: ${p => p.theme.colors.primaryText};
+  color: ${p => p.theme.colors.white};
   background-color: transparent;
 
   &:focus {
