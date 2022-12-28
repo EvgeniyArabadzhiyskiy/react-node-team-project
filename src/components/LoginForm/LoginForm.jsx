@@ -22,6 +22,7 @@ import {
 } from './LoginForm.styled';
 import { useUserLoginMutation } from 'redux/WalletApiServise/wallet-api';
 import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/RegistrationForm/RegistrationForm.styled';
+import { Box } from 'components/Box';
 
 
 const initialValues = {
@@ -41,7 +42,8 @@ const LoginForm = () => {
   };
 
   return (
-    <FormWrap>
+    <Box mr="50px" border="10px solid rgba(255, 255, 255, 0.2)">
+      <FormWrap>
       {isLoading && <Spinner />}
       <LogoWrap>
         <Logo />
@@ -69,9 +71,9 @@ const LoginForm = () => {
                 placeholder="Password"
               />
               {isHidePassword ? (
-                <HiEye onClick={() => setIsHidePassword(false)} />
+                <HiEye color='white' onClick={() => setIsHidePassword(false)} />
               ) : (
-                <HiEyeOff onClick={() => setIsHidePassword(true)} />
+                <HiEyeOff color='white' onClick={() => setIsHidePassword(true)} />
               )}
               <ErrorMessage
                 name="password"
@@ -90,6 +92,8 @@ const LoginForm = () => {
         <span>GOOGLE</span>
       </GoogleLink>
     </FormWrap>
+    </Box>
+    
   );
 };
 
