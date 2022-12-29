@@ -23,7 +23,6 @@ import {
   GoogleLink,
 } from './RegistrationForm.styled';
 import { useUserRegistrationMutation } from 'redux/WalletApiServise/wallet-api';
-import { Link } from 'react-router-dom';
 import { Box } from 'components/Box';
 
 const initialValues = {
@@ -114,13 +113,13 @@ const RegisterForm = () => {
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
               />
             </Label>
-            <SubmitBtn as="button" type="submit" disabled={!(isValid && dirty)}>
+            <SubmitBtn type="submit" disabled={!(isValid && dirty)}>
               register
             </SubmitBtn>
           </StyledForm>
         )}
       </Formik>
-      <StyledNavLink as={Link} to="/login">log in</StyledNavLink>
+      <StyledNavLink to="/login">log in</StyledNavLink>
       <GoogleLink as="a" href="https://wallet-backend-xmk0.onrender.com/auth-google/google" rel="noreferrer">
         <GoogleIcon />
         <span>GOOGLE</span>

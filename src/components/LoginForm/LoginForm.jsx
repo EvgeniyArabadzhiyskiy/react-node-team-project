@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Formik, ErrorMessage } from 'formik';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -80,13 +79,13 @@ const LoginForm = () => {
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
               />
             </Label>
-            <SubmitBtn as="button" type="submit" disabled={!(isValid && dirty)}>
+            <SubmitBtn type="submit" disabled={!(isValid && dirty)}>
               log in
             </SubmitBtn>
           </StyledForm>
         )}
       </Formik>
-      <StyledNavLink as={Link} to="/register">register</StyledNavLink>
+      <StyledNavLink to="/register">register</StyledNavLink>
       <GoogleLink as="a" href="https://wallet-backend-xmk0.onrender.com/auth-google/google" rel="noreferrer">
         <GoogleIcon />
         <span>GOOGLE</span>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ErrorMessage, Field, Form } from 'formik';
+import { baseBtnStyle } from 'components/RegistrationForm/RegistrationForm.styled';
 
 export const FormWrapper = styled.div`
 /* padding-top: 50px; */
@@ -167,21 +168,14 @@ export const InputComment = styled(Field)`
 `;
 
 export const ButtonAdd = styled.button`
-  display: block;
-  width: 100%;
-  height: 50px;
-  /* border-radius: 20px; */
-  cursor: pointer;
-
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: 26px;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  text-transform: uppercase;
+  ${baseBtnStyle}
 
   color: ${p => p.theme.colors.primaryBg};
   border: 7px solid rgba(55, 53, 53, 0.2);
   margin-bottom: ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.primaryBgBtn};
+
+  
 
   &:hover {
     /* background-color: ${p => p.theme.colors.hoverBgBtn}; */
@@ -192,16 +186,7 @@ export const ButtonAdd = styled.button`
 `;
 
 export const ButtonCancel = styled.button`
-  display: block;
-  width: 100%;
-  height: 50px;
-  /* border-radius: 20px; */
-  cursor: pointer;
-
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: 26px;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  text-transform: uppercase;
+  ${baseBtnStyle}
 
   color: ${p => p.theme.colors.secondaryBtn};
   border: 7px solid rgba(55, 53, 53, 0.4);
