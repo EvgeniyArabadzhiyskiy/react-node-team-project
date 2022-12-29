@@ -54,10 +54,10 @@ export const ButtonExit = styled.button`
   }
 
   &:hover {
-    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.15)
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.15);
   }
   &:focus {
-     box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.15)
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.15);
   }
 `;
 
