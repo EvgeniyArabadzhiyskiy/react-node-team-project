@@ -1,9 +1,3 @@
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
 /*!
  * @kurkle/color v0.2.1
  * https://github.com/kurkle/color#readme
