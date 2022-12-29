@@ -38,7 +38,7 @@ import {
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-import { Box } from 'components/Box';
+// import { Box } from 'components/Box';
 import DateInput from './DateInput';
 import { useAddTransactMutation } from 'redux/WalletApiServise/wallet-api';
 
@@ -191,10 +191,10 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
               </CommentWrapper>
             </ImputsWrapper>
 
-            <Box width="280px" margin="0 auto">
+            {/* <Box width="280px" margin="0 auto"> */}
               <ButtonAdd type="submit">Add</ButtonAdd>
               <ButtonCancel type="button" onClick={onCancelClick}>Cancel</ButtonCancel>
-            </Box>
+            {/* </Box> */}
           </TransactionForm>
         )}
       </Formik> 
