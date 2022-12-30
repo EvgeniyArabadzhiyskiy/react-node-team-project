@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
 import { Form, Field } from 'formik';
 
 export const FormWrap = styled.div`
@@ -7,12 +6,19 @@ export const FormWrap = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 32px 20px 36px;
-  background-color: ${p => p.theme.colors.primaryBg};
+  background-color: rgba(0, 0, 0, 0.7);
 
   @media screen and (min-width: 768px) {
     width: 533px;
     padding: 40px 58px 40px 65px;
-    background: rgba(0, 0, 0, 0.7);
+  }
+`;
+
+export const Border = styled.div`
+  border: 10px solid rgba(255, 255, 255, 0.2);
+
+  @media screen and (min-width: 1280px) {
+    margin-right: 50px;
   }
 `;
 
@@ -78,80 +84,3 @@ export const ErrorMsg = styled.div`
   color: #f21407;
   background-color: transparent;
 `;
-
-// export const SubmitBtn = styled.button`
-//   display: block;
-//   margin-top: 40px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   min-width: 280px;
-//   height: 50px;
-//   cursor: pointer;
-//   text-align: center;
-//   text-transform: uppercase;
-//   border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-//   border-radius: 20px;
-//   font-family: ${p => p.theme.fonts.body};
-//   font-style: normal;
-//   font-weight: ${p => p.theme.fontWeights.normal};
-//   font-size: ${p => p.theme.fontSizes.m};
-//   line-height: 1.5;
-//   letter-spacing: 0.1em;
-//   color: ${p => p.theme.colors.primaryBtn};
-//   background-color: ${p => p.theme.colors.primaryBgBtn};
-
-//   :disabled {
-//     opacity: 0.5;
-
-//     :hover,
-//     :focus {
-//       background-color: ${p => p.theme.colors.primaryBgBtn};
-//       color: ${p => p.theme.colors.primaryBtn};
-//       border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-//     }
-//   }
-
-//   :hover,
-//   :focus {
-//     background-color: ${p => p.theme.colors.primaryBtn};
-//     color: ${p => p.theme.colors.primaryBgBtn};
-//     border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-//   }
-
-//   @media screen and (min-width: 768px) {
-//     min-width: 300px;
-//   }
-// `;
-
-// export const StyledNavLink = styled(Link)`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   margin-top: 20px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   width: 280px;
-//   height: 50px;
-//   text-align: center;
-//   text-transform: uppercase;
-//   border: 1px solid ${p => p.theme.colors.secondaryBtn};
-//   border-radius: 20px;
-//   font-family: ${p => p.theme.fonts.body};
-//   font-style: normal;
-//   font-weight: ${p => p.theme.fontWeights.normal};
-//   font-size: ${p => p.theme.fontSizes.m};
-//   line-height: 1.5;
-//   letter-spacing: 0.1em;
-//   color: ${p => p.theme.colors.secondaryBtn};
-//   background-color: ${p => p.theme.colors.primaryBtn};
-
-//   :hover,
-//   :focus {
-//     background-color: ${p => p.theme.colors.secondaryBtn};
-//     color: ${p => p.theme.colors.primaryBtn};
-//   }
-
-//   @media screen and (min-width: 768px) {
-//     width: 300px;
-//   }
-// `;

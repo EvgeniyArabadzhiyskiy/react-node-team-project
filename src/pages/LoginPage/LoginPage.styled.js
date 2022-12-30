@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import EllipseRed from '../../images/EllipseRed.png';
 import EllipseViolet from '../../images/EllipseViolet.png';
 import EWalletBg from '../../images/wallet-full.jpg';
+import EWalletBgTab from '../../images/ewallet-1.jpg';
+import EWalletBgMobile from '../../images/mob-wallet.png';
 
 export const Section = styled.section`
   /* @media screen and (min-width: 768px) {
@@ -34,19 +36,33 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
-  
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    flex-direction: column;
-    padding: 38px 0;
+  background: url(${EWalletBgMobile});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+  @media screen and (min-width: 768px) {
+    /* flex-direction: column;
+    padding: 38px 0; */
+
+    justify-content: center;
+    overflow: hidden;
+   
+
+    background: url(${EWalletBgTab});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   @media screen and (min-width: 1280px) {
     justify-content: space-between;
-    align-items: center;
-    height: 100vh;
     overflow: hidden;
-
+   
     background: url(${EWalletBg});
     background-position: center;
     background-repeat: no-repeat;
@@ -58,7 +74,7 @@ export const Frame = styled.img`
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 250px;
     width: 250px;
-    margin-right: 40px;
+    /* margin-right: 40px; */
   }
   @media screen and (min-width: 1280px) {
     /* margin-bottom: 32px; */

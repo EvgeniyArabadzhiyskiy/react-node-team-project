@@ -11,19 +11,17 @@ import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import { ReactComponent as UserIcon } from 'images/user.svg';
 import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 import {
-  FormWrap,
-  LogoWrap,
-  StyledForm,
   Label,
   Input,
+  Border,
+  FormWrap,
+  LogoWrap,
   ErrorMsg,
-  SubmitBtn,
-  StyledNavLink,
+  StyledForm,
   PasswordIndicator,
-  GoogleLink,
 } from './RegistrationForm.styled';
 import { useUserRegistrationMutation } from 'redux/WalletApiServise/wallet-api';
-import { Box } from 'components/Box';
+import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
 
 const initialValues = {
   email: '',
@@ -46,7 +44,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Box mr="50px" border="10px solid rgba(255, 255, 255, 0.2)">
+    <Border>
       <FormWrap>
       {isLoading && <Spinner />}
       <LogoWrap>
@@ -125,7 +123,7 @@ const RegisterForm = () => {
         <span>GOOGLE</span>
       </GoogleLink>
     </FormWrap>
-    </Box>
+    </Border>
     
   );
 };

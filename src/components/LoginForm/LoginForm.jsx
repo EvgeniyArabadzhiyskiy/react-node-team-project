@@ -16,13 +16,10 @@ import {
   Label,
   Input,
   ErrorMsg,
-  // SubmitBtn,
-  // StyledNavLink,
+  Border,
 } from './LoginForm.styled';
 import { useUserLoginMutation } from 'redux/WalletApiServise/wallet-api';
-import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/RegistrationForm/RegistrationForm.styled';
-import { Box } from 'components/Box';
-
+import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
 
 const initialValues = {
   email: '',
@@ -41,7 +38,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Box mr="50px" border="10px solid rgba(255, 255, 255, 0.2)">
+    <Border>
       <FormWrap>
       {isLoading && <Spinner />}
       <LogoWrap>
@@ -91,7 +88,7 @@ const LoginForm = () => {
         <span>GOOGLE</span>
       </GoogleLink>
     </FormWrap>
-    </Box>
+    </Border>
     
   );
 };

@@ -14,6 +14,7 @@ export const Overlay = styled.div`
   background: url(${EwalletBg2});
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   z-index: 6;
 `;
 
