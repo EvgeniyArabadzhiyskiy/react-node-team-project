@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { store } from "../store";
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { userRegistration, userLogin, userLogout, userRefresh } from 'redux/auth/authSlice';
+// import { userRegistration, userLogin, userLogout, userRefresh } from 'redux/auth/authSlice';
 import { getQueryString } from 'helpers/getQueryString';
 import { headerAuth } from 'helpers/headerAuth';
 
@@ -41,9 +41,8 @@ export const walletsApi = createApi({
       },
 
       transformResponse: (response) => {
-        store.dispatch(userRegistration(response));
-        headerAuth.set(response.token);
-
+        // store.dispatch(userRegistration(response));
+        // headerAuth.set(response.token);
         return response;
       },
     }),
@@ -54,9 +53,8 @@ export const walletsApi = createApi({
       },
 
       transformResponse: (response, meta, arg) => {
-        store.dispatch(userLogin(response));
-        headerAuth.set(response.token);
-
+        // store.dispatch(userLogin(response));
+        // headerAuth.set(response.token);
         return response;
       },
     }),
@@ -67,9 +65,8 @@ export const walletsApi = createApi({
       },
 
       transformResponse: (response) => {
-        store.dispatch(userLogout(response));
-        headerAuth.unset();
-
+        // store.dispatch(userLogout(response));
+        // headerAuth.unset();
         return response;
       },
     }),
@@ -82,12 +79,20 @@ export const walletsApi = createApi({
 
         return { url: '/users/current', method: 'GET' };
       },
+
+      // async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
+      //   console.log("onQueryStarted  getState", getState());
+      //   try {
+      //     const { data } = await queryFulfilled;
+      //     console.log("Data", data);
+      //     dispatch(userRefresh(data))
+      //   } catch (err) {
+      //   }
+      // },
       
       transformResponse: (response) => {
         // console.log("response", response);
-        
-        store.dispatch(userRefresh(response));
-
+        // store.dispatch(userRefresh(response));
         return response;
       },
     }),
