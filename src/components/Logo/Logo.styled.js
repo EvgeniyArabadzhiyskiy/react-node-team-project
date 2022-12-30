@@ -20,7 +20,7 @@ export const LogoWallet = styled.img`
 `;
 
 export const LogoLink = styled(NavLink)`
-  color: ${p => p.theme.colors.primaryText};
+  color: white;
   display: flex;
   align-items: center;
 
@@ -30,4 +30,12 @@ export const LogoLink = styled(NavLink)`
   &:focus {
     color: ${p => p.theme.colors.secondaryBtn};
   }
+`;
+
+export const LogoText = styled.span`
+  color: ${p =>
+    p.isLoginPage 
+    ? p.theme.colors.white 
+    : p.theme.colors.primaryText
+  };
 `;
