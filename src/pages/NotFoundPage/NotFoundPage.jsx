@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import {
   Section,
   Container,
-  Blur,
 } from '../LoginPage/LoginPage.styled';
 import { useMedia } from 'react-use';
 import SharedLayout from 'components/SharedLayout';
@@ -49,7 +48,7 @@ const NotFoundPage = () => {
           </Container>
         ) : null}
         {isWideСomputer ? (
-          <Blur>
+          <>
             <Container>
               <Box display="flex" flexDirection="row-reverse" justifyContent="space-around" alignItems="center">
                 <img src={errorImg} alt='error 404 Not Found' />
@@ -63,7 +62,7 @@ const NotFoundPage = () => {
                 </Box>
               </Box>
             </Container>
-          </Blur>
+          </>
         ) : null}
       </Section>
     </SharedLayout>
