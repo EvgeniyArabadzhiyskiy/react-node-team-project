@@ -71,7 +71,7 @@ export const nightTheme = {
     white: '#FFFFFF',
     secondaryBg: '#9B91C7',
     loginPageBg: '#685AA2',
-    primaryText: '#ffffff',
+    primaryText: '#000000',
     secondaryText: '#ffffff',
     secondaryDarkText: '#DAD8D8',
     secondaryLightText: '#ECEAEA',
