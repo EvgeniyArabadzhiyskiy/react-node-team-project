@@ -27,7 +27,7 @@ const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
-// user@ma.com
+
 // user100@mail.com
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTA2OTA0NTAxMTUzMGZlNDQwMzNiYyIsImlhdCI6MTY3MTQ1NzAyOSwiZXhwIjoxNjcyNjY2NjI5fQ.VVIFI6wsU2edbnVOgRIXVc64J3M79dVUghQAg_2VT1A'
 // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -68,10 +68,6 @@ export const App = () => {
   //   if(user)  dispatch(userRefresh(user));
   // }, [dispatch, user]);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
-    
   const observer = useRef(null);
 
   const lastElement = useCallback(item => {
