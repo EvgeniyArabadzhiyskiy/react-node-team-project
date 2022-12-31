@@ -5,6 +5,8 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { getQueryString } from 'helpers/getQueryString';
 import { headerAuth } from 'helpers/headerAuth';
 
+
+
 // const BASE_URL = 'https://wallet-project.onrender.com/api';
 const BASE_URL = 'https://wallet-backend-xmk0.onrender.com/api';
 
@@ -103,7 +105,7 @@ export const walletsApi = createApi({
       providesTags: ['Transaction'],
     }),
 
-    addTransact: builder.mutation({
+    addTransaction: builder.mutation({
       query: body => ({ url: '/transactions', method: 'POST', data: body }),
 
       invalidatesTags: ['Transaction'],
@@ -116,6 +118,9 @@ export const walletsApi = createApi({
         return { url: query, method: 'GET' }
       },
 
+      // keepUnusedDataFor: 5,
+      // refetchOnMountOrArgChange: 20,
+      
       providesTags: ['Transaction'],
 
     }),
@@ -131,7 +136,7 @@ export const {
   useUserRefreshQuery,
 
   useGetAllTransactionsQuery,
-  useAddTransactMutation,
+  useAddTransactionMutation,
 
   useGetStatisticQuery,
 } = walletsApi;
