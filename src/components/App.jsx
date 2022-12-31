@@ -1,6 +1,6 @@
-import { useRef, useCallback, lazy, Suspense } from 'react';
 import { useMedia } from 'react-use';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,21 +12,17 @@ import Currency from './Currency';
 import DiagramTab from './DiagramTab';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
+import FlipCard from './FlipCard/FlipCard';
 import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import { nightTheme, dayTheme } from '../theme';
+import { setToken } from 'redux/auth/authSlice';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
-import { useEffect } from 'react';
-import { setToken,
-  //  userRefresh
-} from 'redux/auth/authSlice';
-import FlipCard from './FlipCard/FlipCard';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
-
 
 // user100@mail.com
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTA2OTA0NTAxMTUzMGZlNDQwMzNiYyIsImlhdCI6MTY3MTQ1NzAyOSwiZXhwIjoxNjcyNjY2NjI5fQ.VVIFI6wsU2edbnVOgRIXVc64J3M79dVUghQAg_2VT1A'
@@ -40,33 +36,29 @@ export const App = () => {
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
   const { token } = useSelector(state => state.auth);
   const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
+
+  const { isError, isLoading } = useUserRefreshQuery(undefined, { skip: !token })
+  const {data = {}} = useGetAllTransactionsQuery(pageNum, { skip: !token })
   
-  const { isError, isLoading } = useUserRefreshQuery(undefined, {
-    skip: !token,
-  })
-  // console.log("App  user", user);
-
-  const { data = {},  } = useGetAllTransactionsQuery(pageNum, {
-    skip: !token,
-  })
-
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
     if (!accessToken) return
     
     dispatch(setToken(accessToken))
-    
   },[dispatch, searchParams])
+
+  // useEffect(() => {
+  //   if(!data.transactions) return
+  //   // console.log("useEffect  data.transactions", data.transactions);
+
+  //   setTransactions(prev => [...prev, ...data.transactions]);
+  // }, [data, dispatch]);
  
   useEffect(() => {
     if(!data.transactions) return
 
     dispatch(getTransactions(data));
   }, [data, dispatch]);
-
-  // useEffect(() => {
-  //   if(user)  dispatch(userRefresh(user));
-  // }, [dispatch, user]);
 
   const observer = useRef(null);
 
