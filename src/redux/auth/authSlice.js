@@ -52,7 +52,6 @@ const authSlice = createSlice({
       )
       .addMatcher(
         walletsApi.endpoints.userRefresh.matchFulfilled,
-
         (state, action) => {
           state.user = action.payload;
           state.isLoggedIn = true;
