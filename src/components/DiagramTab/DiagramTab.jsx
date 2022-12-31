@@ -1,3 +1,4 @@
+import { Box } from 'components/Box';
 import { useMedia } from 'react-use';
 
 import Chart from '../Chart';
@@ -6,7 +7,6 @@ import Table from '../Table';
 import {
   StyledChartWraper,
   StyledTitle,
-  StyledContentWraper,
 } from './DiagramTab.styled';
 
 const DiagramTab = () => {
@@ -27,13 +27,13 @@ const DiagramTab = () => {
       ) : (
         <>
           <StyledTitle>Statistics</StyledTitle>
-          <StyledContentWraper>
+          <Box display="flex">
             <StyledChartWraper>
               <Chart />
             </StyledChartWraper>
 
             <Table />
-          </StyledContentWraper>
+          </Box>
         </>
       )}
     </>
