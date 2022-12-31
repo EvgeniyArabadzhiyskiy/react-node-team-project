@@ -36,7 +36,7 @@ import DateInput from './DateInput';
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-import { useAddTransactMutation } from 'redux/WalletApiServise/wallet-api';
+import { useAddTransactionMutation } from 'redux/WalletApiServise/wallet-api';
 import { ButtonAdd, ButtonCancel } from 'components/Buttons/Buttons.styled';
 
 const FormTransaction = ({setIsIncome, isIncome}) => {
@@ -44,7 +44,7 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
   const selectInputRef = useRef();
 
   const [isNextOperations, setIsNextOperations] = useState(true);
-  const [addNewTransaction_RTKQ] = useAddTransactMutation();
+  const [addNewTransaction_RTKQ] = useAddTransactionMutation();
 
   const currentDate = moment().format('DD.MM.YYYY');
 
