@@ -1,10 +1,9 @@
 import { useMedia } from 'react-use';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { getStatistic } from 'redux/statistic/statisticSlice';
-import { getCategoryColor } from 'helpers/getCategoryColor';
-import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
+import { getCategoryColor } from 'helpers/statistics/getCategoryColor';
 import { useGetStatisticQuery } from 'redux/WalletApiServise/wallet-api';
 
 import {
@@ -21,24 +20,16 @@ import FilterDate from './FilterDate';
 
 const Table = () => {
   const dispatch = useDispatch();
-  const res = useSelector(selectAllStatistic);
   const isMobie = useMedia('(max-width: 767px)');
   
   const [year, setYear] = useState(null);
   const [month, setMonth] = useState(null);
 
-  const {data: stats } = useGetStatisticQuery({ month, year })
+  const { data = [] } = useGetStatisticQuery({ month, year })
 
   useEffect(() => {
-    if (stats) dispatch(getStatistic(stats))
-    
-  }, [dispatch, stats]);
-
-  // useEffect(() => {
-  //   dispatch(getStatistic({ month, year }));
-  // }, [dispatch, month, year]);
-
-  const data = res.statistic;
+    dispatch(getStatistic({ month, year }));
+  }, [dispatch, month, year]);
 
   const incomeTotal = data
     .filter(data => data.type === 'income')
