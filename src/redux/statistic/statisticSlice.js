@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   statistic: [],
-  isLoading: false,
-  error: null,
+  month: '',
+  year: '',
 };
 
 const statisticSlice = createSlice({
@@ -12,22 +12,12 @@ const statisticSlice = createSlice({
 
   reducers: {
     getStatistic: (state, action) => {
-      state.statistic = action.payload;
-    }
+      state.month = action.payload.month;
+      state.year = action.payload.year;
+    },
   },
-
-  // extraReducers: builder => {
-  //   builder.addCase(getStatistic.fulfilled, (state, action) => {
-  //     state.isLoading = false;
-  //     state.statistic = action.payload;
-  //     state.error = null;
-  //   });
-  //   builder.addCase(getStatistic.rejected, (state, action) => {
-  //     state.error = action.payload;
-  //   });
-  // },
 });
 
-export const { getStatistic } = statisticSlice.actions
+export const { getStatistic } = statisticSlice.actions;
 
 export default statisticSlice.reducer;
