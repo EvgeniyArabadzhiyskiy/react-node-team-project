@@ -11,14 +11,7 @@ export const StyledChartWraper = styled.div`
     width: 288px;
   }
 `;
-export const StyledContentWraper = styled.div`
-  display: flex;
-  justify-content: flex-start;
 
-  @media (min-width: 768px) {
-    justify-content: space-between;
-  }
-`;
 export const StyledTitle = styled.h2`
   font-family: 'Circe-Regular';
   font-style: normal;
@@ -27,7 +20,7 @@ export const StyledTitle = styled.h2`
   line-height: 45px;
   color: #000000;
   margin: 20px 0;
- 
+
   @media (min-width: 1280px) {
     margin: 32px 0 20px 20px;
   }
