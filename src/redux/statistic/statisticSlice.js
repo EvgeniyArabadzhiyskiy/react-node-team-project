@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   statistic: [],
-  month: '',
-  year: '',
+  month: null,
+  year: null,
 };
 
 const statisticSlice = createSlice({
@@ -11,13 +11,13 @@ const statisticSlice = createSlice({
   initialState,
 
   reducers: {
-    getStatistic: (state, action) => {
+    getStatisticDate: (state, action) => {
       state.month = action.payload.month;
       state.year = action.payload.year;
     },
   },
 });
 
-export const { getStatistic } = statisticSlice.actions;
+export const { getStatisticDate } = statisticSlice.actions;
 
 export default statisticSlice.reducer;
