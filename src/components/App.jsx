@@ -38,7 +38,7 @@ export const App = () => {
   const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
 
   const { isError, isLoading } = useUserRefreshQuery(undefined, { skip: !token })
-  const {data = {}} = useGetAllTransactionsQuery(pageNum, { skip: !token })
+  const { data = {} } = useGetAllTransactionsQuery(pageNum, { skip: !token })
   
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
@@ -52,7 +52,7 @@ export const App = () => {
   //   // console.log("useEffect  data.transactions", data.transactions);
 
   //   setTransactions(prev => [...prev, ...data.transactions]);
-  // }, [data, dispatch]);
+  // }, [data]);
  
   useEffect(() => {
     if(!data.transactions) return
