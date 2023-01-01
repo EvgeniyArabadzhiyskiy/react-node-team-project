@@ -2,7 +2,7 @@ import { useMedia } from 'react-use';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getStatistic } from 'redux/statistic/statisticSlice';
+import { getStatisticDate } from 'redux/statistic/statisticSlice';
 import { getCategoryColor } from 'helpers/statistics/getCategoryColor';
 import { useGetStatisticQuery } from 'redux/WalletApiServise/wallet-api';
 
@@ -28,7 +28,7 @@ const Table = () => {
   const { data = [] } = useGetStatisticQuery({ month, year })
 
   useEffect(() => {
-    dispatch(getStatistic({ month, year }));
+    dispatch(getStatisticDate({ month, year }));
   }, [dispatch, month, year]);
 
   const incomeTotal = data
