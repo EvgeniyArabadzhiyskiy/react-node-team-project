@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import transactionsReducer from './transactions/transactionsSlice';
 import {
   persistReducer,
@@ -15,6 +16,7 @@ import { authReducer } from './auth';
 import themeReducer from './theme/themeSlice';
 import { statisticReducer } from './statistic';
 import { walletsApi } from './WalletApiServise/wallet-api';
+
 
 
 const authPersistConfig = {
@@ -44,5 +46,7 @@ export const store = configureStore({
     },
   }).concat(walletsApi.middleware),
 });
+
+setupListeners(store.dispatch);
 
 export const persistor = persistStore(store);
