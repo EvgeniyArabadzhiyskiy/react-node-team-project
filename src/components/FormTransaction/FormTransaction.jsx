@@ -11,7 +11,7 @@ import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
-import { resetTransactions, toggleModalAdd } from 'redux/transactions/transactionsSlice';
+import { resetTransactions, toggleModalOverlay, toggleModalTransaction } from 'redux/transactions/transactionsSlice';
 
 import {
   CheckBox,
@@ -68,7 +68,8 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
   };
 
   const onCancelClick = () => {
-    dispatch(toggleModalAdd(false));
+    dispatch(toggleModalOverlay(false));
+    dispatch(toggleModalTransaction(false));
   };
 
   const initialValues = {
@@ -95,7 +96,8 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
 
       await dispatch(resetTransactions());
      
-      dispatch(toggleModalAdd(false));
+      dispatch(toggleModalOverlay(false));
+      dispatch(toggleModalTransaction(false));
 
       toast.success("Successful transaction");
     }
@@ -166,7 +168,6 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                   renderInput={(p, openCalendar) => (
                   <DateInput  props={p} onOpen={openCalendar}  />)}
                 />
-                
               </DateWrapper>
 
               <CommentWrapper>
@@ -188,8 +189,6 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
           </TransactionForm>
         )}
       </Formik> 
-     
-
     </>
   );
 };
