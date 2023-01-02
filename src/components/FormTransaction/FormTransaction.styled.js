@@ -6,7 +6,7 @@ export const Title = styled.h2`
   font-size: 24px;
   line-height: 35px;
   font-weight: ${p => p.theme.fontWeights.normal};
-  color: white;
+  color: ${p => p.theme.colors.white};
   text-align: center;
 
   margin-bottom: 40px;
