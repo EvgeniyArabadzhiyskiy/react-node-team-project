@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { IoExitOutline } from 'react-icons/io5';
 import Logo from 'components/Logo';
-import { disablePageScroll } from 'scroll-lock';
 import {
   StyledHeader,
   Container,
@@ -12,14 +11,19 @@ import {
   TextName,
 } from './Header.styled';
 import ThemeToggle from 'components/ThemeToggle/ThemeToggle';
+import {
+  toggleModalOverlay,
+  toggleModalExit,
+} from 'redux/transactions/transactionsSlice';
 
-const Header = ({ setIsOpenExitModal }) => {
-  const disableScrollOff = () => {
-    disablePageScroll();
-    setIsOpenExitModal();
-  };
-
+const Header = () => {
+  const dispatch = useDispatch();
   const { firstName } = useSelector(state => state.auth.user);
+
+  const handleClick = () => {
+    dispatch(toggleModalOverlay(true));
+    dispatch(toggleModalExit(true));
+  };
 
   return (
     <StyledHeader>
@@ -27,9 +31,9 @@ const Header = ({ setIsOpenExitModal }) => {
         <Logo />
         <UserBox>
           <ThemeToggle />
-          <TextName>{ firstName }</TextName>
+          <TextName>{firstName}</TextName>
           <IconContext.Provider value={{ color: '#BDBDBD', size: '25' }}>
-            <ButtonExit onClick={disableScrollOff}>
+            <ButtonExit onClick={handleClick}>
               <IoExitOutline />
               <Text>Exit</Text>
             </ButtonExit>
