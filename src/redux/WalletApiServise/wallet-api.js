@@ -29,7 +29,7 @@ export const walletsApi = createApi({
   baseQuery: axiosBaseQuery({ baseUrl: BASE_URL }),
 
   tagTypes: ['Transaction', 'Statistics'],
-  
+
   endpoints: builder => ({
 
     userRegistration: builder.mutation({
@@ -46,12 +46,7 @@ export const walletsApi = createApi({
       query: user => {
         return { url: '/users/login', method: 'POST', data: user };
       },
-
-      transformResponse: (response, meta, arg) => {
-        // store.dispatch(userLogin(response));
-        // headerAuth.set(response.token);
-        return response;
-      },
+     
     }),
 
     userLogout: builder.mutation({
@@ -69,19 +64,6 @@ export const walletsApi = createApi({
 
         return { url: '/users/current', method: 'GET' };
       },
-
-      // async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
-      //   console.log("onQueryStarted  getState", getState());
-      //   try {
-      //     const { data } = await queryFulfilled;
-      //     console.log("Data", data);
-      //     dispatch(userRefresh(data))
-      //   } catch (err) {
-      //   }
-      // },
-      
-      
-     
     }),
 
     getAllTransactions: builder.query({
@@ -103,6 +85,14 @@ export const walletsApi = createApi({
         return { url: query, method: 'GET' }
       },
 
+      // async onQueryStarted(id, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const { data } = await queryFulfilled;
+      //     console.log("Data", data);
+      //   } catch (err) {
+      //   }
+      // },
+      
       providesTags: ['Statistics'],
 
     }),
