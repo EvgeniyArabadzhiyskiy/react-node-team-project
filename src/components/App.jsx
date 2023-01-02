@@ -19,6 +19,7 @@ import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
+import ModalLogout from './ModalLogout';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
@@ -35,7 +36,8 @@ export const App = () => {
 
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
   const { token } = useSelector(state => state.auth);
-  const { transactions, pageNum, isModalAddOpen } = useSelector(state => state.transactions);
+  const { transactions, pageNum, isModalOpen, modalExit, modalTransaction } = useSelector(state => state.transactions);
+ 
 
   const { isError, isLoading } = useUserRefreshQuery(undefined, { skip: !token })
   const { data = {} } = useGetAllTransactionsQuery(pageNum, { skip: !token })
@@ -139,17 +141,13 @@ export const App = () => {
         </Routes>
       </Suspense>
 
-      {/* {isModalAddOpen && (
+      {isModalOpen && (
         <ModalAddTransaction>
-          <FormTransaction />
-        </ModalAddTransaction>
-      )} */}
-
-      {isModalAddOpen && (
-        <ModalAddTransaction>
-          <FlipCard />
+          {modalTransaction && <FlipCard />}
+          {modalExit && <ModalLogout />}
         </ModalAddTransaction>
       )}
+
       <ToastContainer autoClose={2500} theme="colored" />
     </ThemeProvider>
   );
