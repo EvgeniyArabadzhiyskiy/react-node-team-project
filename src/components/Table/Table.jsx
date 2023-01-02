@@ -25,7 +25,9 @@ const Table = () => {
   const [year, setYear] = useState(null);
   const [month, setMonth] = useState(null);
 
-  const { data = [] } = useGetStatisticQuery({ month, year })
+  const { data = [] } = useGetStatisticQuery({ month, year },{
+    refetchOnMountOrArgChange: year || month,
+  });
 
   useEffect(() => {
     dispatch(getStatisticDate({ month, year }));
