@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isModalAddOpen: false,
   transactions: [],
   totalBalance: 0,
   pageNum: 1,
-  
+
+  isModalOpen: false,
+  modalTransaction: false,
+  modalExit: false,
 };
 
 const transactionsSlice = createSlice({
@@ -13,10 +15,6 @@ const transactionsSlice = createSlice({
   initialState,
 
   reducers: {
-    toggleModalAdd: (state, action) => {
-      state.isModalAddOpen = action.payload;
-    },
-
     getNextPage: (state, _) => {
       state.pageNum = state.pageNum + 1;
     },
@@ -28,8 +26,23 @@ const transactionsSlice = createSlice({
     },
 
     getTransactions: (state, action) => {
-      state.transactions = [...state.transactions, ...action.payload.transactions];
+      state.transactions = [
+        ...state.transactions,
+        ...action.payload.transactions,
+      ];
       state.totalBalance = action.payload.userBalance;
+    },
+
+    toggleModalOverlay: (state, action) => {
+      state.isModalOpen = action.payload;
+    },
+
+    toggleModalTransaction: (state, action) => {
+      state.modalTransaction = action.payload;
+    },
+
+    toggleModalExit: (state, action) => {
+      state.modalExit = action.payload;
     },
   },
 
@@ -39,11 +52,17 @@ const transactionsSlice = createSlice({
   //       // console.log("action", action.payload);
   //       state.transactions = [...state.transactions, ...action.payload.transactions];
   //       // state.totalBalance = action.payload.userBalance;
-        
+
   //     })
   // }
-
 });
 
-export const { toggleModalAdd, getNextPage, resetTransactions, getTransactions } = transactionsSlice.actions;
+export const {
+  getNextPage,
+  resetTransactions,
+  getTransactions,
+  toggleModalOverlay,
+  toggleModalTransaction,
+  toggleModalExit,
+} = transactionsSlice.actions;
 export default transactionsSlice.reducer;
