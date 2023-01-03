@@ -6,29 +6,20 @@ export const Border = styled.div`
 `;
 
 export const Modal = styled.div`
-  width: 300px;
+  min-width: 300px;
   background: rgba(0, 0, 0, 0.7);
   padding: 30px 10px;
-
-  @media screen and (min-width: 767px) {
-    width: 550px;
-  }
 `;
 
 export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes.l};
+  font-size: ${p => p.theme.fontSizes.ml};
   color: ${p => p.theme.colors.white};
   line-height: 1.2;
-  margin-bottom: 80px;
   text-align: center;
-`;
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  margin-bottom: 50px;
+  padding: 0 20px;
 `;
 
 export const ButtonExit = styled(ButtonAdd)``;
