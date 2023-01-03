@@ -11,18 +11,14 @@ import {
   TextName,
 } from './Header.styled';
 import ThemeToggle from 'components/ThemeToggle/ThemeToggle';
-import {
-  toggleModalOverlay,
-  toggleModalExit,
-} from 'redux/transactions/transactionsSlice';
+import { modalExitOpen } from 'redux/modal/modalSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
   const { firstName } = useSelector(state => state.auth.user);
 
-  const handleClick = () => {
-    dispatch(toggleModalOverlay(true));
-    dispatch(toggleModalExit(true));
+  const onBtnExitClick = () => {
+    dispatch(modalExitOpen(true));
   };
 
   return (
@@ -33,7 +29,7 @@ const Header = () => {
           <ThemeToggle />
           <TextName>{firstName}</TextName>
           <IconContext.Provider value={{ color: '#BDBDBD', size: '25' }}>
-            <ButtonExit onClick={handleClick}>
+            <ButtonExit onClick={onBtnExitClick}>
               <IoExitOutline />
               <Text>Exit</Text>
             </ButtonExit>
