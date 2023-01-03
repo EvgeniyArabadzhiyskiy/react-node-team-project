@@ -20,6 +20,7 @@ import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
+import { AnimatePresence } from 'framer-motion';
 
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
@@ -142,12 +143,14 @@ export const App = () => {
         </Routes>
       </Suspense>
 
+      <AnimatePresence>
       {isModalOpen && (
         <ModalWindow>
           {modalTransaction && <FlipCard />}
           {modalExit && <ModalLogout />}
         </ModalWindow>
       )}
+      </AnimatePresence>
 
       <ToastContainer autoClose={2500} theme="colored" />
     </ThemeProvider>

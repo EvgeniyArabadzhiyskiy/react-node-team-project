@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import EwalletBg2 from '../../images/ewallet-2.jpg'
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,10 +15,9 @@ export const Overlay = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 6;
 `;
 
-export const Modal = styled.div`
+export const Modal = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;

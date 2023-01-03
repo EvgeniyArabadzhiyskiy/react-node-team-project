@@ -15,7 +15,6 @@ export const Button = styled.button`
   border: none;
   background-color: #24cca7;
   cursor: pointer;
-  z-index: 6;
 
   &:hover {
     background-color: ${p => p.theme.colors.hoverBgBtn};

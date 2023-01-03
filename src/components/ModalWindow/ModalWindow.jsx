@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { Modal, Overlay } from './ModalWindow.styled';
 import { modalClose } from 'redux/modal/modalSlice';
+import { modalAnimation } from 'helpers/animations/modalAnimation';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -17,11 +18,11 @@ const ModalWindow = ({ children }) => {
 
   useEffect(() => {
     window.addEventListener('keydown', onEscPress);
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     return () => {
       window.removeEventListener('keydown', onEscPress);
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   });
 
@@ -32,8 +33,8 @@ const ModalWindow = ({ children }) => {
   };
 
   return createPortal(
-    <Overlay onClick={onBackdropClick}>
-      <Modal>{children}</Modal>
+    <Overlay onClick={onBackdropClick} {...modalAnimation} transition={{ duration: 0.3 }} >
+      <Modal animate={{ scale: 1.05 }}>{children}</Modal>
     </Overlay>,
     modalRoot
   );
