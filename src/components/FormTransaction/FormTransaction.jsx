@@ -10,8 +10,9 @@ import { useDispatch } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 
+import { modalClose } from 'redux/modal/modalSlice';
+import { resetTransactions } from 'redux/transactions/transactionsSlice';
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
-import { resetTransactions, toggleModalOverlay, toggleModalTransaction } from 'redux/transactions/transactionsSlice';
 
 import {
   CheckBox,
@@ -68,8 +69,7 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
   };
 
   const onCancelClick = () => {
-    dispatch(toggleModalOverlay(false));
-    dispatch(toggleModalTransaction(false));
+    dispatch(modalClose(false));
   };
 
   const initialValues = {
@@ -94,10 +94,8 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
       await addNewTransaction_RTKQ(transaction).unwrap();
       resetForm();
 
-      await dispatch(resetTransactions());
-     
-      dispatch(toggleModalOverlay(false));
-      dispatch(toggleModalTransaction(false));
+      dispatch(resetTransactions());
+      dispatch(modalClose(false));
 
       toast.success("Successful transaction");
     }
