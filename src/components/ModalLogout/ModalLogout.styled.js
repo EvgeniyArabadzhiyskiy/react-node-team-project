@@ -1,6 +1,5 @@
+import { ButtonAdd } from 'components/Buttons/Buttons.styled';
 import styled from 'styled-components';
-
-
 
 export const Border = styled.div`
   border: 10px solid rgba(255, 255, 255, 0.2);
@@ -10,12 +9,10 @@ export const Modal = styled.div`
   width: 300px;
   background: rgba(0, 0, 0, 0.7);
   padding: 10px;
-  
 
   @media screen and (min-width: 767px) {
     width: 550px;
   }
-  
 `;
 
 export const Title = styled.h2`
@@ -25,7 +22,6 @@ export const Title = styled.h2`
   line-height: 1.2;
   margin-bottom: 30px;
   text-align: center;
-
 
   white-space: nowrap;
   @media screen and (max-width: 767px) {
@@ -63,23 +59,4 @@ export const WrapperItem = styled.li`
   }
 `;
 
-export const Exit = styled.button`
-  background-color: ${p => p.theme.colors.expense};
-  margin-bottom: 20px;
-
-  :hover,
-  :focus {
-    background-color: ${p => p.theme.colors.secondaryBtn};
-    color: ${p => p.theme.colors.primaryBtn};
-  }
-`;
-
-export const Stay = styled.button`
-  background-color: ${p => p.theme.colors.primaryBgBtn};
-
-  :hover,
-  :focus {
-    background-color: ${p => p.theme.colors.secondaryBtn};
-    color: ${p => p.theme.colors.primaryBtn};
-  }
-`;
+export const ButtonExit = styled(ButtonAdd)``;
