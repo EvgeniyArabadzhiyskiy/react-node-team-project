@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
-import { Modal, Overlay } from './Modal.styled';
+import { Modal, Overlay } from './ModalWindow.styled';
 import { modalClose } from 'redux/modal/modalSlice';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalWindow = ({ children }) => {
+  
   const dispatch = useDispatch();
 
   const onEscPress = e => {

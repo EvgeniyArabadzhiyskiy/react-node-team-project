@@ -14,7 +14,7 @@ import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import FlipCard from './FlipCard/FlipCard';
 import ModalLogout from './ModalLogout';
-import ModalWindow from './ModalTransaction/Modal';
+import ModalWindow from './ModalWindow/ModalWindow';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';

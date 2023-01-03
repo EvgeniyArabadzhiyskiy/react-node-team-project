@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import EwalletBg from '../../images/e-wallet-1280.png'
 import EwalletBg2 from '../../images/ewallet-2.jpg'
 
 export const Overlay = styled.div`
