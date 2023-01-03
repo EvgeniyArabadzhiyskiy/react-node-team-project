@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { toggleModalOverlay, toggleModalTransaction } from 'redux/transactions/transactionsSlice';
+import { modalTransactionOpen } from 'redux/modal/modalSlice';
 
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { Button } from './ButtonAddTransactions.styled';
@@ -7,13 +7,12 @@ import { Button } from './ButtonAddTransactions.styled';
 const ButtonAddTransactions = () => {
   const dispatch = useDispatch();
 
-  const onCancelClick = () => {
-    dispatch(toggleModalOverlay(true));
-    dispatch(toggleModalTransaction(true));
+  const onBtnAddClick = () => {
+    dispatch(modalTransactionOpen(true));
   };
 
   return (
-    <Button type="button" onClick={onCancelClick}>
+    <Button type="button" onClick={onBtnAddClick}>
       <Plus />
     </Button>
   );
