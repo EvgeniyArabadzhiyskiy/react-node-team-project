@@ -8,7 +8,7 @@ export const Border = styled.div`
 export const Modal = styled.div`
   width: 300px;
   background: rgba(0, 0, 0, 0.7);
-  padding: 10px;
+  padding: 30px 10px;
 
   @media screen and (min-width: 767px) {
     width: 550px;
@@ -20,13 +20,8 @@ export const Title = styled.h2`
   font-size: ${p => p.theme.fontSizes.l};
   color: ${p => p.theme.colors.white};
   line-height: 1.2;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
   text-align: center;
-
-  white-space: nowrap;
-  @media screen and (max-width: 767px) {
-    white-space: normal;
-  }
 `;
 
 export const Wrapper = styled.div`
