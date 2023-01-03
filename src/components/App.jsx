@@ -13,7 +13,7 @@ import DiagramTab from './DiagramTab';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import FlipCard from './FlipCard/FlipCard';
-import ModalAddTransaction from './ModalAddTransaction';
+import ModalAddTransaction from './Modal';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';
@@ -36,8 +36,9 @@ export const App = () => {
 
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
   const { token } = useSelector(state => state.auth);
-  const { transactions, pageNum, isModalOpen, modalExit, modalTransaction } = useSelector(state => state.transactions);
+  const { transactions, pageNum } = useSelector(state => state.transactions);
  
+  const {  isModalOpen, modalExit, modalTransaction } = useSelector(state => state.modal);
 
   const { isError, isLoading } = useUserRefreshQuery(undefined, { skip: !token })
   const { data = {} } = useGetAllTransactionsQuery(pageNum, { skip: !token })
