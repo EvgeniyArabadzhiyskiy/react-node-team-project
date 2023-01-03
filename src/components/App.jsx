@@ -37,7 +37,6 @@ export const App = () => {
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
   const { token } = useSelector(state => state.auth);
   const { transactions, pageNum } = useSelector(state => state.transactions);
- 
   const {  isModalOpen, modalExit, modalTransaction } = useSelector(state => state.modal);
 
   const { isError, isLoading } = useUserRefreshQuery(undefined, { skip: !token })
