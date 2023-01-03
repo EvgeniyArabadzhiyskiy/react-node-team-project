@@ -7,17 +7,20 @@ import { toast } from 'react-toastify';
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as Plus } from '../../images/plus.svg';
-import { ReactComponent as Minus } from '../../images/minus.svg';
+// import { ReactComponent as Plus } from '../../images/plus.svg';
+// import { ReactComponent as Minus } from '../../images/minus.svg';
 
 import { modalClose } from 'redux/modal/modalSlice';
 import { resetTransactions } from 'redux/transactions/transactionsSlice';
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
 
 import {
-  CheckBox,
-  CheckBoxLabel,
-  CheckBoxWrapper,
+  // CheckBox,
+  // CheckBoxLabel,
+  // CheckBoxWrapper,
+  // Switch,
+  // TextExpense,
+  // TextIncome,
   CommentWrapper,
   DateWrapper,
   ErrorAmount,
@@ -27,9 +30,6 @@ import {
   InputSum,
   LabelComment,
   LabelSum,
-  Switch,
-  TextExpense,
-  TextIncome,
   Title,
   TransactionForm,
 } from './FormTransaction.styled';
@@ -39,6 +39,7 @@ import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
 import { useAddTransactionMutation } from 'redux/WalletApiServise/wallet-api';
 import { ButtonAdd, ButtonCancel } from 'components/Buttons/Buttons.styled';
+import SwithChecbox from 'components/SwithChecbox/SwithChecbox';
 
 const FormTransaction = ({setIsIncome, isIncome}) => {
   const dispatch = useDispatch();
@@ -113,7 +114,8 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
         {({ setFieldValue, values }) => (
          <TransactionForm>
             <ImputsWrapper>
-              <CheckBoxWrapper>
+
+              {/* <CheckBoxWrapper>
                 <TextIncome isChecked={isIncome}>Income</TextIncome>
 
                 <CheckBoxLabel>
@@ -131,17 +133,20 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                   </Switch>
                 </CheckBoxLabel>
 
-                <TextExpense isChecked={isIncome}>Expense</TextExpense>
-              </CheckBoxWrapper>
 
-                <Select
-                  ref={selectInputRef}
-                  name="category"
-                  options={ isIncome ? optionsIncome : optionsExpense}
-                  placeholder="Select a category"
-                  onChange={data => setFieldValue('category', data?.label)}
-                  styles={selectStyles}
-                />
+                <TextExpense isChecked={isIncome}>Expense</TextExpense>
+              </CheckBoxWrapper> */}
+
+              <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
+
+              <Select
+                ref={selectInputRef}
+                name="category"
+                options={ isIncome ? optionsIncome : optionsExpense}
+                placeholder="Select a category"
+                onChange={data => setFieldValue('category', data?.label)}
+                styles={selectStyles}
+              />
 
               <DateWrapper>
                 <LabelSum>

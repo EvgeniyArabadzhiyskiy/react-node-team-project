@@ -75,7 +75,7 @@ export const App = () => {
         observer.current.unobserve(entries[0].target);
         dispatch(getNextPage());
       }
-      }, { rootMargin: '5px',threshold: 1});
+      }, { rootMargin: '5px',threshold: 0.95});
 
       if (item)  {
         // console.log('НАБЛЮДЕНИЕ ВЕДЕТСЯ ЗА :', item);
