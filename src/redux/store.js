@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import transactionsReducer from './transactions/transactionsSlice';
+
 import {
   persistReducer,
   persistStore,
@@ -12,9 +12,12 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
 import { authReducer } from './auth';
-import themeReducer from './theme/themeSlice';
+import { themeReducer } from './theme/themeSlice';
 import { statisticReducer } from './statistic';
+import { modalReduser } from './modal/modalSlice';
+import { transactionsReducer } from './transactions/transactionsSlice';
 import { walletsApi } from './WalletApiServise/wallet-api';
 
 
@@ -32,6 +35,7 @@ const themePersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    modal: modalReduser,
     transactions: transactionsReducer,
     statistic: statisticReducer,
     auth: persistReducer(authPersistConfig, authReducer),
