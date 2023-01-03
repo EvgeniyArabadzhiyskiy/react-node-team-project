@@ -27,36 +27,13 @@ export const Title = styled.h2`
   @media screen and (max-width: 767px) {
     white-space: normal;
   }
-  svg {
-    cursor: pointer;
-  }
 `;
 
-export const Wrapper = styled.ul`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-`;
-
-export const WrapperItem = styled.li`
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    font-style: normal;
-    font-weight: ${p => p.theme.fontWeights.bold};
-    font-size: ${p => p.theme.fontSizes.m};
-    line-height: 1.2;
-    padding: 12px 5px;
-    border-radius: 20px;
-    border: 0;
-    text-transform: uppercase;
-    cursor: pointer;
-
-    color: ${p => p.theme.colors.primaryBtn};
-  }
 `;
 
 export const ButtonExit = styled(ButtonAdd)``;
