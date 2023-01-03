@@ -13,13 +13,14 @@ import DiagramTab from './DiagramTab';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import FlipCard from './FlipCard/FlipCard';
-import ModalAddTransaction from './ModalAddTransaction';
+import ModalLogout from './ModalLogout';
+import ModalWindow from './ModalTransaction/Modal';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
-import ModalLogout from './ModalLogout';
+
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
@@ -142,10 +143,10 @@ export const App = () => {
       </Suspense>
 
       {isModalOpen && (
-        <ModalAddTransaction>
+        <ModalWindow>
           {modalTransaction && <FlipCard />}
           {modalExit && <ModalLogout />}
-        </ModalAddTransaction>
+        </ModalWindow>
       )}
 
       <ToastContainer autoClose={2500} theme="colored" />
