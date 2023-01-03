@@ -65,4 +65,4 @@ export const {
   toggleModalTransaction,
   toggleModalExit,
 } = transactionsSlice.actions;
-export default transactionsSlice.reducer;
+export const transactionsReducer = transactionsSlice.reducer;
