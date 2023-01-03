@@ -1,2 +1,1 @@
-const ddd = 'djon'
-console.log("ddd", ddd);
+export { default } from './Modal'
