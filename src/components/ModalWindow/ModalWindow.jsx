@@ -7,7 +7,6 @@ import { modalClose } from 'redux/modal/modalSlice';
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalWindow = ({ children }) => {
-  
   const dispatch = useDispatch();
 
   const onEscPress = e => {
