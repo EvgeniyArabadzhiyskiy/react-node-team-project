@@ -1,9 +1,6 @@
 import {
   Title,
   Wrapper,
-  WrapperItem,
-  Exit,
-  Stay,
   Border,
   Modal,
   ButtonExit,
@@ -37,12 +34,8 @@ const ModalLogout = () => {
       <Modal>
         <Title>Are you sure you want to sign out?</Title>
         <Wrapper>
-          {/* <WrapperItem> */}
             <ButtonExit onClick={logOut}>Exit </ButtonExit>
-          {/* </WrapperItem> */}
-          {/* <WrapperItem> */}
             <ButtonCancel onClick={onCancelClick}>Cancel</ButtonCancel>
-          {/* </WrapperItem> */}
         </Wrapper>
       </Modal>
     </Border>
