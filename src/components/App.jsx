@@ -13,7 +13,7 @@ import DiagramTab from './DiagramTab';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import FlipCard from './FlipCard/FlipCard';
-import ModalAddTransaction from './Modal';
+import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';
