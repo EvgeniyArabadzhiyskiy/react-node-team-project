@@ -1,6 +1,5 @@
 import {
   Title,
-  Wrapper,
   Border,
   Modal,
   ButtonExit,
@@ -33,10 +32,10 @@ const ModalLogout = () => {
       {isLoading && <Spinner />}
       <Modal>
         <Title>Are you sure you want to sign out?</Title>
-        <Wrapper>
+        <div>
             <ButtonExit onClick={logOut}>Exit </ButtonExit>
             <ButtonCancel onClick={onCancelClick}>Cancel</ButtonCancel>
-        </Wrapper>
+        </div>
       </Modal>
     </Border>
   );
