@@ -5,9 +5,7 @@ const initialState = {
   totalBalance: 0,
   pageNum: 1,
 
-  isModalOpen: false,
-  modalTransaction: false,
-  modalExit: false,
+  info: [],
 };
 
 const transactionsSlice = createSlice({
@@ -33,16 +31,10 @@ const transactionsSlice = createSlice({
       state.totalBalance = action.payload.userBalance;
     },
 
-    toggleModalOverlay: (state, action) => {
-      state.isModalOpen = action.payload;
-    },
-
-    toggleModalTransaction: (state, action) => {
-      state.modalTransaction = action.payload;
-    },
-
-    toggleModalExit: (state, action) => {
-      state.modalExit = action.payload;
+  
+    addInfo: (state, action) => {
+      // console.log("action.payload", action.payload);
+      state.info = [...state.info, ...action.payload.transactions];
     },
   },
 
@@ -61,8 +53,6 @@ export const {
   getNextPage,
   resetTransactions,
   getTransactions,
-  toggleModalOverlay,
-  toggleModalTransaction,
-  toggleModalExit,
+  addInfo
 } = transactionsSlice.actions;
 export const transactionsReducer = transactionsSlice.reducer;
