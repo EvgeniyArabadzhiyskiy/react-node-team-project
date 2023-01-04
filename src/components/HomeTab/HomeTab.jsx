@@ -11,6 +11,7 @@ import {
   CategoryName,
 } from './HomeTab.styled';
 import { getBalances } from 'helpers/formAddTransaction/getBalance';
+import ButtonAddTransactions from 'components/ButtonAddTransactions';
 
 const HomeTab = forwardRef(({ data }, ref) => {
   const isMobie = useMedia('(max-width: 767px)');
@@ -79,6 +80,8 @@ const HomeTab = forwardRef(({ data }, ref) => {
           </StyledTableBody>}
         </StyledTable>
       )}
+      
+      <ButtonAddTransactions />
     </div>
   );
 });
