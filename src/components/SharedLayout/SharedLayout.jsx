@@ -1,12 +1,12 @@
-import { GlobalStyle } from 'components/GlobalStyle';
+// import { GlobalStyle } from 'components/GlobalStyle';
 
-const SharedLayout = ({ children }) => {
-  return (
-    <div>
-      {children}
-      <GlobalStyle />
-    </div>
-  );
-};
+// const SharedLayout = ({ children }) => {
+//   return (
+//     <div>
+//       {children}
+//       {/* <GlobalStyle /> */}
+//     </div>
+//   );
+// };
 
-export default SharedLayout;
+// export default SharedLayout;
