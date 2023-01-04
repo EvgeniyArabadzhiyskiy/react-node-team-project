@@ -15,12 +15,15 @@ import PrivateRoute from './PrivateRoute';
 import FlipCard from './FlipCard/FlipCard';
 import ModalLogout from './ModalLogout';
 import ModalWindow from './ModalWindow/ModalWindow';
-import ButtonAddTransactions from './ButtonAddTransactions';
 import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';
 import { getNextPage, getTransactions } from 'redux/transactions/transactionsSlice';
 import { useGetAllTransactionsQuery, useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
 import { AnimatePresence } from 'framer-motion';
+import { GlobalStyle } from './GlobalStyle';
+// import ButtonAddTransactions from './ButtonAddTransactions';
+// import Tester from './Tester/Tester';
+
 
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
@@ -92,6 +95,7 @@ export const App = () => {
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Suspense fallback={null}>
         <Routes>
+          
           <Route
             path="/login"
             element={
@@ -99,6 +103,7 @@ export const App = () => {
                 <LoginPage />
               </PublicRoute>}
           />
+
           <Route
             path="/register"
             element={
@@ -107,7 +112,17 @@ export const App = () => {
               </PublicRoute>}
           />
 
-          <Route path="/" element={<DashboardPage />}>
+          <Route path="/" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
+            <Route index element={<Navigate to="/home" />} />
+            <Route path="home" element={<HomeTab data={transactions} ref={lastElement} />}/>
+            <Route path="statistic" element={<DiagramTab />} />
+            {isMobie &&  <Route path="currency" element={<Currency /> }/>} 
+          </Route>
+
+          {/* <Route  path="/tester" element={<Tester />} /> */}
+          {/* <Route index element={<Navigate to="/login" />} /> */}
+
+          {/* <Route path="/" element={<DashboardPage />}>
             <Route index element={<Navigate to="/login" />} />
             <Route
               path="home"
@@ -137,22 +152,26 @@ export const App = () => {
                     </div>
                   }
                 </PrivateRoute>}
-            ></Route>
-          </Route>
+            />
+          </Route> */}
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
 
       <AnimatePresence>
-      {isModalOpen && (
-        <ModalWindow>
-          {modalTransaction && <FlipCard />}
-          {modalExit && <ModalLogout />}
-        </ModalWindow>
-      )}
+        {isModalOpen && (
+          <ModalWindow>
+            {modalTransaction && <FlipCard />}
+            {modalExit && <ModalLogout />}
+          </ModalWindow>)}
       </AnimatePresence>
-
+      
+      <GlobalStyle />
       <ToastContainer autoClose={2500} theme="colored" />
     </ThemeProvider>
   );
 };
+
+
+
