@@ -15,7 +15,7 @@ const DiagramTab = () => {
   return (
     <>
       {isMobie ? (
-        <>
+        <div>
           <StyledTitle>Statistics</StyledTitle>
 
           <StyledChartWraper>
@@ -23,9 +23,9 @@ const DiagramTab = () => {
           </StyledChartWraper>
 
           <Table />
-        </>
+        </div>
       ) : (
-        <>
+        <div>
           <StyledTitle>Statistics</StyledTitle>
           <Box display="flex">
             <StyledChartWraper>
@@ -34,7 +34,7 @@ const DiagramTab = () => {
 
             <Table />
           </Box>
-        </>
+        </div>
       )}
     </>
   );
