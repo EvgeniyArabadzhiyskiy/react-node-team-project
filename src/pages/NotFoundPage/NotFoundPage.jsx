@@ -4,7 +4,6 @@ import {
   Container,
 } from '../LoginPage/LoginPage.styled';
 import { useMedia } from 'react-use';
-import SharedLayout from 'components/SharedLayout';
 import errorImg from '../../images/404error.png'
 import { Box } from 'components/Box';
 import { Btn, Text, Title } from './NotFoundPage.styled';
@@ -12,10 +11,9 @@ import { Btn, Text, Title } from './NotFoundPage.styled';
 const NotFoundPage = () => {
   const isWideMobie = useMedia('(max-width: 767px)');
   const isWideTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
-  const isWideСomputer = useMedia('(min-width: 1280px)');
+  const isWideComputer = useMedia('(min-width: 1280px)');
 
   return (
-    <SharedLayout>
       <Section>
         {isWideMobie ? (
           <Container>
@@ -47,7 +45,7 @@ const NotFoundPage = () => {
             </Box>
           </Container>
         ) : null}
-        {isWideСomputer ? (
+        {isWideComputer ? (
           <>
             <Container>
               <Box display="flex" flexDirection="row-reverse" justifyContent="space-around" alignItems="center">
@@ -65,7 +63,6 @@ const NotFoundPage = () => {
           </>
         ) : null}
       </Section>
-    </SharedLayout>
   );
 };
 
