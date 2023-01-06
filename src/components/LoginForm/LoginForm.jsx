@@ -1,8 +1,6 @@
 import { Formik, ErrorMessage } from 'formik';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
-// import { userLogin } from 'redux/auth/authOperation';
 import schema from 'helpers';
 import Logo from 'components/Logo';
 import Spinner from 'components/Spinner';
@@ -34,7 +32,6 @@ const LoginForm = () => {
     await login_RTKQ(values)
     resetForm();
 
-    // dispatch(userLogin(values));
   };
 
   return (
