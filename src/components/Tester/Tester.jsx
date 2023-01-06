@@ -11,26 +11,29 @@ const Tester = () => {
   const isDesktop = useMedia('(min-width: 1280px)');
 
   const [ddd, setDDD] = useState(false);
-  // console.log('Tester  ddd', ddd);
+  // console.log('Tester  ddd', ddd); 
   
   const dispatch = useDispatch();
   const { info } = useSelector(state => state.transactions);
-  console.log('Tester  info', info);
+  // console.log('Tester  info', info);
   
-  const { data = {} } = useGetAllTransactionsQuery('1');
-
+  const { data = {} } = useGetAllTransactionsQuery(1);
+  console.log("Tester  data", data);
+  
   useEffect(() => {
-    console.log('UseEffect');
+    // console.log('UseEffect');
     // console.log("useEffect  data.transactions", data.transactions);
-
+    // console.log('Tester  ddd', ddd);
+    
     if (!data.transactions) return;
     dispatch(addInfo(data));
-
+    
     return () => {
       console.log('Component Unmount');
     }
-  }, [data, dispatch]);
-
+    });
+    
+    
   const onBtn = () => {
     setDDD(p => !p);
   };
