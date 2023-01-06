@@ -67,7 +67,7 @@ export const walletsApi = createApi({
     }),
 
     getAllTransactions: builder.query({
-      query: (page) => ({ url: `/transactions?page=${page}&limit=10`, method: 'GET' }),
+      query: (page = 1) => ({ url: `/transactions?page=${page}&limit=10`, method: 'GET' }),
 
       providesTags: ['Transaction'],
     }),
