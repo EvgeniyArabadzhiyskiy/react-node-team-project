@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   transactions: [],
-  totalBalance: 0,
+  // totalBalance: 0,
   pageNum: 1,
+  isWasUnmounted: false,
 
   info: [],
 };
@@ -19,16 +20,24 @@ const transactionsSlice = createSlice({
 
     resetTransactions: (state, _) => {
       state.pageNum = 1;
-      state.totalBalance = 0;
+      // state.totalBalance = 0;
       state.transactions = [];
+      state.isWasUnmounted = false;
     },
 
     getTransactions: (state, action) => {
-      state.transactions = [
-        ...state.transactions,
-        ...action.payload.transactions,
-      ];
-      state.totalBalance = action.payload.userBalance;
+      if(!state.isWasUnmounted) {
+        state.transactions = [
+          ...state.transactions,
+          ...action.payload.transactions,
+        ];
+      }
+
+      // state.totalBalance = action.payload.userBalance;
+    },
+
+    setUnmount: (state, action) => {
+      state.isWasUnmounted = action.payload
     },
 
   
@@ -53,6 +62,7 @@ export const {
   getNextPage,
   resetTransactions,
   getTransactions,
-  addInfo
+  addInfo,
+  setUnmount,
 } = transactionsSlice.actions;
 export const transactionsReducer = transactionsSlice.reducer;
