@@ -14,6 +14,7 @@ import { getBalances } from 'helpers/formAddTransaction/getBalance';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
 import { useGetAllTransactionsQuery } from 'redux/WalletApiServise/wallet-api';
 import { getNextPage, getTransactions, setUnmount } from 'redux/transactions/transactionsSlice';
+import { useMemo } from 'react';
 
 
 const HomeTab = () => {
@@ -23,7 +24,7 @@ const HomeTab = () => {
   
   const dispatch = useDispatch();
   const { transactions, pageNum } = useSelector(state => state.transactions);
-  console.log("HomeTab  transactions", transactions);
+  // console.log("HomeTab  transactions", transactions);
   const { data = {} } = useGetAllTransactionsQuery(pageNum)
   // console.log("HomeTab  data", data.userBalance);
     
@@ -32,7 +33,7 @@ const HomeTab = () => {
 
   useEffect(() => {
     return () => {
-      console.log('Component Unmount');
+      // console.log('Component Unmount');
       dispatch(setUnmount(true));
     }
   },[dispatch]);
@@ -69,9 +70,10 @@ const HomeTab = () => {
 
 
 
+  // const balances = getBalances(transactions, data.userBalance);
 
-
-  const balances = getBalances(transactions, data.userBalance);
+  const balances = useMemo(() => getBalances(transactions, data.userBalance),
+   [data.userBalance, transactions])
 
   return (
     <div>
