@@ -46,16 +46,7 @@ const transactionsSlice = createSlice({
       state.info = [...state.info, ...action.payload.transactions];
     },
   },
-
-  // extraReducers: builder => {
-  //   builder.addMatcher(walletsApi.endpoints.getAllTransactions.matchFulfilled,
-  //     (state, action) => {
-  //       // console.log("action", action.payload);
-  //       state.transactions = [...state.transactions, ...action.payload.transactions];
-  //       // state.totalBalance = action.payload.userBalance;
-
-  //     })
-  // }
+    
 });
 
 export const {
