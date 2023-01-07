@@ -5,7 +5,7 @@ import {
   Switch,
   TextExpense,
   TextIncome,
-} from './SwithChecbox/SwithChecbox.styled';
+} from './SwithChecbox.styled';
 
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
