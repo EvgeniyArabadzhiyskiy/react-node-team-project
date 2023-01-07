@@ -9,17 +9,11 @@ const FlipCard = () => {
     <Card>
       <InnerCard isFlipped={isIncome}>
         <CardFront>
-          {/* <Title>Add transaction</Title> */}
-          {/* {!isIncome &&  */}
           <FormTransaction setIsIncome={setIsIncome} isIncome={isIncome} />
-          {/* } */}
         </CardFront>
 
         <CardBack>
-          {/* <Title>Add transaction</Title> */}
-          {/* {isIncome &&  */}
           <FormTransaction setIsIncome={setIsIncome} isIncome={isIncome} />
-          {/* } */}
         </CardBack>
       </InnerCard>
     </Card>
