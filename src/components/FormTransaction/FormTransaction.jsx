@@ -7,20 +7,11 @@ import { toast } from 'react-toastify';
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-// import { ReactComponent as Plus } from '../../images/plus.svg';
-// import { ReactComponent as Minus } from '../../images/minus.svg';
-
 import { modalClose } from 'redux/modal/modalSlice';
 import { resetTransactions } from 'redux/transactions/transactionsSlice';
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
 
 import {
-  // CheckBox,
-  // CheckBoxLabel,
-  // CheckBoxWrapper,
-  // Switch,
-  // TextExpense,
-  // TextIncome,
   CommentWrapper,
   DateWrapper,
   ErrorAmount,
@@ -114,28 +105,6 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
         {({ setFieldValue, values }) => (
          <TransactionForm>
             <ImputsWrapper>
-
-              {/* <CheckBoxWrapper>
-                <TextIncome isChecked={isIncome}>Income</TextIncome>
-
-                <CheckBoxLabel>
-                  <CheckBox
-                    type="checkbox"
-                    name="typeOperation"
-                    role="switch"
-                    checked={isIncome}
-                    onChange={onChangeSwitch}
-                  />
-
-                  <Switch 
-                    isChecked={isIncome}>
-                    {isIncome ? <Plus /> : <Minus />}
-                  </Switch>
-                </CheckBoxLabel>
-
-
-                <TextExpense isChecked={isIncome}>Expense</TextExpense>
-              </CheckBoxWrapper> */}
 
               <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
 
