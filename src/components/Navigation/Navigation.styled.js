@@ -26,7 +26,10 @@ export const Link = styled(NavLink)`
 
   &.active {
     color: ${p => p.theme.colors.navIconBgActive};
-    font-weight: ${p => p.theme.fontWeights.bold};
+  }
+
+  &.active p {
+    color: ${p => p.theme.colors.navIconBgActive};
   }
 `;
 
@@ -43,14 +46,16 @@ export const LinkMob = styled(NavLink)`
   &.active {
     color: ${p => p.theme.colors.navIconBgActive};
   }
+
+  
 `;
 
 export const LinkText = styled.p`
   color: ${p => p.theme.colors.primaryText};
 
-  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
-    transform: scale(1.1);
+    color: ${p => p.theme.colors.navIconBgActive};
   }
 `;
 
