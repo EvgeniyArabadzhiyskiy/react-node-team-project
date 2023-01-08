@@ -1,6 +1,4 @@
 import { Formik, ErrorMessage } from 'formik';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { userRegistration } from 'redux/auth/authOperation';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
@@ -39,7 +37,6 @@ const RegisterForm = () => {
     const user = { email, password, firstName }
 
     await register_RTKQ(user)
-    // dispatch(userRegistration({ email, password, firstName }));
     resetForm();
   };
 
