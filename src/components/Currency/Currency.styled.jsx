@@ -14,11 +14,12 @@ export const CurrencyBox = styled.div`
     width: 336px;
     height: 182px;
 
-    margin-top: 0;
+    margin: 0;
   }
   @media (min-width: 1280px) {
     width: 393px;
     height: 347px;
+    margin: 0;
   }
 `;
 
