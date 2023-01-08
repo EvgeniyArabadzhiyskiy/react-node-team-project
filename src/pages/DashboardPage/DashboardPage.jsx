@@ -14,7 +14,7 @@ import {
 } from './Dashboard.styled';
 
 const DashboardPage = () => {
-  const isMobie = useMedia('(max-width: 767px)');
+  const isMobile = useMedia('(max-width: 767px)');
 
   return (
     <>
@@ -27,7 +27,7 @@ const DashboardPage = () => {
                 <Navigation />
                 <Balance />
               </div>
-              {!isMobie && <Currency />}
+              {!isMobile && <Currency />}
             </SideBar>
             <Suspense fallback={null}>
               <Outlet />
