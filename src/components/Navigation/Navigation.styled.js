@@ -5,23 +5,21 @@ import { ReactComponent as Statistic } from '../../images/statistic.svg';
 import { ReactComponent as Currency } from '../../images/currency.svg';
 
 export const List = styled.ul`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 28px;
 
   font-size: ${p => p.theme.fontSizes.m};
+`;
 
-  @media (min-width: 1280px) {
-    margin-bottom: 28px;
-  }
+export const ItemLink = styled.li`
+  display: flex;
+  gap: 23px;
+  padding: 4px 0;
 `;
 
 export const Link = styled(NavLink)`
-  display: flex;
-  height: 27px;
-  gap: 23px;
-
-  align-items: center;
   color: ${p => p.theme.colors.navIconBg};
 
   &.active {
@@ -30,6 +28,7 @@ export const Link = styled(NavLink)`
 
   &.active p {
     color: ${p => p.theme.colors.navIconBgActive};
+    font-weight: ${p => p.theme.fontWeights.bold};
   }
 `;
 
@@ -46,8 +45,6 @@ export const LinkMob = styled(NavLink)`
   &.active {
     color: ${p => p.theme.colors.navIconBgActive};
   }
-
-  
 `;
 
 export const LinkText = styled.p`
