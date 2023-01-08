@@ -1,8 +1,7 @@
-import {  useCallback, useEffect, useRef } from 'react';
 import { useMedia } from 'react-use';
+import {  useCallback, useEffect, useRef, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { HomeTabItem, HomeTabMobItem } from './HomeTabItem';
 import {
   StyledTable,
   StyledTableHeader,
@@ -10,30 +9,23 @@ import {
   StyledWrap,
   CategoryName,
 } from './HomeTab.styled';
+
+import { HomeTabItem, HomeTabMobItem } from './HomeTabItem';
 import { getBalances } from 'helpers/formAddTransaction/getBalance';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
 import { useGetAllTransactionsQuery } from 'redux/WalletApiServise/wallet-api';
 import { getNextPage, getTransactions, setUnmount } from 'redux/transactions/transactionsSlice';
-import { useMemo } from 'react';
-
 
 const HomeTab = () => {
+  const dispatch = useDispatch();
   const isMobile = useMedia('(max-width: 767px)');
   const isDesctop = useMedia('(min-width: 768px)');
-  // const { totalBalance } = useSelector(state => state.transactions);
   
-  const dispatch = useDispatch();
   const { transactions, pageNum } = useSelector(state => state.transactions);
-  // console.log("HomeTab  transactions", transactions);
   const { data = {} } = useGetAllTransactionsQuery(pageNum)
-  // console.log("HomeTab  data", data.userBalance);
     
-   
-
-
   useEffect(() => {
     return () => {
-      // console.log('Component Unmount');
       dispatch(setUnmount(true));
     }
   },[dispatch]);
@@ -44,33 +36,30 @@ const HomeTab = () => {
     
   },[data, dispatch]);
 
- 
 
-  const observer = useRef(null);
+  const observer = useRef();
 
   const lastElement = useCallback(item => {
-
     observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting ) {
+      if (entries[0].isIntersecting) {
         dispatch(setUnmount(false));
 
         // console.log('ОЧИСТИЛИ НАБЛЮДЕНИЕ :', entries[0].target,);
 
-        observer.current.unobserve(entries[0].target);
+        // observer.current.unobserve(entries[0].target);
+        observer.current.unobserve(item);
         dispatch(getNextPage());
       }
-      }, { rootMargin: '5px',threshold: 0.95});
+    }, { rootMargin: '5px',threshold: 0.95});
 
       if (item)  {
         // console.log('НАБЛЮДЕНИЕ ВЕДЕТСЯ ЗА :', item);
         observer.current.observe(item);
       }
     },[dispatch]
+    
   );
 
-
-
-  // const balances = getBalances(transactions, data.userBalance);
 
   const balances = useMemo(() => getBalances(transactions, data.userBalance),
    [data.userBalance, transactions])
@@ -85,7 +74,6 @@ const HomeTab = () => {
 
               if (transactions.length === idx + 1) {
                 return (
-                  // transactions.length > 0 &&
                   <HomeTabMobItem
                     ref={lastElement}
                     key={_id}
@@ -95,7 +83,6 @@ const HomeTab = () => {
               }
 
               return (
-                // transactions.length > 0 &&
                 <HomeTabMobItem
                   key={_id}
                   transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance }}
@@ -139,54 +126,9 @@ const HomeTab = () => {
           </StyledTableBody>}
         </StyledTable>}
       
-      
       <ButtonAddTransactions />
     </div>
   );
 };
 
 export default HomeTab;
-
-
-
-
-// const dispatch = useDispatch();
-// const { transactions, pageNum } = useSelector(state => state.transactions);
-// const { data = {} } = useGetAllTransactionsQuery(pageNum)
-  
-// useEffect(() => {
-//   return () => {
-//     console.log('Component Unmount');
-//     dispatch(setUnmount(true));
-//   }
-// },[dispatch]);
-
-// useEffect(() => {
-//   if(!data.transactions) return
-//   dispatch(getTransactions(data));
-  
-// },[data, dispatch]);
-
-
-
-// const observer = useRef(null);
-
-// const lastElement = useCallback(item => {
-
-//   observer.current = new IntersectionObserver(entries => {
-//     if (entries[0].isIntersecting ) {
-//       dispatch(setUnmount(false));
-
-//       // console.log('ОЧИСТИЛИ НАБЛЮДЕНИЕ :', entries[0].target,);
-
-//       observer.current.unobserve(entries[0].target);
-//       dispatch(getNextPage());
-//     }
-//     }, { rootMargin: '5px',threshold: 0.95});
-
-//     if (item)  {
-//       // console.log('НАБЛЮДЕНИЕ ВЕДЕТСЯ ЗА :', item);
-//       observer.current.observe(item);
-//     }
-//   },[dispatch]
-// );
