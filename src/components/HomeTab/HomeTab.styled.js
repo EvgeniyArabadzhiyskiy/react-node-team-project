@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const StyledTableHeader = styled.div`
   background-color: ${p => p.theme.colors.primaryBg};
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.5;
 
   padding: 15px 20px;
@@ -58,7 +58,7 @@ export const StyledTable = styled.div`
 export const StyledTableBody = styled.ul`
   margin: 0;
   padding: 0 15px 0 20px;
-  font-size: ${p => p.theme.fontSizes.m};
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.5;
 
   overflow-y: scroll;
@@ -116,8 +116,8 @@ export const StyledList = styled.ul`
   border-radius: 10px;
   background-color: #ffffff;
   li {
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: ${p => p.theme.fontWeights.bold};
+    font-size: ${p => p.theme.fontSizes.s};
     line-height: 1.5;
     padding: 12px 20px;
     &:not(:last-child) {
@@ -127,8 +127,8 @@ export const StyledList = styled.ul`
     justify-content: space-between;
   }
   li > span {
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes.s};
     line-height: 1.5;
   }
 `;
