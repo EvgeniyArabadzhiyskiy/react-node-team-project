@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const LogoBox = styled.div`
   font-family: ${p => p.theme.fonts.headingBold};
   font-size: ${p => p.theme.fontSizes.l};
-  font-weight: ${p => p.theme.fontWeights.bold};
 
   @media (max-width: 768px) {
     font-size: 23px;
