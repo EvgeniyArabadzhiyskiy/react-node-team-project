@@ -1,5 +1,5 @@
-import { ButtonAdd } from 'components/Buttons/Buttons.styled';
 import styled from 'styled-components';
+import { ButtonAdd } from 'components/Buttons/Buttons.styled';
 
 export const Border = styled.div`
   border: 10px solid rgba(255, 255, 255, 0.2);
