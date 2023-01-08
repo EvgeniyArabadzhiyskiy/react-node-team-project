@@ -6,7 +6,8 @@ import { persistor, store } from 'redux/store';
 import { App } from 'components/App';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
-import { FontStyles } from 'components/FontStyles';
+// import { FontStyles } from 'components/FontStyles';
+import './index.css'
 
 // axios.defaults.baseURL = 'https://wallet-project.onrender.com/api';
 axios.defaults.baseURL = 'https://wallet-backend-xmk0.onrender.com/api';
@@ -16,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/react-node-team-project">
-          <FontStyles />
+          {/* <FontStyles /> */}
           <App />
         </BrowserRouter>
       </PersistGate>
