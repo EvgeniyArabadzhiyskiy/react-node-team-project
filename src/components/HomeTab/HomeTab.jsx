@@ -36,7 +36,6 @@ const HomeTab = () => {
     
   },[data, dispatch]);
 
-
   const observer = useRef();
 
   const lastElement = useCallback(item => {
