@@ -21,7 +21,6 @@ import { useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalStyle } from './GlobalStyle';
 import { getPath } from 'helpers/getPath';
-// import Tester from './Tester/Tester';
 
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
