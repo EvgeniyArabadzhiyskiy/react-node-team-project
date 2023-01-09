@@ -20,7 +20,7 @@ import FilterDate from './FilterDate';
 
 const Table = () => {
   const dispatch = useDispatch();
-  const isMobie = useMedia('(max-width: 767px)');
+  const isMobile = useMedia('(max-width: 767px)');
   
   const [year, setYear] = useState(null);
   const [month, setMonth] = useState(null);
@@ -43,7 +43,7 @@ const Table = () => {
 
   return (
     <>
-      {isMobie ? (
+      {isMobile ? (
         <StyledTable>
           <div>
             <StyledFilters>
