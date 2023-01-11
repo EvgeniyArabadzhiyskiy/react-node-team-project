@@ -1,32 +1,59 @@
-import axios from 'axios';
-import { store } from "../store";
+// import axios from 'axios';
+// import { store } from "../store";
+import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { createApi } from '@reduxjs/toolkit/query/react';
-// import { userRegistration, userLogin, userLogout, userRefresh } from 'redux/auth/authSlice';
 import { getQueryString } from 'helpers/getQueryString';
-import { headerAuth } from 'helpers/headerAuth';
+// import { headerAuth } from 'helpers/headerAuth';
 
-// const BASE_URL = 'https://wallet-project.onrender.com/api';
+
 const BASE_URL = 'https://wallet-backend-xmk0.onrender.com/api';
 
-const axiosBaseQuery = ({ baseUrl }) =>
-  async ({ url, method, data, params }) => {
-    try {
-      const result = await axios({ url: baseUrl + url, method, data, params });
-      return { data: result.data };
-    } catch (axiosError) {
-      let err = axiosError;
-      return {
-        error: {
-          status: err.response?.status,
-          data: err.response?.data || err.message,
-        },
-      };
+const baseQuery = fetchBaseQuery({
+  baseUrl: BASE_URL,
+  prepareHeaders: (headers, { getState }) => {
+    const token = getState().auth.token
+
+    if (token) {
+      console.log("token", token);
+      headers.set('authorization', `Bearer ${token}`)
     }
-  };
+
+    return headers
+  },
+})
+
+
+
+
+
+
+
+
+
+
+
+
+// const axiosBaseQuery = ({ baseUrl }) =>
+//   async ({ url, method, data, params }) => {
+//     try {
+//       const result = await axios({ url: baseUrl + url, method, data, params });
+//       return { data: result.data };
+//     } catch (axiosError) {
+//       let err = axiosError;
+//       return {
+//         error: {
+//           status: err.response?.status,
+//           data: err.response?.data || err.message,
+//         },
+//       };
+//     }
+//   };
 
 export const walletsApi = createApi({
   reducerPath: 'walletsApi',
-  baseQuery: axiosBaseQuery({ baseUrl: BASE_URL }),
+  // baseQuery: axiosBaseQuery({ baseUrl: BASE_URL }),
+
+  baseQuery,
 
   tagTypes: ['Transaction', 'Statistics'],
 
@@ -34,7 +61,7 @@ export const walletsApi = createApi({
 
     userRegistration: builder.mutation({
       query: user => {
-        return { url: '/users/register', method: 'POST', data: user };
+        return { url: '/users/register', method: 'POST', body: user };
 
         // body если используется fetchBaseQuery 
         // return { url: '/users/register', method: 'POST', body: user }; 
@@ -44,7 +71,7 @@ export const walletsApi = createApi({
 
     userLogin: builder.mutation({
       query: user => {
-        return { url: '/users/login', method: 'POST', data: user };
+        return { url: '/users/login', method: 'POST', body: user };
       },
      
     }),
@@ -58,9 +85,9 @@ export const walletsApi = createApi({
 
     userRefresh: builder.query({
       query: () => {
-        const state = store.getState();
-        const persistedToken = state.auth.token;
-        headerAuth.set(persistedToken);
+        // const state = store.getState();
+        // const persistedToken = state.auth.token;
+        // headerAuth.set(persistedToken);
 
         return { url: '/users/current', method: 'GET' };
       },
@@ -73,7 +100,7 @@ export const walletsApi = createApi({
     }),
 
     addTransaction: builder.mutation({
-      query: body => ({ url: '/transactions', method: 'POST', data: body }),
+      query: body => ({ url: '/transactions', method: 'POST', body: body }),
 
       invalidatesTags: ['Transaction'],
     }),
