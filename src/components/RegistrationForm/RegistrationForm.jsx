@@ -11,7 +11,6 @@ import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 import {
   Label,
   Input,
-  Border,
   FormWrap,
   LogoWrap,
   ErrorMsg,
@@ -40,9 +39,8 @@ const RegisterForm = () => {
     resetForm();
   };
 
-  return (
-    <Border>
-      <FormWrap>
+  return (  
+    <FormWrap>
       {isLoading && <Spinner />}
       <LogoWrap>
         <Logo />
@@ -120,8 +118,6 @@ const RegisterForm = () => {
         <span>GOOGLE</span>
       </GoogleLink>
     </FormWrap>
-    </Border>
-    
   );
 };
 
