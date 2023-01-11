@@ -14,7 +14,6 @@ import {
   Label,
   Input,
   ErrorMsg,
-  Border,
 } from './LoginForm.styled';
 import { useUserLoginMutation } from 'redux/WalletApiServise/wallet-api';
 import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
@@ -35,7 +34,6 @@ const LoginForm = () => {
   };
 
   return (
-    <Border>
       <FormWrap>
       {isLoading && <Spinner />}
       <LogoWrap>
@@ -85,8 +83,6 @@ const LoginForm = () => {
         <span>GOOGLE</span>
       </GoogleLink>
     </FormWrap>
-    </Border>
-    
   );
 };
 
