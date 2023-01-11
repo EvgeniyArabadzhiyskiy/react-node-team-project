@@ -2,23 +2,16 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
 export const FormWrap = styled.div`
-  width: 320px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 340px;
   padding: 32px 20px 36px;
   background-color: rgba(0, 0, 0, 0.7);
+  border: 10px solid rgba(255, 255, 255, 0.2);
+  background-clip: padding-box;
 
   @media screen and (min-width: 768px) {
-    width: 533px;
-    padding: 40px 58px 40px 65px;
-  }
-`;
-
-export const Border = styled.div`
-  border: 10px solid rgba(255, 255, 255, 0.2);
-
-  @media screen and (min-width: 1280px) {
+    width: 530px;
     margin-right: 50px;
+    padding: 40px 58px 40px 65px;
   }
 `;
 
