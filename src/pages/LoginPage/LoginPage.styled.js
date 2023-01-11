@@ -6,7 +6,7 @@ import EWalletBgMobile from '../../images/mobile.png';
 export const Section = styled.section`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   min-height: 100vh;
 
   background: url(${EWalletBgMobile});
@@ -51,10 +51,6 @@ export const Wrapper = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    justify-content: flex-end;
-  }
-
-  @media screen and (min-width: 1280px) {
     justify-content: flex-end;
   }
 `;
