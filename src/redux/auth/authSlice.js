@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { headerAuth } from 'helpers/headerAuth';
+// import { headerAuth } from 'helpers/headerAuth';
 import { walletsApi } from 'redux/WalletApiServise/wallet-api';
 
 const initialState = {
@@ -27,7 +27,7 @@ const authSlice = createSlice({
           state.token = action.payload.token;
           state.isLoggedIn = true;
 
-          headerAuth.set(action.payload.token);
+          // headerAuth.set(action.payload.token);
         }
       )
       .addMatcher(
@@ -37,7 +37,7 @@ const authSlice = createSlice({
           state.token = action.payload.token;
           state.isLoggedIn = true;
 
-          headerAuth.set(action.payload.token);
+          // headerAuth.set(action.payload.token);
         }
       )
       .addMatcher(
@@ -47,7 +47,7 @@ const authSlice = createSlice({
           state.token = null;
           state.isLoggedIn = false;
 
-          headerAuth.unset();
+          // headerAuth.unset();
         }
       )
       .addMatcher(
