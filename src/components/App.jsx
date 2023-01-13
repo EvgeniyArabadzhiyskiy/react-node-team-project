@@ -15,9 +15,9 @@ import { GlobalStyle } from './GlobalStyle';
 import { nightTheme, dayTheme } from '../theme';
 import { setToken } from 'redux/auth/authSlice';
 import { AnimatePresence } from 'framer-motion';
-import { useUserRefreshQuery } from 'redux/WalletApiServise/wallet-api';
+import { useGetBalanceQuery, useUserRefreshQuery } from 'redux/walletsApiServise/wallet-api';
 
-// user1000@mail.com
+// user100@mail.com
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -28,6 +28,8 @@ export const App = () => {
   const {  isModalOpen, modalExit, modalTransaction } = useSelector(state => state.modal);
 
   const { isError, isLoading } = useUserRefreshQuery(undefined, { skip: !token })
+
+  useGetBalanceQuery(undefined, { skip: !token })
   
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
