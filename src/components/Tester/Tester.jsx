@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMedia } from 'react-use';
 import { addInfo } from 'redux/transactions/transactionsSlice';
-import { useGetAllTransactionsQuery } from 'redux/WalletApiServise/wallet-api';
+import { useGetAllTransactionsQuery } from 'redux/walletsApiServise/wallet-api';
 
 const Tester = () => {
   // const isMobie = useMedia('(max-width: 767px)');
@@ -17,21 +17,21 @@ const Tester = () => {
   const { info } = useSelector(state => state.transactions);
   // console.log('Tester  info', info);
   
-  const { data = {} } = useGetAllTransactionsQuery(1);
-  console.log("Tester  data", data);
+  // const { data = {} } = useGetAllTransactionsQuery();
+  // console.log("Tester  data", data);
   
-  useEffect(() => {
-    // console.log('UseEffect');
-    // console.log("useEffect  data.transactions", data.transactions);
-    // console.log('Tester  ddd', ddd);
+  // useEffect(() => {
+  //   // console.log('UseEffect');
+  //   // console.log("useEffect  data.transactions", data.transactions);
+  //   // console.log('Tester  ddd', ddd);
     
-    if (!data.transactions) return;
-    dispatch(addInfo(data));
+  //   if (!data.transactions) return;
+  //   dispatch(addInfo(data));
     
-    return () => {
-      console.log('Component Unmount');
-    }
-    });
+  //   return () => {
+  //     console.log('Component Unmount');
+  //   }
+  //   });
     
     
   const onBtn = () => {
