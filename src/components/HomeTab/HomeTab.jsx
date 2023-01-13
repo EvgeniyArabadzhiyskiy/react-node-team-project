@@ -13,17 +13,20 @@ import {
 import { HomeTabItem, HomeTabMobItem } from './HomeTabItem';
 import { getBalances } from 'helpers/formAddTransaction/getBalance';
 import ButtonAddTransactions from 'components/ButtonAddTransactions';
-import { useGetAllTransactionsQuery } from 'redux/WalletApiServise/wallet-api';
+import { useGetAllTransactionsQuery, useGetBalanceQuery } from 'redux/walletsApiServise/wallet-api';
 import { getNextPage, getTransactions, setUnmount } from 'redux/transactions/transactionsSlice';
 
 const HomeTab = () => {
   const dispatch = useDispatch();
   const isMobile = useMedia('(max-width: 767px)');
   const isDesctop = useMedia('(min-width: 768px)');
-  
   const { transactions, pageNum } = useSelector(state => state.transactions);
-  const { data = {} } = useGetAllTransactionsQuery(pageNum)
-    
+
+  const { data = {} } = useGetAllTransactionsQuery({ pageNum, limit: 10 })
+
+  const { data: balance = {} } = useGetBalanceQuery();
+  const totalBalance = balance.userBalance;
+  
   useEffect(() => {
     return () => {
       dispatch(setUnmount(true));
@@ -59,9 +62,8 @@ const HomeTab = () => {
     
   );
 
-
-  const balances = useMemo(() => getBalances(transactions, data.userBalance),
-   [data.userBalance, transactions])
+  const balances = useMemo(() => getBalances(transactions, totalBalance),
+   [totalBalance, transactions])
 
   return (
     <div>
