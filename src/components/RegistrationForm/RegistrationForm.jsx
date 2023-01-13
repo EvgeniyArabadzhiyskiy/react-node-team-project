@@ -17,7 +17,7 @@ import {
   StyledForm,
   PasswordIndicator,
 } from './RegistrationForm.styled';
-import { useUserRegistrationMutation } from 'redux/WalletApiServise/wallet-api';
+import { useUserRegistrationMutation } from 'redux/walletsApiServise/wallet-api';
 import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
 
 const initialValues = {
