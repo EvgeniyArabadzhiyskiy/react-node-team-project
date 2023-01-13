@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { walletsApi } from 'redux/walletsApiServise/wallet-api';
 
 const initialState = {
   transactions: [],
-  // totalBalance: 0,
+  totalBalance: 0,
   pageNum: 1,
   isWasUnmounted: false,
 
@@ -14,39 +15,45 @@ const transactionsSlice = createSlice({
   initialState,
 
   reducers: {
-    getNextPage: (state, _) => {
+    getNextPage: state => {
       state.pageNum = state.pageNum + 1;
     },
 
-    resetTransactions: (state, _) => {
-      state.pageNum = 1;
-      // state.totalBalance = 0;
-      state.transactions = [];
-      state.isWasUnmounted = false;
-    },
+    resetTransactions: () => initialState,
+
+    // resetTransactions: (state, _) => {
+    //   state.pageNum = 1;
+    //   state.totalBalance = 0;
+    //   state.transactions = [];
+    //   state.isWasUnmounted = false;
+    // },
 
     getTransactions: (state, action) => {
-      if(!state.isWasUnmounted) {
+      if (!state.isWasUnmounted) {
         state.transactions = [
           ...state.transactions,
           ...action.payload.transactions,
         ];
       }
-
-      // state.totalBalance = action.payload.userBalance;
     },
 
     setUnmount: (state, action) => {
-      state.isWasUnmounted = action.payload
+      state.isWasUnmounted = action.payload;
     },
 
-  
     addInfo: (state, action) => {
-      // console.log("action.payload", action.payload);
       state.info = [...state.info, ...action.payload.transactions];
     },
   },
-    
+
+  extraReducers: builder => {
+    builder.addMatcher(
+      walletsApi.endpoints.getAllTransactions.matchFulfilled,
+      (state, action) => {
+        state.totalBalance = action.payload.userBalance;
+      }
+    );
+  },
 });
 
 export const {
