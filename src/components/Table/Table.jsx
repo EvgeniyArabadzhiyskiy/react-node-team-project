@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { getStatisticDate } from 'redux/statistic/statisticSlice';
 import { getCategoryColor } from 'helpers/statistics/getCategoryColor';
-import { useGetStatisticQuery } from 'redux/WalletApiServise/wallet-api';
+import { useGetStatisticQuery } from 'redux/walletsApiServise/wallet-api';
 
 import {
   StyledTable,
