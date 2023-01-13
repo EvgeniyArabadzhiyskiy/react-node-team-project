@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  statistic: [],
+  // statistic: [],
   month: null,
   year: null,
 };
