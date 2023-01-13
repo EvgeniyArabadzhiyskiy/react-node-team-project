@@ -12,7 +12,9 @@ const valueAfterComma = (val) => {
 }
 
 export const transactionShema = Yup.object().shape({
-  category: Yup.string(),
+  category: Yup.string()
+  .required('This field is required'),
+  
   amount: Yup.number()
     .typeError('You need to enter a number')
     .positive('Only positive value')
