@@ -90,16 +90,11 @@ export const InputComment = styled(Field)`
   }
 `;
 
-export const ErrorAmount = styled(ErrorMessage)`
+export const ErrorText = styled(ErrorMessage)`
   position: absolute;
   top: -20px;
   left: 2px;
-  font-size: 14px;
-  color: red;
-`;
-
-export const ErrorComment = ErrorAmount;
-
-export const CommentWrapper = styled.div`
-  position: relative;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  color: #29ffd0;
 `;
