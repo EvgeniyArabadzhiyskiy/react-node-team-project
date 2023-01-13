@@ -13,7 +13,7 @@ export const baseBtnStyle = css`
   font-weight: ${p => p.theme.fontWeights.normal};
 
   line-height: 1.5;
-  letter-spacing: 0.1em;
+  letter-spacing: ${p => p.theme.letterSpacings.body};
   cursor: pointer;
   text-transform: uppercase;
 
