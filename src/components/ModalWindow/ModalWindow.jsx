@@ -22,7 +22,7 @@ const ModalWindow = ({ children }) => {
 
     return () => {
       window.removeEventListener('keydown', onEscPress);
-      document.body.style.overflow = '';
+      document.body.style.overflow = 'visible';
     };
   });
 
