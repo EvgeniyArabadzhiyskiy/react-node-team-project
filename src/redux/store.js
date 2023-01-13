@@ -18,7 +18,7 @@ import { themeReducer } from './theme/themeSlice';
 import { statisticReducer } from './statistic';
 import { modalReduser } from './modal/modalSlice';
 import { transactionsReducer } from './transactions/transactionsSlice';
-import { walletsApi } from './WalletApiServise/wallet-api';
+import { walletsApi } from './walletsApiServise/wallet-api';
 
 
 
