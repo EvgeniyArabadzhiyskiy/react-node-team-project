@@ -12,10 +12,8 @@ import { resetTransactions } from 'redux/transactions/transactionsSlice';
 import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/options';
 
 import {
-  CommentWrapper,
   DateWrapper,
-  ErrorAmount,
-  ErrorComment,
+  ErrorText,
   ImputsWrapper,
   InputComment,
   InputSum,
@@ -28,9 +26,10 @@ import DateInput from './DateInput';
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-import { useAddTransactionMutation } from 'redux/WalletApiServise/wallet-api';
+import { useAddTransactionMutation } from 'redux/walletsApiServise/wallet-api';
 import { ButtonAdd, ButtonCancel } from 'components/Buttons/Buttons.styled';
 import SwithChecbox from 'components/SwithChecbox/SwithChecbox';
+import { Box } from 'components/Box';
 
 const FormTransaction = ({setIsIncome, isIncome}) => {
   const dispatch = useDispatch();
@@ -108,14 +107,18 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
 
               <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
 
-              <Select
-                ref={selectInputRef}
-                name="category"
-                options={ isIncome ? optionsIncome : optionsExpense}
-                placeholder="Select a category"
-                onChange={data => setFieldValue('category', data?.label)}
-                styles={selectStyles}
-              />
+              <Box position="relative">
+                <Select
+                  ref={selectInputRef}
+                  name="category"
+                  options={ isIncome ? optionsIncome : optionsExpense}
+                  placeholder="Select a category"
+                  onChange={data => setFieldValue('category', data?.label)}
+                  styles={selectStyles}
+                />
+                <ErrorText component="div" name="category" />
+              </Box>
+              
 
               <DateWrapper>
                 <LabelSum>
@@ -126,7 +129,7 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                     autoComplete="off"
                   />
                 </LabelSum>
-                <ErrorAmount component="div" name="amount" />
+                <ErrorText component="div" name="amount" />
 
                 <Datetime
                   name="date"
@@ -142,7 +145,7 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                 />
               </DateWrapper>
 
-              <CommentWrapper>
+              <Box position="relative">
                 <LabelComment>
                   <InputComment
                     type="text"
@@ -151,8 +154,8 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                     autoComplete="off"
                   />
                 </LabelComment>
-                <ErrorComment component="div" name="comment" />
-              </CommentWrapper>
+                <ErrorText component="div" name="comment" />
+              </Box>
             </ImputsWrapper>
 
             <ButtonAdd type="submit">Add</ButtonAdd>
