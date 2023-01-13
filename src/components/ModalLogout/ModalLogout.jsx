@@ -9,7 +9,7 @@ import Spinner from 'components/Spinner';
 
 import { modalClose } from 'redux/modal/modalSlice';
 import { resetTransactions } from 'redux/transactions/transactionsSlice';
-import { useUserLogoutMutation } from 'redux/WalletApiServise/wallet-api';
+import { useUserLogoutMutation } from 'redux/walletsApiServise/wallet-api';
 import { ButtonCancel } from 'components/Buttons/Buttons.styled';
 
 const ModalLogout = () => {
