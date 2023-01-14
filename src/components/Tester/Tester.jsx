@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,39 +11,71 @@ const Tester = () => {
   const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   const isDesktop = useMedia('(min-width: 1280px)');
 
-  const [ddd, setDDD] = useState(false);
-  // console.log('Tester  ddd', ddd); 
-  
+  const header = useRef();
+  // console.log("Tester  header", header.current);
+
+  const [ddd, setDDD] = useState('');
+  // console.log('Tester  ddd', ddd);
+
+  const [hey, setHey] = useState(0);
+  // console.log('Tester  hey', hey);
+
   const dispatch = useDispatch();
   const { info } = useSelector(state => state.transactions);
   // console.log('Tester  info', info);
+
+  const { data = {} } = useGetAllTransactionsQuery();
+  // // console.log("Tester  data", data);
+
+  useEffect(() => {
+    // console.log("Tester  header", header.current);
+    // console.log('UseEffect Data');
+    // console.log("useEffect  data.transactions", data.transactions);
+    // console.log('Tester  ddd', ddd);
+
+    if (!data.transactions) return;
+    dispatch(addInfo(data));
+
+    return () => {
+      // console.log('Component Unmount Data');
+    }
+  }, [data, dispatch]);
+
   
-  // const { data = {} } = useGetAllTransactionsQuery();
-  // console.log("Tester  data", data);
-  
-  // useEffect(() => {
-  //   // console.log('UseEffect');
-  //   // console.log("useEffect  data.transactions", data.transactions);
-  //   // console.log('Tester  ddd', ddd);
-    
-  //   if (!data.transactions) return;
-  //   dispatch(addInfo(data));
-    
-  //   return () => {
-  //     console.log('Component Unmount');
-  //   }
-  //   });
-    
-    
+
+  useEffect(() => {
+
+
+    const onResize = e => {
+      if (header.current) {
+        const high = header.current.clientHeight;
+        // console.log('useEffect  high', high);
+        setHey(high)
+      }
+    };
+    // console.log('useEffect onResize');
+    console.log('Tester  header', header.current);
+    onResize();
+
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      console.log('Component Unmount onResize');
+      // window.removeEventListener('resize', onResize);
+    };
+  });
+
+  // console.log('Djon');
   const onBtn = () => {
-    setDDD(p => !p);
+    setDDD(p => p + 're-render');
+    // setDDD(p => !p);
+    console.log('re-render');
   };
 
   // console.log('re-render');
   return (
     <div>
-
-      {ddd && (
+      {/* {ddd && (
         <div>
           <h1>Mobie</h1>
           <ul>
@@ -51,10 +84,9 @@ const Tester = () => {
             })}
           </ul>
         </div>
-      )}
-     
+      )} */}
 
-      {isTablet && (
+      {/* {isTablet && (
         <div>
           <h1>Tablet</h1>
           <ul>
@@ -63,16 +95,32 @@ const Tester = () => {
             })}
           </ul>
         </div>
-      )}
+      )} */}
 
-      {isDesktop && (
-        <div>
-          <h1>Desktop</h1>
-          <ul>
+      {/* info.length > 0 */}
+      {info.length > 0 && (
+        <div
+          style={{
+            height: '200px',
+            // width: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <p ref={header} style={{ margin: 0 }}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
+            pariatur autem nobis officiis facere voluptatum quo id totam dolore
+            aliquid asperiores, molestiae, quis perferendis ex consectetur
+            assumenda. Dolore suscipit quos modi? Cumque reprehenderit ad earum
+            quia magni pariatur. Exercitationem in quidem officiis at, et
+            excepturi atque tempore voluptate. Illum, beatae.
+          </p>
+          {/* <ul>
             {info.map(({ _id }) => {
               return <li key={_id}>Desktop</li>;
             })}
-          </ul>
+          </ul> */}
         </div>
       )}
 
