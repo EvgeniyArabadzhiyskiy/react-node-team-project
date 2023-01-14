@@ -10,13 +10,13 @@ export const CurrencyBox = styled.div`
   margin: 0 auto;
   margin-top: 30px;
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium}  {
     width: 336px;
     height: 182px;
 
     margin: 0;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     width: 393px;
     height: 347px;
     margin: 0;
@@ -36,12 +36,12 @@ export const PrivatTableList = styled.ul`
   background-color: ${p => p.theme.colors.childrenStat};
   font-size: ${p => p.theme.fontSizes.m};
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     padding-left: 45px;
     padding-right: 64px;
 
@@ -57,7 +57,7 @@ export const CurrencyList = styled.ul`
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 16px;
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     padding-top: 20px;
     padding-left: 60px;
     padding-right: 60px;
@@ -71,7 +71,7 @@ export const CurrencyItem = styled.li`
 
   margin-bottom: 12px;
 
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     padding-bottom: 24px;
   }
 `;
@@ -84,22 +84,22 @@ export const ImageVektor = styled.img`
 
   bottom: 0;
   left: 0;
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     height: 119px;
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     height: 134px;
   }
 `;
 
 export const TextTitle = styled.p`
   color: white;
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     &:nth-child(2) {
       margin-right: 35px;
     }
   }
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     &:nth-child(2) {
       margin-right: 15px;
     }
@@ -108,7 +108,7 @@ export const TextTitle = styled.p`
 
 export const Text = styled.p`
   color: #ffffff;
-  @media (max-width: 767px) {
+  @media ${p => p.theme.media.small} {
     &:nth-child(1) {
       margin-left: 5px;
     }
