@@ -64,6 +64,11 @@ export const dayTheme = {
     round: '50%',
     btn: '20px',
   },
+  media: {
+    large: '(min-width: 1280px)',
+    medium: '(min-width: 768px)',
+    small: '(max-width: 767px)',
+  },
 };
 
 export const nightTheme = {
@@ -131,5 +136,10 @@ export const nightTheme = {
     normal: '4px',
     round: '50%',
     btn: '20px',
+  },
+  media: {
+    large: '(min-width: 1280px)',
+    medium: '(min-width: 768px)',
+    small: '(max-width: 540px)',
   },
 };
