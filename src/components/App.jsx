@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Router from './Router';
+import Routing from './Routing ';
 import Spinner from './Spinner';
 import FlipCard from './FlipCard';
 import ModalLogout from './ModalLogout';
@@ -43,7 +43,7 @@ export const App = () => {
   return isLoading 
     ? <Spinner /> 
     : <ThemeProvider theme={isNightTheme ? dayTheme : nightTheme}>
-        <Router />
+        <Routing  />
     
         <AnimatePresence>
           {isModalOpen && (
