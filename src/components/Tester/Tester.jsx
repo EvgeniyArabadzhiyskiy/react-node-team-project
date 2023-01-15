@@ -11,70 +11,110 @@ const Tester = () => {
   const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   const isDesktop = useMedia('(min-width: 1280px)');
 
-  const header = useRef();
+  let header = useRef('4292');
   // console.log("Tester  header", header.current);
 
   const [ddd, setDDD] = useState('');
   // console.log('Tester  ddd', ddd);
 
-  const [hey, setHey] = useState(0);
-  // console.log('Tester  hey', hey);
+  const [hey, setHey] = useState('Cool');
+  console.log('Tester  hey', hey);
+
 
   const dispatch = useDispatch();
-  const { info } = useSelector(state => state.transactions);
+  // const { info } = useSelector(state => state.transactions);
   // console.log('Tester  info', info);
 
-  const { data = {} } = useGetAllTransactionsQuery();
+  // const { data = {} } = useGetAllTransactionsQuery();
   // // console.log("Tester  data", data);
 
-  useEffect(() => {
-    // console.log("Tester  header", header.current);
-    // console.log('UseEffect Data');
-    // console.log("useEffect  data.transactions", data.transactions);
-    // console.log('Tester  ddd', ddd);
+  // useEffect(() => {
+  //   // console.log("Tester  header", header.current);
+  //   // console.log('UseEffect Data');
+  //   // console.log("useEffect  data.transactions", data.transactions);
+  //   // console.log('Tester  ddd', ddd);
 
-    if (!data.transactions) return;
-    dispatch(addInfo(data));
+  //   // if (!data.transactions) return;
+  //   // dispatch(addInfo(data));
 
-    return () => {
-      // console.log('Component Unmount Data');
-    }
-  }, [data, dispatch]);
+  //   return () => {
+  //     // console.log('Component Unmount Data');
+  //   }
+  // });
 
   
+  
 
+  // header.current += 'Djon'  
   useEffect(() => {
 
+    console.log('UseEffect ');
+    // console.log('Tester  header', header.current);
 
-    const onResize = e => {
-      if (header.current) {
-        const high = header.current.clientHeight;
-        // console.log('useEffect  high', high);
-        setHey(high)
-      }
-    };
+
+    // const onResize = e => {
+    //   if (header.current) {
+    //     const high = header.current.clientHeight;
+    //     // console.log('useEffect  high', high);
+    //     setHey(high)
+    //   }
+    // };
     // console.log('useEffect onResize');
-    console.log('Tester  header', header.current);
-    onResize();
+    // console.log('Tester  header', header.current);
+    // onResize();
 
-    window.addEventListener('resize', onResize);
+    // window.addEventListener('resize', onResize);
 
     return () => {
-      console.log('Component Unmount onResize');
+      console.log('Clear onResize');
       // window.removeEventListener('resize', onResize);
     };
   });
 
-  // console.log('Djon');
+  // console.log('Djon'); 
   const onBtn = () => {
-    setDDD(p => p + 're-render');
+    console.log('Tester  header', header.current);
+    // setHey(p => p + ' Poly');
     // setDDD(p => !p);
-    console.log('re-render');
+    // console.log('re-render');
+    // console.log('Djon');
+    header.current += 'Djon'
+
+  };
+
+  const onRender = () => {
+    setDDD(p => !p);
+    // console.log('Prosto LOG');
   };
 
   // console.log('re-render');
   return (
     <div>
+         {true && (
+
+        <div
+          style={{
+            height: '200px',
+            // width: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <p 
+          // ref={header} 
+          style={{ margin: 0 }}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
+            pariatur autem nobis officiis facere voluptatum quo id totam dolore
+            aliquid asperiores, molestiae, quis perferendis ex consectetur
+            assumenda. Dolore suscipit quos modi? Cumque reprehenderit ad earum
+            quia magni pariatur. Exercitationem in quidem officiis at, et
+            excepturi atque tempore voluptate. Illum, beatae.
+          </p>
+         
+        </div>
+      )}
+
       {/* {ddd && (
         <div>
           <h1>Mobie</h1>
@@ -98,34 +138,14 @@ const Tester = () => {
       )} */}
 
       {/* info.length > 0 */}
-      {info.length > 0 && (
-        <div
-          style={{
-            height: '200px',
-            // width: '200px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <p ref={header} style={{ margin: 0 }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
-            pariatur autem nobis officiis facere voluptatum quo id totam dolore
-            aliquid asperiores, molestiae, quis perferendis ex consectetur
-            assumenda. Dolore suscipit quos modi? Cumque reprehenderit ad earum
-            quia magni pariatur. Exercitationem in quidem officiis at, et
-            excepturi atque tempore voluptate. Illum, beatae.
-          </p>
-          {/* <ul>
-            {info.map(({ _id }) => {
-              return <li key={_id}>Desktop</li>;
-            })}
-          </ul> */}
-        </div>
-      )}
+   
 
       <button type="button" onClick={onBtn}>
         Click
+      </button>
+
+      <button type="button" onClick={onRender}>
+        Render
       </button>
     </div>
   );
