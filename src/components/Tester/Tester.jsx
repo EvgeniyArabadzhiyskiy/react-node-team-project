@@ -1,27 +1,27 @@
 import { useRef } from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useMedia } from 'react-use';
-import { addInfo } from 'redux/transactions/transactionsSlice';
-import { useGetAllTransactionsQuery } from 'redux/walletsApiServise/wallet-api';
+// import { useDispatch, /* useSelector*/ } from 'react-redux';
+// import { useMedia } from 'react-use';
+// import { addInfo } from 'redux/transactions/transactionsSlice';
+// import { useGetAllTransactionsQuery } from 'redux/walletsApiServise/wallet-api';
 
 const Tester = () => {
   // const isMobie = useMedia('(max-width: 767px)');
-  const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
-  const isDesktop = useMedia('(min-width: 1280px)');
+  // const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
+  // const isDesktop = useMedia('(min-width: 1280px)');
 
-  let header = useRef('4292');
-  // console.log("Tester  header", header.current);
+  let header = useRef(null);
+  console.log("Tester  header", header.current);
 
-  const [ddd, setDDD] = useState('');
+  // const [ddd, setDDD] = useState('');
   // console.log('Tester  ddd', ddd);
 
-  const [hey, setHey] = useState('Cool');
-  console.log('Tester  hey', hey);
+  // const [hey, setHey] = useState('Cool');
+  // console.log('Tester  hey', hey);
 
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const { info } = useSelector(state => state.transactions);
   // console.log('Tester  info', info);
 
@@ -49,6 +49,7 @@ const Tester = () => {
   useEffect(() => {
 
     console.log('UseEffect ');
+    header.current = 555
     // console.log('Tester  header', header.current);
 
 
@@ -83,7 +84,7 @@ const Tester = () => {
   };
 
   const onRender = () => {
-    setDDD(p => !p);
+    // setDDD(p => !p);
     // console.log('Prosto LOG');
   };
 
