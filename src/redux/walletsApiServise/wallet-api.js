@@ -1,8 +1,9 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 import { createApi } from '@reduxjs/toolkit/query/react';
+import { BALANCE, BASE_URL, TRANSACTIONS, USER_CURRENT, USER_LOGIN, USER_LOGOUT, USER_REGISTER } from 'constants/apiPath';
 import { getQueryString } from 'helpers/getQueryString';
 
-const BASE_URL = 'https://wallet-backend-xmk0.onrender.com/api';
+// const BASE_URL = 'https://wallet-backend-xmk0.onrender.com/api';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -22,32 +23,32 @@ export const walletsApi = createApi({
   
   endpoints: builder => ({
     userRefresh: builder.query({
-      query: () => '/users/current',
+      query: () => `${USER_CURRENT}`,
 
       providesTags: ['User'],
     }),
 
     userRegistration: builder.mutation({
-      query: user => ({ url: '/users/register', method: 'POST', body: user }),
+      query: user => ({ url: `${USER_REGISTER}`, method: 'POST', body: user }),
 
       invalidatesTags: ['User'],
     }),
 
     userLogin: builder.mutation({
-      query: user => ({ url: '/users/login', method: 'POST', body: user }),
+      query: user => ({ url: `${USER_LOGIN}`, method: 'POST', body: user }),
 
       invalidatesTags: ['User'],
     }),
 
     userLogout: builder.mutation({
-      query: () => ({ url: '/users/logout', method: 'POST' }),
+      query: () => ({ url: `${USER_LOGOUT}`, method: 'POST' }),
 
       // invalidatesTags: ['User'],
     }),
 
     getAllTransactions: builder.query({
       query: ({ pageNum = 1, limit = 10 } = {}) => ({
-        url: `/transactions?page=${pageNum}&limit=${limit}`,
+        url: `${TRANSACTIONS}?page=${pageNum}&limit=${limit}`,
         method: 'GET',
       }),
 
@@ -55,13 +56,13 @@ export const walletsApi = createApi({
     }),
 
     getBalance: builder.query({
-      query: () => '/transactions/balance',
+      query: () => `${BALANCE}`,
 
       providesTags: ['Transaction', 'User'],
     }),
 
     addTransaction: builder.mutation({
-      query: body => ({ url: '/transactions', method: 'POST', body: body }),
+      query: body => ({ url: `${TRANSACTIONS}`, method: 'POST', body: body }),
 
       invalidatesTags: ['Transaction'],
     }),
