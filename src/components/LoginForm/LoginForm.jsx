@@ -17,6 +17,7 @@ import {
 } from './LoginForm.styled';
 import { useUserLoginMutation } from 'redux/walletsApiServise/wallet-api';
 import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
+import { AUTH_GOOGLE, BASE_URL } from 'constants/apiPath';
 
 const initialValues = {
   email: '',
@@ -78,7 +79,7 @@ const LoginForm = () => {
         )}
       </Formik>
       <StyledNavLink to="/register">register</StyledNavLink>
-      <GoogleLink as="a" href="https://wallet-backend-xmk0.onrender.com/auth-google/google" rel="noreferrer">
+      <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`}  rel="noreferrer">
         <GoogleIcon />
         <span>GOOGLE</span>
       </GoogleLink>
