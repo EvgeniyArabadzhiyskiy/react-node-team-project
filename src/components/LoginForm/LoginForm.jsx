@@ -18,6 +18,7 @@ import {
 import { useUserLoginMutation } from 'redux/walletsApiServise/wallet-api';
 import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
 import { AUTH_GOOGLE, BASE_URL } from 'constants/apiPath';
+import { useScaleForm } from 'hooks/useScaleForm';
 
 const initialValues = {
   email: '',
@@ -25,6 +26,8 @@ const initialValues = {
 };
 
 const LoginForm = () => {
+  const isScale = useScaleForm()
+
   const [isHidePassword, setIsHidePassword] = useState(true);
   const [login_RTKQ, {isLoading}] = useUserLoginMutation()
 
@@ -35,7 +38,7 @@ const LoginForm = () => {
   };
 
   return (
-      <FormWrap>
+      <FormWrap isScale={isScale}>
       {isLoading && <Spinner />}
       <LogoWrap>
         <Logo />
