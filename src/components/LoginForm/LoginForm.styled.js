@@ -8,6 +8,10 @@ export const FormWrap = styled.div`
   border: 10px solid rgba(255, 255, 255, 0.2);
   background-clip: padding-box;
 
+  transform: scaleY(0);
+  transition: transform 400ms linear 100ms;
+  transform: ${p => (p.isScale ? 'scaleY(1)' : 'scaleY(0)')};
+
   @media screen and (min-width: 768px) {
     width: 530px;
     margin-right: 50px;
