@@ -1,5 +1,6 @@
+import {  useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
-import { useState } from 'react';
+import { useScaleForm } from 'hooks/useScaleForm';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
 import Logo from 'components/Logo';
@@ -11,7 +12,6 @@ import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 import {
   Label,
   Input,
-  FormWrap,
   LogoWrap,
   ErrorMsg,
   StyledForm,
@@ -21,6 +21,8 @@ import { useUserRegistrationMutation } from 'redux/walletsApiServise/wallet-api'
 import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
 import { AUTH_GOOGLE, BASE_URL } from 'constants/apiPath';
 
+import { FormWrap } from 'components/LoginForm/LoginForm.styled';
+
 const initialValues = {
   email: '',
   password: '',
@@ -29,6 +31,8 @@ const initialValues = {
 };
 
 const RegisterForm = () => {
+  const isScale = useScaleForm()
+
   const [isHideFirstPass, setIsHideFirstPass] = useState(true);
   const [isHideSecondPass, setIsHideSecondPass] = useState(true);
   const [register_RTKQ, {isLoading}] = useUserRegistrationMutation()
@@ -41,7 +45,7 @@ const RegisterForm = () => {
   };
 
   return (  
-    <FormWrap>
+    <FormWrap isScale={isScale}>
       {isLoading && <Spinner />}
       <LogoWrap>
         <Logo />
