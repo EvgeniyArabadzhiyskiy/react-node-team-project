@@ -6,19 +6,23 @@ import {
   changeAfterLineWidth,
 } from 'helpers/passwordIndicators';
 
-export const FormWrap = styled.div`
-  width: 340px;
-  padding: 32px 20px 36px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 10px solid rgba(255, 255, 255, 0.2);
-  background-clip: padding-box;
+// export const FormWrap = styled.div`
+//   width: 340px;
+//   padding: 32px 20px 36px;
+//   background-color: rgba(0, 0, 0, 0.7);
+//   border: 10px solid rgba(255, 255, 255, 0.2);
+//   background-clip: padding-box;
 
-  @media screen and (min-width: 768px) {
-    width: 530px;
-    margin-right: 50px;
-    padding: 40px 58px 40px 65px;
-  }
-`;
+//   transform: scaleY(0);
+//   transition: transform 400ms linear 100ms;
+//   transform: ${p => (p.isScale ? 'scaleY(1)' : 'scaleY(0)')};
+
+//   @media screen and (min-width: 768px) {
+//     width: 530px;
+//     margin-right: 50px;
+//     padding: 40px 58px 40px 65px;
+//   }
+// `;
 
 export const LogoWrap = styled.div`
   display: flex;
