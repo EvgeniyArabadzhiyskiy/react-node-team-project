@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ErrorMessage, Field, Form } from 'formik';
+import { ErrorMessage, Form } from 'formik';
 
 export const Title = styled.h2`
   font-family: ${p => p.theme.fonts.heading};
@@ -34,59 +34,22 @@ export const TransactionForm = styled(Form)`
 `;
 
 export const DateWrapper = styled.div`
-  position: relative;
+  margin-bottom: ${p => p.theme.space[5]}px;
+
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: flex-end;
     column-gap: 30px;
     width: 100%;
 
-    margin-top: ${p => p.theme.space[7]}px;
   }
 `;
 
-export const LabelSum = styled.label`
-  display: block;
-  width: 100%;
-  margin-top: ${p => p.theme.space[7]}px;
-  margin-bottom: ${p => p.theme.space[7]}px;
+export const SumWrapper = styled.div`
+  margin-bottom: ${p => p.theme.space[5]}px;
 
   @media screen and (min-width: 768px) {
-    width: 50%;
     margin: ${p => p.theme.space[0]}px;
-  }
-`;
-
-export const InputSum = styled(Field)`
-  width: 100%;
-  background-color: inherit;
-  border: ${p => p.theme.borders.none};
-  outline: none;
-  border-bottom: 1px solid #bdbdbd;
-  color: white;
-
-  &::placeholder {
-    color: #ffffff8f;
-  }
-`;
-
-export const LabelComment = styled.label`
-  display: block;
-  width: 100%;
-  margin-top: ${p => p.theme.space[7]}px;
-  margin-bottom: ${p => p.theme.space[7]}px;
-`;
-
-export const InputComment = styled(Field)`
-  width: 100%;
-  background-color: inherit;
-  border: ${p => p.theme.borders.none};
-  outline: none;
-  border-bottom: 1px solid #bdbdbd;
-  color: white;
-
-  &::placeholder {
-    color: #ffffff8f;
   }
 `;
 
@@ -94,7 +57,66 @@ export const ErrorText = styled(ErrorMessage)`
   position: absolute;
   top: -20px;
   left: 2px;
-  font-size: 16px;
+
+  font-size: 14px;
   letter-spacing: 0.05em;
+  white-space: nowrap;
+
   color: #29ffd0;
 `;
+
+// export const LabelSum = styled.label`
+//   position : relative;
+//   display: flex;
+//   align-items: center;
+//   border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
+
+//   /* display: block; */
+//   /* margin-top: ${p => p.theme.space[5]}px;
+//   margin-bottom: ${p => p.theme.space[5]}px; */
+
+//   /* @media screen and (min-width: 768px) {
+//     width: 50%;
+//     margin: ${p => p.theme.space[0]}px;
+//   } */
+// `;
+
+// export const InputSum = styled(Field)`
+//   width: 100%;
+//   padding: 5px 20px;
+//   background-color: inherit;
+//   border: ${p => p.theme.borders.none};
+//   outline: none;
+//   color: ${p => p.theme.colors.white};
+
+//   &::placeholder {
+//     color: ${p => p.theme.colors.secondaryText};
+//   }
+
+// `;
+
+// export const LabelComment = styled.label`
+//   position : relative;
+//   display: flex;
+//   align-items: center;
+//   border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
+
+//   /* display: block; */
+//   /* margin-top: ${p => p.theme.space[5]}px;
+//   margin-bottom: ${p => p.theme.space[5]}px; */
+
+// `;
+
+// export const InputComment = styled(Field)`
+//   width: 100%;
+
+//   padding: 5px 20px;
+//   outline: none;
+//   border: ${p => p.theme.borders.none};
+//   background-color: inherit;
+//   color: ${p => p.theme.colors.white};
+
+//   &::placeholder {
+//     color: ${p => p.theme.colors.secondaryText};
+//   }
+// `;
