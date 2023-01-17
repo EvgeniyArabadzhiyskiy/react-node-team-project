@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 
 export const FormWrap = styled.div`
   width: 340px;
@@ -32,52 +32,94 @@ export const StyledForm = styled(Form)`
 export const Label = styled.label`
   position: relative;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  width: 100%;
-  padding-left: 10px;
+  /* width: 100%; */
   border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
-
-  & + & {
+  
+  
+  padding-left: 10px;
+  /* & + & {
     margin-top: 40px;
-  }
+  } */
 `;
 
 export const Input = styled(Field)`
-  width: 240px;
-  padding: 8px 20px;
-  border: none;
-  font-family: ${p => p.theme.fonts.body};
-  font-style: normal;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: 1.5;
-  color: ${p => p.theme.colors.primaryText};
-  background-color: transparent;
-  color: ${p => p.theme.colors.white};
+  /* width: 240px; */
+  width: 100%;
 
-  &:focus {
-    outline: none;
-  }
+  padding: 5px 20px;
+  border: ${p => p.theme.borders.none};
+  outline: none;
+  background-color: inherit;
+  color: ${p => p.theme.colors.white};
+  
   ::placeholder {
-    font-family: ${p => p.theme.fonts.body};
-    font-style: normal;
-    font-weight: ${p => p.theme.fontWeights.normal};
-    font-size: ${p => p.theme.fontSizes.m};
-    line-height: 1.5;
     color: ${p => p.theme.colors.secondaryText};
   }
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     width: 370px;
-  }
+  } */
 `;
 
-export const ErrorMsg = styled.div`
+// export const ErrorMsg = styled(ErrorMessage)`
+//   position: absolute;
+//   right: 0;
+//   bottom: -35px;
+//   padding: 4px 5px;
+//   color: #29ffd0;
+//   font-size: 14px;
+//   background-color: transparent;
+// `;
+
+export const ErrorText = styled(ErrorMessage)`
   position: absolute;
-  right: 0;
-  bottom: -35px;
-  padding: 4px 5px;
-  color: #f21407;
-  background-color: transparent;
+  top: -20px;
+  left: 2px;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  color: #29ffd0;
 `;
+
+export const EyesButton = styled.button`
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+`;
+
+
+
+
+
+
+
+// export const Input = styled(Field)`
+//   width: 240px;
+//   padding: 8px 20px;
+//   border: none;
+//   font-family: ${p => p.theme.fonts.body};
+//   font-style: normal;
+//   font-weight: ${p => p.theme.fontWeights.normal};
+//   font-size: ${p => p.theme.fontSizes.m};
+//   line-height: 1.5;
+//   color: ${p => p.theme.colors.primaryText};
+//   background-color: transparent;
+//   color: ${p => p.theme.colors.white};
+
+//   &:focus {
+//     outline: none;
+//   }
+//   ::placeholder {
+//     font-family: ${p => p.theme.fonts.body};
+//     font-style: normal;
+//     font-weight: ${p => p.theme.fontWeights.normal};
+//     font-size: ${p => p.theme.fontSizes.m};
+//     line-height: 1.5;
+//     color: ${p => p.theme.colors.secondaryText};
+//   }
+
+//   @media screen and (min-width: 768px) {
+//     width: 370px;
+//   }
+// `;
