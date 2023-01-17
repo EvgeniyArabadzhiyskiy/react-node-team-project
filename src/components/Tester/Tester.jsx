@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useEffect } from 'react';
 // import { useDispatch, /* useSelector*/ } from 'react-redux';
 // import { useMedia } from 'react-use';
@@ -14,7 +14,7 @@ const Tester = () => {
   let header = useRef('4292');
   console.log("Tester  header", header.current);
 
-  const [ddd, setDDD] = useState('');
+  // const [ddd, setDDD] = useState('');
   // console.log('Tester  ddd', ddd);
 
   // const [hey, setHey] = useState('Cool');
@@ -84,7 +84,7 @@ const Tester = () => {
   };
 
   const onRender = () => {
-    setDDD(p => !p);
+    // setDDD(p => !p);
     // console.log('Prosto LOG');
   };
 
