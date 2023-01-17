@@ -15,10 +15,11 @@ import {
   DateWrapper,
   ErrorText,
   ImputsWrapper,
-  InputComment,
-  InputSum,
-  LabelComment,
-  LabelSum,
+  // InputComment,
+  // InputSum,
+  // LabelComment,
+  // LabelSum,
+  SumWrapper,
   Title,
   TransactionForm,
 } from './FormTransaction.styled';
@@ -30,6 +31,7 @@ import { useAddTransactionMutation } from 'redux/walletsApiServise/wallet-api';
 import { ButtonAdd, ButtonCancel } from 'components/Buttons/Buttons.styled';
 import SwithChecbox from 'components/SwithChecbox/SwithChecbox';
 import { Box } from 'components/Box';
+import FormInput from 'components/FormInput/FormInput';
 
 const FormTransaction = ({setIsIncome, isIncome}) => {
   const dispatch = useDispatch();
@@ -107,7 +109,7 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
 
               <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
 
-              <Box position="relative">
+              <Box position="relative" marginBottom="28px">
                 <Select
                   ref={selectInputRef}
                   name="category"
@@ -121,15 +123,20 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
               
 
               <DateWrapper>
-                <LabelSum>
-                  <InputSum
-                    type="number"
-                    name="amount"
-                    placeholder="0.00"
-                    autoComplete="off"
-                  />
-                </LabelSum>
-                <ErrorText component="div" name="amount" />
+                <SumWrapper>
+                  <FormInput type="number"  name="amount" placeholder="0.00" />
+
+                  {/* <LabelSum>
+                    <InputSum
+                      type="number"
+                      name="amount"
+                      placeholder="0.00"
+                      autoComplete="off"
+                    />
+                    <ErrorText component="div" name="amount" />
+                  </LabelSum> */}
+                </SumWrapper>
+                
 
                 <Datetime
                   name="date"
@@ -145,16 +152,20 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                 />
               </DateWrapper>
 
-              <Box position="relative">
-                <LabelComment>
+              <Box marginBottom="28px">
+                {/* <LabelComment>
                   <InputComment
                     type="text"
                     name="comment"
                     placeholder="Comment"
                     autoComplete="off"
                   />
-                </LabelComment>
-                <ErrorText component="div" name="comment" />
+                  <ErrorText component="div" name="comment" />
+                </LabelComment> */}
+
+
+                <FormInput name="comment" placeholder="Comment" />
+
               </Box>
             </ImputsWrapper>
 
