@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 // import { useDispatch, /* useSelector*/ } from 'react-redux';
 // import { useMedia } from 'react-use';
@@ -11,10 +11,10 @@ const Tester = () => {
   // const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   // const isDesktop = useMedia('(min-width: 1280px)');
 
-  let header = useRef(null);
+  let header = useRef('4292');
   console.log("Tester  header", header.current);
 
-  // const [ddd, setDDD] = useState('');
+  const [ddd, setDDD] = useState('');
   // console.log('Tester  ddd', ddd);
 
   // const [hey, setHey] = useState('Cool');
@@ -49,7 +49,7 @@ const Tester = () => {
   useEffect(() => {
 
     console.log('UseEffect ');
-    header.current = 555
+    // header.current = 555
     // console.log('Tester  header', header.current);
 
 
@@ -84,7 +84,7 @@ const Tester = () => {
   };
 
   const onRender = () => {
-    // setDDD(p => !p);
+    setDDD(p => !p);
     // console.log('Prosto LOG');
   };
 
