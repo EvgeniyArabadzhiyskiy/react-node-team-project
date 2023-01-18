@@ -1,17 +1,16 @@
-import { Input, Label, ErrorText } from 'components/LoginForm/LoginForm.styled';
+import { ErrorText, Input, Label } from './FormInput.styled';
 
 const FormInput = ({
-  name, type = 'text', inputBtn = null, icon = null, placeholder = null, autoComplete,
+  name,
+  type = 'text',
+  inputBtn = null,
+  icon = null,
+  ...allProps
 }) => {
   return (
     <Label>
       {icon}
-      <Input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-      />
+      <Input type={type} name={name} {...allProps} />
       {inputBtn}
       <ErrorText component="div" name={name} />
     </Label>
