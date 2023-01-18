@@ -28,7 +28,7 @@ export const ErrorText = styled(ErrorMessage)`
   position: absolute;
   top: -20px;
   left: 2px;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.05em;
   color: #29ffd0;
 `;
