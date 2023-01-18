@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import FormTransaction from 'components/FormTransaction/FormTransaction';
+import TransactionForm from 'components/TransactionForm/TransactionForm';
 import { Card, CardBack, CardFront, InnerCard } from './FlipCard.styled';
 
 const FlipCard = () => {
@@ -9,11 +9,11 @@ const FlipCard = () => {
     <Card>
       <InnerCard isFlipped={isIncome}>
         <CardFront>
-          <FormTransaction setIsIncome={setIsIncome} isIncome={isIncome} />
+          <TransactionForm setIsIncome={setIsIncome} isIncome={isIncome} />
         </CardFront>
 
         <CardBack>
-          <FormTransaction setIsIncome={setIsIncome} isIncome={isIncome} />
+          <TransactionForm setIsIncome={setIsIncome} isIncome={isIncome} />
         </CardBack>
       </InnerCard>
     </Card>
