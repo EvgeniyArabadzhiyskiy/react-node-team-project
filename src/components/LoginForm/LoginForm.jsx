@@ -1,13 +1,13 @@
-import { Form, Formik } from 'formik';
-import { useState } from 'react';
-import { HiEyeOff, HiEye } from 'react-icons/hi';
+// import { Form, Formik } from 'formik';
+// import { useState } from 'react';
+// import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
 import Logo from 'components/Logo';
 import Spinner from 'components/Spinner';
-import { ReactComponent as EmailIcon } from 'images/email.svg';
+// import { ReactComponent as EmailIcon } from 'images/email.svg';
 
-import { ReactComponent as PasswordIcon } from 'images/password.svg';
-import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
+// import { ReactComponent as PasswordIcon } from 'images/password.svg';
+// import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 import {
   FormWrap,
   LogoWrap,
@@ -15,14 +15,16 @@ import {
   // Label,
   // Input,
   // ErrorMsg,
-  EyesButton,
+  // EyesButton,
 } from './LoginForm.styled';
 import { useUserLoginMutation } from 'redux/walletsApiServise/wallet-api';
-import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
-import { AUTH_GOOGLE, BASE_URL } from 'constants/apiPath';
+// import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
+// import { AUTH_GOOGLE, BASE_URL } from 'constants/apiPath';
 import { useScaleForm } from 'hooks/useScaleForm';
-import { Box } from 'components/Box';
-import FormInput from 'components/FormInput/FormInput';
+// import { Box } from 'components/Box';
+// import FormInput from 'components/FormInput';
+import FormDefault from 'components/FormDefault';
+import FormLogin from 'components/FormLogin';
 
 const initialValues = {
   email: '',
@@ -32,7 +34,7 @@ const initialValues = {
 const LoginForm = () => {
   const isScale = useScaleForm()
 
-  const [isHidePassword, setIsHidePassword] = useState(true);
+  // const [isHidePassword, setIsHidePassword] = useState(true);
   const [login_RTKQ, {isLoading}] = useUserLoginMutation()
 
   const handleSubmit = async (values, { resetForm }) => {
@@ -47,6 +49,16 @@ const LoginForm = () => {
       <LogoWrap>
         <Logo />
       </LogoWrap>
+
+
+      <FormDefault 
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+        validationSchema={schema.login}
+
+        submitText="Log in"
+        render={(props) => <FormLogin data={props} /> }
+      />
 
       {/* <FormDefault 
         initialValues={initialValues}
@@ -89,51 +101,55 @@ const LoginForm = () => {
 
       </FormDefault> */}
 
-      <Formik
+      {/* <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={schema.login}
       >
-        {({ isValid, dirty }) => (
-          <Form autoComplete="off" >
+        {({ isValid, dirty, isSubmitting }) => {
 
-            <Box marginBottom="28px" >
-              <FormInput
-                icon={ <EmailIcon />}
-                type="email" 
-                name="email" 
-                placeholder="E-mail"
-              />
-            </Box>
+console.log("LoginForm  isValid", isSubmitting);
+          
+          return <Form autoComplete="off" >
 
-            <Box marginBottom="28px" >
-              <FormInput
-                icon={ <PasswordIcon /> }
-                type={isHidePassword ? 'password' : 'text'} 
-                name="password" 
-                placeholder="Password"
-                inputBtn={ <EyesButton type="button" onClick={() => setIsHidePassword(p=> !p)}>
-                            {isHidePassword ? <HiEye color='white' /> : <HiEyeOff color='white' />}
-                           </EyesButton>}
-              />
-            </Box>
+          <Box marginBottom="28px" >
+            <FormInput
+              icon={ <EmailIcon />}
+              type="email" 
+              name="email" 
+              placeholder="E-mail"
+            />
+          </Box>
 
-            <SubmitBtn type="submit"  >
-              log in
-            </SubmitBtn>
+          <Box marginBottom="28px" >
+            <FormInput
+              icon={ <PasswordIcon /> }
+              type={isHidePassword ? 'password' : 'text'} 
+              name="password" 
+              placeholder="Password"
+              inputBtn={ <EyesButton type="button" onClick={() => setIsHidePassword(p=> !p)}>
+                          {isHidePassword ? <HiEye color='white' /> : <HiEyeOff color='white' />}
+                         </EyesButton>}
+            />
+          </Box>
 
-            <StyledNavLink to="/register">register</StyledNavLink>
+          <SubmitBtn type="submit"  >
+            log in
+          </SubmitBtn>
 
-            <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`}  rel="noreferrer">
-              <GoogleIcon />  <span>GOOGLE</span>
-            </GoogleLink>
+          <StyledNavLink to="/register">register</StyledNavLink>
 
-          </Form>
-        )}
-      </Formik>
+          <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`}  rel="noreferrer">
+            <GoogleIcon />  <span>GOOGLE</span>
+          </GoogleLink>
+
+        </Form>
+        } }
+      </Formik> */}
      
     </FormWrap>
   );
 };
+        
 
 export default LoginForm;
