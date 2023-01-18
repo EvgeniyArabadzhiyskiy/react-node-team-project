@@ -1,5 +1,5 @@
 import {  useState } from 'react';
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { useScaleForm } from 'hooks/useScaleForm';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
@@ -13,15 +13,15 @@ import {
   // Label,
   // Input,
   // ErrorMsg,
-  LogoWrap,
-  StyledForm,
+  // StyledForm,
+  // LogoWrap,
   PasswordIndicator,
 } from './RegistrationForm.styled';
 import { useUserRegistrationMutation } from 'redux/walletsApiServise/wallet-api';
 import { GoogleLink, StyledNavLink, SubmitBtn } from 'components/Buttons/Buttons.styled';
 import { AUTH_GOOGLE, BASE_URL } from 'constants/apiPath';
 
-import { EyesButton, FormWrap } from 'components/LoginForm/LoginForm.styled';
+import { EyesButton, FormWrap, LogoWrap } from 'components/LoginForm/LoginForm.styled';
 import FormInput from 'components/FormInput/FormInput';
 import { Box } from 'components/Box';
 
@@ -58,9 +58,8 @@ const RegisterForm = () => {
         validationSchema={schema.register}
       >
         {({ isValid, dirty, values }) => (
-          <StyledForm autoComplete="off">
+          <Form autoComplete="off">
 
-            
             <Box marginBottom="28px" >
               <FormInput
                 icon={ <EmailIcon />}
@@ -105,71 +104,10 @@ const RegisterForm = () => {
               />
             </Box>
 
-            {/* <Label>
-              <EmailIcon />
-              <Input type="email" name="email" placeholder="E-mail" />
-              <ErrorMessage
-                name="email"
-                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-              />
-            </Label> */}
-
-
-            {/* <Label>
-              <PasswordIcon />
-              <Input
-                type={isHideFirstPass ? 'password' : 'text'}
-                name="password"
-                placeholder="Password"
-              />
-              {isHideFirstPass ? (
-                <HiEye color='white' onClick={() => setIsHideFirstPass(false)} />
-              ) : (
-                <HiEyeOff color='white' onClick={() => setIsHideFirstPass(true)} />
-              )}
-              
-              <ErrorMessage name="password" render={msg => <ErrorMsg>{msg}</ErrorMsg>} />
-            </Label> */}
-
-
-            {/* <Label>
-              <PasswordIcon />
-              <Input
-                type={isHideSecondPass ? 'password' : 'text'}
-                name="confirmPassword"
-                placeholder="Confirm password"
-              />
-              {isHideSecondPass ? (
-                <HiEye color='white' onClick={() => setIsHideSecondPass(false)} />
-              ) : (
-                <HiEyeOff color='white' onClick={() => setIsHideSecondPass(true)} />
-              )}
-              {values.confirmPassword && (
-                <PasswordIndicator lenth={values.confirmPassword} />
-              )}
-              <ErrorMessage
-                name="confirmPassword"
-                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-              />
-            </Label> */}
-
-            
-            {/* <Label>
-              <UserIcon />
-              <Input 
-                type="text"
-                name="name" 
-                placeholder="First name" />
-              <ErrorMessage
-                name="name"
-                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-              />
-            </Label> */}
-
             <SubmitBtn type="submit" disabled={!(isValid && dirty)}>
               register
             </SubmitBtn>
-          </StyledForm>
+          </Form>
         )}
       </Formik>
       <StyledNavLink to="/login">log in</StyledNavLink>
