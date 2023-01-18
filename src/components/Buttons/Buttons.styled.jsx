@@ -88,7 +88,8 @@ export const ButtonAdd = styled.button`
 
   color: ${p => p.theme.colors.primaryBg};
   border: 7px solid rgba(55, 53, 53, 0.2);
-  margin-bottom: ${p => p.theme.space[4]}px;
+  /* margin-bottom: ${p => p.theme.space[4]}px; */
+  margin-top: ${p => p.theme.space[5]}px;
   background-color: ${p => p.theme.colors.primaryBgBtn};
 
   &:hover {
@@ -101,6 +102,7 @@ export const ButtonAdd = styled.button`
 export const ButtonCancel = styled.button`
   ${baseBtnStyle}
 
+  margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.secondaryBtn};
   border: 7px solid rgba(55, 53, 53, 0.4);
 
