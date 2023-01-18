@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ErrorMessage, Form } from 'formik';
+import { ErrorMessage } from 'formik';
 
 export const Title = styled.h2`
   font-family: ${p => p.theme.fonts.heading};
@@ -17,22 +17,6 @@ export const Title = styled.h2`
   }
 `;
 
-export const ImputsWrapper = styled.div`
-  padding-left: ${p => p.theme.space[4]}px;
-  padding-right: ${p => p.theme.space[4]}px;
-
-  @media screen and (min-width: 768px) {
-    padding-left: 73px;
-    padding-right: 73px;
-  }
-`;
-
-export const TransactionForm = styled(Form)`
-  display: inline-flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
 export const DateWrapper = styled.div`
   margin-bottom: ${p => p.theme.space[5]}px;
 
@@ -41,7 +25,6 @@ export const DateWrapper = styled.div`
     align-items: flex-end;
     column-gap: 30px;
     width: 100%;
-
   }
 `;
 
@@ -64,6 +47,22 @@ export const ErrorText = styled(ErrorMessage)`
 
   color: #29ffd0;
 `;
+
+// export const ImputsWrapper = styled.div`
+//   padding-left: ${p => p.theme.space[4]}px;
+//   padding-right: ${p => p.theme.space[4]}px;
+
+//   @media screen and (min-width: 768px) {
+//     padding-left: 73px;
+//     padding-right: 73px;
+//   }
+// `;
+
+// export const TransactionForm = styled(Form)`
+//   display: inline-flex;
+//   flex-direction: column;
+//   width: 100%;
+// `;
 
 // export const LabelSum = styled.label`
 //   position : relative;
