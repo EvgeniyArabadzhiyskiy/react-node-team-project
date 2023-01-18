@@ -31,4 +31,5 @@ export const ErrorText = styled(ErrorMessage)`
   font-size: 14px;
   letter-spacing: 0.05em;
   color: #29ffd0;
+  white-space: nowrap;
 `;
