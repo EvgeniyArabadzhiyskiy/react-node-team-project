@@ -1,20 +1,9 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
 import {
   changeMainLineColor,
   changeAfterLineColor,
   changeAfterLineWidth,
 } from 'helpers/passwordIndicators';
-
-export const LogoWrap = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-export const StyledForm = styled(Form)`
-  width: 100%;
-  margin-top: 60px;
-`;
 
 export const PasswordIndicator = styled.div`
   position: absolute;
@@ -36,6 +25,23 @@ export const PasswordIndicator = styled.div`
     background-color: ${p => changeAfterLineColor(p.lenth)};
   }
 `;
+
+
+
+
+
+
+
+// export const LogoWrap = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   margin-bottom: 60px;
+// `;
+
+// export const StyledForm = styled(Form)`
+//   width: 100%;
+//   margin-top: 60px;
+// `;
 
 // export const FormWrap = styled.div`
 //   width: 340px;
