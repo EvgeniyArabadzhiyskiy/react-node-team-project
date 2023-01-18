@@ -1,18 +1,15 @@
 import { Form, Formik } from 'formik';
 
-const FormDefault = ({ initialValues, validationSchema, onSubmit }) => {
+const FormDefault = ({ initialValues, validationSchema, onSubmit, render, ...allprops }) => {
+
   return (
     <>
       <Formik
-        initialValues={initialValues}
         onSubmit={onSubmit}
+        initialValues={initialValues}
         validationSchema={validationSchema}
       >
-        {({ setFieldValue, values }) => (
-          <Form>
-            <h1>hello</h1>
-          </Form>
-        )}
+        {formik => <Form>{render({ ...formik, ...allprops })}</Form>}
       </Formik>
     </>
   );
