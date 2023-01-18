@@ -2,7 +2,7 @@ import './rdt-styles.css';
 import moment from 'moment';
 import Select from 'react-select';
 import Datetime from 'react-datetime';
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { toast } from 'react-toastify';
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
@@ -14,14 +14,14 @@ import { optionsExpense, optionsIncome } from 'helpers/formAddTransaction/option
 import {
   DateWrapper,
   ErrorText,
-  ImputsWrapper,
+  // ImputsWrapper,
   // InputComment,
   // InputSum,
   // LabelComment,
   // LabelSum,
+  // TransactionForm,
   SumWrapper,
   Title,
-  TransactionForm,
 } from './FormTransaction.styled';
 import DateInput from './DateInput';
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
@@ -32,6 +32,7 @@ import { ButtonAdd, ButtonCancel } from 'components/Buttons/Buttons.styled';
 import SwithChecbox from 'components/SwithChecbox/SwithChecbox';
 import { Box } from 'components/Box';
 import FormInput from 'components/FormInput/FormInput';
+import { onChangeType } from 'helpers/formAddTransaction/onChangeType';
 
 const FormTransaction = ({setIsIncome, isIncome}) => {
   const dispatch = useDispatch();
@@ -46,19 +47,6 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
     setIsIncome(e.target.checked);
     selectInputRef.current.clearValue();
  
-  };
-
-  const onChangeType = value => {
-    switch (value) {
-      case true:
-        return 'income';
-
-      case false:
-        return 'expense';
-
-      default:
-        console.log('No such operation');
-    }
   };
 
   const onCancelClick = () => {
@@ -98,14 +86,15 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
   return (
     <>
       <Title>Add transaction</Title>
+      
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmitFormTransaction}
         validationSchema={transactionShema}
       >
         {({ setFieldValue, values }) => (
-         <TransactionForm>
-            <ImputsWrapper>
+         <Form autoComplete="off">
+            <>
 
               <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
 
@@ -121,23 +110,11 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                 <ErrorText component="div" name="category" />
               </Box>
               
-
               <DateWrapper>
                 <SumWrapper>
                   <FormInput type="number"  name="amount" placeholder="0.00" />
-
-                  {/* <LabelSum>
-                    <InputSum
-                      type="number"
-                      name="amount"
-                      placeholder="0.00"
-                      autoComplete="off"
-                    />
-                    <ErrorText component="div" name="amount" />
-                  </LabelSum> */}
                 </SumWrapper>
                 
-
                 <Datetime
                   name="date"
                   closeOnSelect
@@ -152,27 +129,16 @@ const FormTransaction = ({setIsIncome, isIncome}) => {
                 />
               </DateWrapper>
 
-              <Box marginBottom="28px">
-                {/* <LabelComment>
-                  <InputComment
-                    type="text"
-                    name="comment"
-                    placeholder="Comment"
-                    autoComplete="off"
-                  />
-                  <ErrorText component="div" name="comment" />
-                </LabelComment> */}
-
-
+              <Box marginBottom="0">
                 <FormInput name="comment" placeholder="Comment" />
-
               </Box>
-            </ImputsWrapper>
+
+            </>
 
             <ButtonAdd type="submit">Add</ButtonAdd>
             <ButtonCancel type="button" onClick={onCancelClick}>Cancel</ButtonCancel>
             
-          </TransactionForm>
+          </Form>
         )}
       </Formik> 
     </>
