@@ -34,7 +34,7 @@ const ModalWindow = ({ children }) => {
 
   return createPortal(
     <Overlay onClick={onBackdropClick} {...modalAnimation} transition={{ duration: 0.3 }} >
-      <Modal animate={{ scale: 1.05 }}>{children}</Modal>
+      <Modal animate={{ scale: 0.95 }}>{children}</Modal>
     </Overlay>,
     modalRoot
   );
