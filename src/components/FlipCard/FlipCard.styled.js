@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  width: 320px;
+  width: 340px;
   height: 600px;
   perspective: 700px;
 
@@ -22,7 +22,7 @@ export const InnerCard = styled.div`
 `;
 
 const CardFace = styled.div`
-  padding-top: ${p => p.theme.space[5]}px;
+  padding: 30px 20px;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -31,6 +31,12 @@ const CardFace = styled.div`
   overflow: hidden;
   background: rgba(0, 0, 0, 0.7);
   transform-style: preserve-3d;
+  padding-left: ${p => p.theme.space[4]}px;
+  padding-right: ${p => p.theme.space[4]}px;
+
+  @media screen and (min-width: 768px) {
+    padding: 36px 60px;
+  }
 `;
 
 export const CardFront = styled(CardFace)``;
