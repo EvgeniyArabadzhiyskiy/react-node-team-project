@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
@@ -11,7 +11,7 @@ import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 import {
   FormWrap,
   LogoWrap,
-  StyledForm,
+  // StyledForm,
   // Label,
   // Input,
   // ErrorMsg,
@@ -31,7 +31,6 @@ const initialValues = {
 
 const LoginForm = () => {
   const isScale = useScaleForm()
-  // console.log("EmailIcon", EmailIcon);
 
   const [isHidePassword, setIsHidePassword] = useState(true);
   const [login_RTKQ, {isLoading}] = useUserLoginMutation()
@@ -48,13 +47,55 @@ const LoginForm = () => {
       <LogoWrap>
         <Logo />
       </LogoWrap>
+
+      {/* <FormDefault 
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={schema.login}
+        setIsValid={setIsValid}
+        setDirty={setDirty}
+      >
+
+        <Box marginBottom="28px" >
+          <FormInput
+            icon={ <EmailIcon />}
+            type="email" 
+            name="email" 
+            placeholder="E-mail"
+          />
+        </Box>
+
+        <Box marginBottom="28px" >
+          <FormInput
+            icon={ <PasswordIcon /> }
+            type={isHidePassword ? 'password' : 'text'} 
+            name="password" 
+            placeholder="Password"
+            inputBtn={ <EyesButton type="button" onClick={() => setIsHidePassword(p=> !p)}>
+                        {isHidePassword ? <HiEye color='white' /> : <HiEyeOff color='white' />}
+                        </EyesButton>}
+          />
+        </Box>
+
+        <SubmitBtn type="submit" disabled={!(isValid && dirty)} >
+          log in
+        </SubmitBtn>
+
+        <StyledNavLink to="/register">register</StyledNavLink>
+
+        <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`}  rel="noreferrer">
+          <GoogleIcon />  <span>GOOGLE</span>
+        </GoogleLink>
+
+      </FormDefault> */}
+
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={schema.login}
       >
         {({ isValid, dirty }) => (
-          <StyledForm autoComplete="off" >
+          <Form autoComplete="off" >
 
             <Box marginBottom="28px" >
               <FormInput
@@ -77,50 +118,20 @@ const LoginForm = () => {
               />
             </Box>
 
-            {/* <Label>
-                    <EmailIcon />
-                    <Input 
-                      type="email" 
-                      name="email" 
-                      placeholder="E-mail"
-                      autoComplete="off"
-                      />
-                    <ErrorMsg component="div" name="email" />
-              </Label> */}
-
-           {/* <Box marginTop="28px" >
-            <Label>
-                <PasswordIcon />
-                <Input
-                  type={isHidePassword ? 'password' : 'text'}
-                  name="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                />
-                {isHidePassword ? (
-                  <HiEye color='white' onClick={() => setIsHidePassword(false)} />
-                ) : (
-                  <HiEyeOff color='white' onClick={() => setIsHidePassword(true)} />
-                )}
-                <ErrorMsg component="div" name="password" />
-              </Label>
-            </Box> */}
-
-                  
-
-            
-            
             <SubmitBtn type="submit"  >
               log in
             </SubmitBtn>
-          </StyledForm>
+
+            <StyledNavLink to="/register">register</StyledNavLink>
+
+            <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`}  rel="noreferrer">
+              <GoogleIcon />  <span>GOOGLE</span>
+            </GoogleLink>
+
+          </Form>
         )}
       </Formik>
-      <StyledNavLink to="/register">register</StyledNavLink>
-      <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`}  rel="noreferrer">
-        <GoogleIcon />
-        <span>GOOGLE</span>
-      </GoogleLink>
+     
     </FormWrap>
   );
 };
