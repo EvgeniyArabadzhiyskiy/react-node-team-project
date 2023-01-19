@@ -18,10 +18,8 @@ import { optionsExpense, optionsIncome } from "helpers/formAddTransaction/option
 import { selectStyles } from "helpers/formAddTransaction/selectStyles";
 import { checksFutureDate } from "helpers/formAddTransaction/checksFutureDate";
 
-const FormTransaction = ({data}) => {
-    const {setIsIncome, isIncome, setFieldValue, isSubmitting, submitText} = data
-    // console.log("FormTransaction  isSubmitting", isSubmitting);
-
+const FormTransaction = ({ formik, setIsIncome, isIncome, submitText, cancelText }) => {
+    const { setFieldValue, isSubmitting } = formik;
 
     const dispatch = useDispatch();
     const selectInputRef = useRef();
@@ -55,7 +53,7 @@ const FormTransaction = ({data}) => {
 
         <DateWrapper>
             <SumWrapper>
-                <FormInput type="number"  name="amount" placeholder="0.00" />
+                <FormInput type="number"  name="amount" placeholder="0.00" autoComplete="off" />
             </SumWrapper>
             
             <Datetime
@@ -72,12 +70,10 @@ const FormTransaction = ({data}) => {
             />
         </DateWrapper>
 
-        <Box marginBottom="0">
-            <FormInput name="comment" placeholder="Comment" />
-        </Box>
-
+        <FormInput name="comment" placeholder="Comment" autoComplete="off" />
+        
         <ButtonAdd type="submit" disabled={isSubmitting} >{submitText}</ButtonAdd>
-        <ButtonCancel type="button" onClick={onCancelClick}>Cancel</ButtonCancel>
+        <ButtonCancel type="button" onClick={onCancelClick}>{cancelText}</ButtonCancel>
     </>
 }
  
