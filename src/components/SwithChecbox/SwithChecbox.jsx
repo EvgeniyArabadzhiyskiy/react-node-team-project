@@ -13,7 +13,7 @@ import { ReactComponent as Minus } from '../../images/minus.svg';
 const SwithChecbox = ({ isIncome, onChangeSwitch }) => {
   return (
     <CheckBoxWrapper>
-      <TextIncome isChecked={isIncome}>Income</TextIncome>
+      <TextIncome isIncome={isIncome}>Income</TextIncome>
       <CheckBoxLabel>
         <CheckBox
           type="checkbox"
@@ -22,9 +22,9 @@ const SwithChecbox = ({ isIncome, onChangeSwitch }) => {
           checked={isIncome}
           onChange={onChangeSwitch}
         />
-        <Switch isChecked={isIncome}>{isIncome ? <Plus /> : <Minus />}</Switch>
+        <Switch isIncome={isIncome}>{isIncome ? <Plus /> : <Minus />}</Switch>
       </CheckBoxLabel>
-      <TextExpense isChecked={isIncome}>Expense</TextExpense>
+      <TextExpense isExpense={!isIncome}>Expense</TextExpense>
     </CheckBoxWrapper>
   );
 };
