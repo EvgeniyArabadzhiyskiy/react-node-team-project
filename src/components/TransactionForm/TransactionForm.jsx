@@ -53,8 +53,6 @@ const TransactionForm = ({setIsIncome, isIncome}) => {
         render={(props) => (
           <FormTransaction 
             formik={props}
-            submitText="add"
-            cancelText="cancel"
             isIncome={isIncome}
             setIsIncome={setIsIncome}
           />
