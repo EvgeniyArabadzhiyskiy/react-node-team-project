@@ -1,21 +1,20 @@
 import { useState } from "react";
 
-import { Box } from "components/Box";
-import FormInput from "components/FormInput";
-import { EyesButton } from "components/LoginForm/LoginForm.styled";
-
-import { HiEyeOff, HiEye } from 'react-icons/hi';
 import { ReactComponent as EmailIcon } from 'images/email.svg';
 import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import { ReactComponent as UserIcon } from 'images/user.svg';
 import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
-import { GoogleLink, StyledNavLink, SubmitBtn } from "components/Buttons/Buttons.styled";
+
+import { Box } from "components/Box";
+import FormInput from "components/FormInput";
+import EyesButton from "components/EyesButton";
 import { AUTH_GOOGLE, BASE_URL } from "constants/apiPath";
+import { GoogleLink, StyledNavLink, SubmitBtn } from "components/Buttons/Buttons.styled";
 import { PasswordIndicator } from "components/RegistrationForm/RegistrationForm.styled";
 
 
-const FormRegistration = ({data}) => {
-    const {isValid, dirty, values, isSubmitting, submitText} = data
+const FormRegistration = ({ formik, submitText }) => {
+    const { isValid, dirty, values, isSubmitting } = formik
 
     const [isHideFirstPass, setIsHideFirstPass] = useState(true);
     const [isHideSecondPass, setIsHideSecondPass] = useState(true);
@@ -23,44 +22,42 @@ const FormRegistration = ({data}) => {
     return <>
       <Box marginBottom="28px" >
             <FormInput
-            icon={ <EmailIcon />}
-            type="email" 
-            name="email" 
-            placeholder="E-mail"
+                icon={ <EmailIcon />}
+                type="email" 
+                name="email" 
+                placeholder="E-mail"
+                autoComplete="off"
             />
         </Box>
 
         <Box marginBottom="28px" position="relative" >
             <FormInput
-            icon={ <PasswordIcon /> }
-            type={isHideFirstPass ? 'password' : 'text'} 
-            name="password" 
-            placeholder="Password"
-            inputBtn={ <EyesButton type="button" onClick={() => setIsHideFirstPass(p=> !p)}>
-                    {isHideFirstPass ? <HiEye color='white' /> : <HiEyeOff color='white' />}
-                    </EyesButton>}
+                icon={ <PasswordIcon /> }
+                type={isHideFirstPass ? 'password' : 'text'} 
+                name="password" 
+                placeholder="Password"
+                inputBtn={ <EyesButton isHidePass={isHideFirstPass} setIsHidePass={setIsHideFirstPass} /> }
             />
             {values.password && <PasswordIndicator lenth={values.password} />}
         </Box>
 
         <Box marginBottom="28px" position="relative" >
             <FormInput
-            icon={ <PasswordIcon /> }
-            type={isHideSecondPass ? 'password' : 'text'} 
-            name="confirmPassword" 
-            placeholder="Confirm password"
-            inputBtn={ <EyesButton type="button" onClick={() => setIsHideSecondPass(p=> !p)}>
-                    {isHideSecondPass ? <HiEye color='white' /> : <HiEyeOff color='white' />}
-                    </EyesButton>}
+                icon={ <PasswordIcon /> }
+                type={isHideSecondPass ? 'password' : 'text'} 
+                name="confirmPassword" 
+                placeholder="Confirm password"
+                inputBtn={ <EyesButton isHidePass={isHideSecondPass} setIsHidePass={setIsHideSecondPass} />}
             />
             {values.password && <PasswordIndicator lenth={values.password} />}
         </Box>
 
         <Box marginBottom="28px" >
             <FormInput
-            icon={ <UserIcon />} 
-            name="name" 
-            placeholder="First name"
+                icon={ <UserIcon />} 
+                name="name" 
+                placeholder="First name"
+                autoComplete="off"
             />
         </Box>
 
