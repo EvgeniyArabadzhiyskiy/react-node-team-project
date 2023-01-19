@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ButtonAdd } from 'components/Buttons/Buttons.styled';
 
 export const Border = styled.div`
   border: 10px solid rgba(255, 255, 255, 0.2);
@@ -21,5 +20,3 @@ export const Title = styled.h2`
   margin-bottom: 50px;
   padding: 0 20px;
 `;
-
-export const ButtonExit = styled(ButtonAdd)``;
