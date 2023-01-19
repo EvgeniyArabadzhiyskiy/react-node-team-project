@@ -37,7 +37,7 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={schema.register}
-        render={(props) => <FormRegistration formik={props} submitText="register" /> }
+        render={(props) => <FormRegistration formik={props} /> }
       />
 
     </FormWrap>
