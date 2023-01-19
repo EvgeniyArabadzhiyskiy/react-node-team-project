@@ -1,16 +1,13 @@
-import {
-  Title,
-  Border,
-  Modal,
-  ButtonExit,
-} from './ModalLogout.styled';
 import { useDispatch } from 'react-redux';
-import Spinner from 'components/Spinner';
 
 import { modalClose } from 'redux/modal/modalSlice';
 import { resetTransactions } from 'redux/transactions/transactionsSlice';
 import { useUserLogoutMutation } from 'redux/walletsApiServise/wallet-api';
-import { ButtonCancel } from 'components/Buttons/Buttons.styled';
+
+import Spinner from 'components/Spinner';
+import EnterButton from 'components/Buttons/EnterButton';
+import CancelButton from 'components/Buttons/CancelButton';
+import { Title, Border, Modal } from './ModalLogout.styled';
 
 const ModalLogout = () => {
   const dispatch = useDispatch();
@@ -33,8 +30,8 @@ const ModalLogout = () => {
       <Modal>
         <Title>Are you sure you want to sign out?</Title>
         <div>
-            <ButtonExit onClick={logOut}>Exit </ButtonExit>
-            <ButtonCancel onClick={onCancelClick}>Cancel</ButtonCancel>
+          <EnterButton enterText="exit" onClick={logOut} />
+          <CancelButton cancelText="cancel" onClick={onCancelClick} />
         </div>
       </Modal>
     </Border>
