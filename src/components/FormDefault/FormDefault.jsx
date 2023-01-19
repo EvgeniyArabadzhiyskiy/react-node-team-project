@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 
-const FormDefault = ({ initialValues, validationSchema, onSubmit, render, ...allprops }) => {
-
+const FormDefault = ({ initialValues, validationSchema, onSubmit, render }) => {
   return (
     <>
       <Formik
@@ -9,7 +8,7 @@ const FormDefault = ({ initialValues, validationSchema, onSubmit, render, ...all
         initialValues={initialValues}
         validationSchema={validationSchema}
       >
-        {formik => <Form>{render({ ...formik, ...allprops })}</Form>}
+        {formik => <Form>{render(formik)}</Form>}
       </Formik>
     </>
   );
