@@ -26,7 +26,7 @@ export const LogoWrap = styled.div`
 
 
 
-export const EyesButton = styled.button`
+export const StyledButton = styled.button`
   border: none;
   outline: none;
   background: transparent;
