@@ -1,18 +1,18 @@
 import { useState } from "react";
 
-import { HiEyeOff, HiEye } from 'react-icons/hi';
 import { ReactComponent as EmailIcon } from 'images/email.svg';
 import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 
 import { Box } from "components/Box";
 import FormInput from "components/FormInput";
-import { GoogleLink, StyledNavLink, SubmitBtn } from "components/Buttons/Buttons.styled";
-import { EyesButton } from "components/LoginForm/LoginForm.styled";
+import EyesButton from "components/EyesButton";
 import { AUTH_GOOGLE, BASE_URL } from "constants/apiPath";
+import { GoogleLink, StyledNavLink, SubmitBtn } from "components/Buttons/Buttons.styled";
 
-const FormLogin = ({ data }) => {
-    const {isValid, dirty, isSubmitting, submitText} = data
+
+const FormLogin = ({ formik, submitText }) => {
+    const { isValid, dirty, isSubmitting } = formik
     const [isHidePassword, setIsHidePassword] = useState(true);
 
     return <>
@@ -32,9 +32,7 @@ const FormLogin = ({ data }) => {
             type={isHidePassword ? 'password' : 'text'} 
             name="password" 
             placeholder="Password"
-            inputBtn={ <EyesButton type="button" onClick={() => setIsHidePassword(p=> !p)}>
-                        {isHidePassword ? <HiEye color='white' /> : <HiEyeOff color='white' />}
-                        </EyesButton>}
+            inputBtn={ <EyesButton isHidePass={isHidePassword} setIsHidePass={setIsHidePassword} />}
           />
         </Box>
 
