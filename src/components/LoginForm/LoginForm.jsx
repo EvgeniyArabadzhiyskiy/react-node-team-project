@@ -55,9 +55,7 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validationSchema={schema.login}
-
-        submitText="Log in"
-        render={(props) => <FormLogin data={props} /> }
+        render={(props) => <FormLogin formik={props} submitText="Log in" /> }
       />
 
       {/* <FormDefault 
