@@ -1,132 +1,38 @@
 import { useMedia } from 'react-use';
-import {  useCallback, useEffect, useRef, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  StyledTable,
-  StyledTableHeader,
-  StyledTableBody,
-  StyledWrap,
-  CategoryName,
-} from './HomeTab.styled';
+import { useBalanceList } from 'hooks/useBalanceList';
+import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
+import { useGetTransaction } from 'hooks/useGetTransaction';
 
-import { HomeTabItem, HomeTabMobItem } from './HomeTabItem';
-import { getBalances } from 'helpers/formAddTransaction/getBalance';
-import ButtonAddTransactions from 'components/ButtonAddTransactions';
-import { useGetAllTransactionsQuery, useGetBalanceQuery } from 'redux/walletsApiServise/wallet-api';
-import { getNextPage, getTransactions, setUnmount } from 'redux/transactions/transactionsSlice';
+import HomTabMobile from './HomTabMobile';
+import HomeTabDesctop from './HomeTabDesctop';
+import ButtonAddTransactions from 'components/Buttons/ButtonAddTransactions';
 
 const HomeTab = () => {
-  const dispatch = useDispatch();
   const isMobile = useMedia('(max-width: 767px)');
   const isDesctop = useMedia('(min-width: 768px)');
-  const { transactions, pageNum } = useSelector(state => state.transactions);
 
-  const { data = {} } = useGetAllTransactionsQuery({ pageNum, limit: 10 })
-
-  const { data: balance = {} } = useGetBalanceQuery();
-  const totalBalance = balance.userBalance;
-  
-  useEffect(() => {
-    return () => {
-      dispatch(setUnmount(true));
-    }
-  },[dispatch]);
-
-  useEffect(() => {
-    if(!data.transactions) return
-    dispatch(getTransactions(data));
-    
-  },[data, dispatch]);
-
-  const observer = useRef();
-
-  const lastElement = useCallback(item => {
-    observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        dispatch(setUnmount(false));
-
-        // console.log('ОЧИСТИЛИ НАБЛЮДЕНИЕ :', entries[0].target,);
-
-        // observer.current.unobserve(entries[0].target);
-        observer.current.unobserve(item);
-        dispatch(getNextPage());
-      }
-    }, { rootMargin: '5px',threshold: 0.95});
-
-      if (item)  {
-        // console.log('НАБЛЮДЕНИЕ ВЕДЕТСЯ ЗА :', item);
-        observer.current.observe(item);
-      }
-    },[dispatch]
-    
-  );
-
-  const balances = useMemo(() => getBalances(transactions, totalBalance),
-   [totalBalance, transactions])
+  const transactions = useGetTransaction();
+  const balances = useBalanceList(transactions);
+  const lastElement = useInfiniteScroll();
 
   return (
     <div>
-      { isMobile  &&
-        <StyledWrap>
-          {transactions.map(
-            ({ _id, date, typeOperation, category, comment, amount }, idx) => {
-              const itemBalance = balances[idx];
+      {isMobile && (
+        <HomTabMobile
+          balances={balances}
+          lastElement={lastElement}
+          transactions={transactions}
+        />
+      )}
+      {isDesctop && (
+        <HomeTabDesctop
+          balances={balances}
+          lastElement={lastElement}
+          transactions={transactions}
+        />
+      )}
 
-              if (transactions.length === idx + 1) {
-                return (
-                  <HomeTabMobItem
-                    ref={lastElement}
-                    key={_id}
-                    transaction={{_id, date, typeOperation, category, comment, amount, itemBalance }}
-                  />
-                );
-              }
-
-              return (
-                <HomeTabMobItem
-                  key={_id}
-                  transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance }}
-                />
-              )}
-          )}
-        </StyledWrap>
-      }
-       { isDesctop  &&
-        <StyledTable>
-          <StyledTableHeader>
-            <CategoryName>Date</CategoryName>
-            <CategoryName>Type</CategoryName>
-            <CategoryName>Category</CategoryName>
-            <CategoryName>Comment</CategoryName>
-            <CategoryName>Sum</CategoryName>
-            <CategoryName>Balance</CategoryName>
-          </StyledTableHeader>
-
-          { transactions.length > 0 && <StyledTableBody>
-            {transactions.map(({ _id, date, typeOperation, category, comment, amount }, idx ) => {
-              const itemBalance = balances[idx];
-
-              if (transactions.length === idx + 1) {
-                return (
-                  <HomeTabItem
-                    key={_id}
-                    ref={lastElement}
-                    transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance }}
-                  />
-                )
-              }
-
-              return (
-                <HomeTabItem
-                  key={_id}
-                  transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance }}
-                />
-              )}
-            )}
-          </StyledTableBody>}
-        </StyledTable>}
-      
       <ButtonAddTransactions />
     </div>
   );
