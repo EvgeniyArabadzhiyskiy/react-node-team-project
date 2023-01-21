@@ -1,30 +1,28 @@
 import moment from 'moment';
 import { forwardRef } from 'react';
-import { StyledList, CategoryName } from './HomeTab.styled';
+import { StyledList, CategoryName, StyledItem } from './HomeTab.styled';
 import { getSymbolType } from 'helpers/formAddTransaction/getSymbolType';
 import { sendMsg } from 'helpers/formAddTransaction/sendMessage';
 
 
 const HomeTabItem = forwardRef(({ transaction }, ref) => {
   const { date, typeOperation, category, comment, amount, itemBalance } = transaction;
-  const currenrDate = moment(new Date(date)).format('DD.MM.YYYY');
+  const operationDate = moment(new Date(date)).format('DD.MM.YYYY');
 
   const isLongAmount = String(amount).length > 9 ? "Amount" : ""
   const isLongBalance = String(itemBalance).length > 10 ? "Balance" : ""
 
   const bodyTransaction = (
     <>
-      <CategoryName>{currenrDate}</CategoryName>
+      <CategoryName>{operationDate}</CategoryName>
       <CategoryName>{getSymbolType(typeOperation)}</CategoryName>
-      <CategoryName>
-        <span>{category}</span>
-      </CategoryName>
+      <CategoryName>{category}</CategoryName>
       <CategoryName>{comment}</CategoryName>
-      <p 
+      <CategoryName 
         onClick={() => sendMsg(isLongAmount, amount)} 
         style={{ color: typeOperation === 'income' ? '#24CCA7' : '#FF6596' }}>
         {isLongAmount ? "Click" : amount}
-      </p>
+      </CategoryName>
       <CategoryName 
         onClick={() => sendMsg(isLongBalance, itemBalance)} 
       >{isLongBalance ? "Click" : itemBalance}
@@ -33,15 +31,15 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
   );
 
   const content = ref 
-  ? <li ref={ref} style={{background: 'tomato'}}>{bodyTransaction}</li>
-  : <li>{bodyTransaction}</li>;
+  ? <StyledItem ref={ref}>{bodyTransaction}</StyledItem>
+  : <StyledItem>{bodyTransaction}</StyledItem>;
 
   return content;
 });
 
 const HomeTabMobItem = forwardRef(({ transaction }, ref ) => {
   const { date, typeOperation, category, comment, amount, itemBalance } = transaction;
-  const currenrDate = moment(new Date(date)).format('DD.MM.YYYY');
+  const operationDate = moment(new Date(date)).format('DD.MM.YYYY');
 
   const isLongAmount = String(amount).length > 9 ? "Amount" : ""
   const isLongBalance = String(itemBalance).length > 10 ? "Balance" : ""
@@ -56,8 +54,8 @@ const HomeTabMobItem = forwardRef(({ transaction }, ref ) => {
   : <li>Balance {bodyTransaction}</li> ;
 
   return (
-    <StyledList style={{ borderLeft: typeOperation === 'income' ? '5px solid #24CCA7' : '5px solid#FF6596'}} >
-      <li>Date <span>{currenrDate}</span></li>
+    <StyledList borders={typeOperation}>
+      <li>Date <span>{operationDate}</span></li>
       <li>Type <span>{getSymbolType(typeOperation)}</span></li>
       <li>Category <span>{category}</span></li>
       <li>Comment <span>{comment}</span></li>
