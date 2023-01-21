@@ -15,7 +15,7 @@ const NotFoundPage = () => {
 
   return (
       <Section>
-        {isWideMobie ? (
+        {isWideMobie && (
           <Container>
             <Box display="flex" flexDirection="column" alignItems="center" p={3}>
               <img src={errorImg} alt='error 404 Not Found' width="270px" />
@@ -29,8 +29,8 @@ const NotFoundPage = () => {
               </Box>
             </Box>
           </Container>
-        ) : null}
-        {isWideTablet ? (
+        )}
+        {isWideTablet && (
           <Container>
             <Box display="flex" flexDirection="column" alignItems="center">
               <img src={errorImg} alt='error 404 Not Found' width="400px" />
@@ -44,8 +44,8 @@ const NotFoundPage = () => {
               </Box>
             </Box>
           </Container>
-        ) : null}
-        {isWideComputer ? (
+        )}
+        {isWideComputer && (
           <>
             <Container>
               <Box display="flex" flexDirection="row-reverse" justifyContent="space-around" alignItems="center">
@@ -61,7 +61,7 @@ const NotFoundPage = () => {
               </Box>
             </Container>
           </>
-        ) : null}
+        )}
       </Section>
   );
 };
