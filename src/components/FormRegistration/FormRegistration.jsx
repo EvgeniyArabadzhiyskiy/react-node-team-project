@@ -3,18 +3,18 @@ import { useState } from "react";
 import { ReactComponent as EmailIcon } from 'images/email.svg';
 import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import { ReactComponent as UserIcon } from 'images/user.svg';
-import { ReactComponent as GoogleIcon} from 'images/icons8-google.svg'
 
 import { Box } from "components/Box";
 import FormInput from "components/FormInput";
 import EyesButton from "components/EyesButton";
-import { AUTH_GOOGLE, BASE_URL } from "constants/apiPath";
-import { GoogleLink, StyledNavLink, SubmitBtn } from "components/Buttons/Buttons.styled";
-import { PasswordIndicator } from "components/RegistrationForm/RegistrationForm.styled";
+import { PasswordIndicator } from "./FormRegistration.styled";
+import EnterButton from "components/Buttons/EnterButton";
+import ButtonLink from "components/Buttons/ButtonLink";
+import GoogleAuthLink from "components/Buttons/GoogleAuthLink";
 
-
-const FormRegistration = ({ formik, submitText }) => {
+const FormRegistration = ({ formik }) => {
     const { isValid, dirty, values, isSubmitting } = formik
+    const isDisabled = !(isValid && dirty) || isSubmitting
 
     const [isHideFirstPass, setIsHideFirstPass] = useState(true);
     const [isHideSecondPass, setIsHideSecondPass] = useState(true);
@@ -36,6 +36,7 @@ const FormRegistration = ({ formik, submitText }) => {
                 type={isHideFirstPass ? 'password' : 'text'} 
                 name="password" 
                 placeholder="Password"
+                autoComplete="off"
                 inputBtn={ <EyesButton isHidePass={isHideFirstPass} setIsHidePass={setIsHideFirstPass} /> }
             />
             {values.password && <PasswordIndicator lenth={values.password} />}
@@ -47,6 +48,7 @@ const FormRegistration = ({ formik, submitText }) => {
                 type={isHideSecondPass ? 'password' : 'text'} 
                 name="confirmPassword" 
                 placeholder="Confirm password"
+                autoComplete="off"
                 inputBtn={ <EyesButton isHidePass={isHideSecondPass} setIsHidePass={setIsHideSecondPass} />}
             />
             {values.password && <PasswordIndicator lenth={values.password} />}
@@ -61,15 +63,9 @@ const FormRegistration = ({ formik, submitText }) => {
             />
         </Box>
 
-        <SubmitBtn type="submit" disabled={!(isValid && dirty) || isSubmitting}>
-            {submitText}
-        </SubmitBtn>
-
-        <StyledNavLink to="/login">log in</StyledNavLink>
-        
-        <GoogleLink as="a" href={`${BASE_URL}${AUTH_GOOGLE}`} rel="noreferrer">
-            <GoogleIcon /> <span>GOOGLE</span>
-        </GoogleLink>
+        <EnterButton type='submit' enterText="registr"  disabled={isDisabled} />
+        <ButtonLink to='/login' text='log in' />
+        <GoogleAuthLink />
     </>
 }
  
