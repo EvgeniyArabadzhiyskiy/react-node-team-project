@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 export const baseBtnStyle = css`
   display: block;
@@ -22,34 +22,7 @@ export const baseBtnStyle = css`
   }
 `;
 
-export const SubmitBtn = styled.button`
-  ${baseBtnStyle}
-
-  margin-top: 20px;
-  border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-  color: ${p => p.theme.colors.primaryBtn};
-  background-color: ${p => p.theme.colors.primaryBgBtn};
-
-  :disabled {
-    opacity: 0.5;
-
-    :hover,
-    :focus {
-      background-color: ${p => p.theme.colors.primaryBgBtn};
-      color: ${p => p.theme.colors.primaryBtn};
-      border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-    }
-  }
-
-  :hover,
-  :focus {
-    background-color: ${p => p.theme.colors.primaryBtn};
-    color: ${p => p.theme.colors.primaryBgBtn};
-    border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-  }
-`;
-
-export const StyledNavLink = styled(Link)`
+export const StyledLink = styled(Link)`
   ${baseBtnStyle}
 
   margin-top: 20px;
@@ -71,7 +44,7 @@ export const StyledNavLink = styled(Link)`
   }
 `;
 
-export const GoogleLink = styled(StyledNavLink)`
+export const GoogleLink = styled(StyledLink)`
   span {
     margin-top: 5px;
   }
@@ -83,33 +56,20 @@ export const GoogleLink = styled(StyledNavLink)`
   }
 `;
 
-export const ButtonAdd = styled.button`
-  ${baseBtnStyle}
-
-  color: ${p => p.theme.colors.primaryBg};
-  border: 7px solid rgba(55, 53, 53, 0.2);
-  /* margin-bottom: ${p => p.theme.space[4]}px; */
-  margin-top: ${p => p.theme.space[5]}px;
-  background-color: ${p => p.theme.colors.primaryBgBtn};
-
-  &:hover {
-    border: 7px solid ${p => p.theme.colors.primaryBgBtn};
-  }
-
-  transition: border 200ms linear;
-`;
-
-export const ButtonCancel = styled.button`
-  ${baseBtnStyle}
-
-  margin-top: ${p => p.theme.space[4]}px;
-  color: ${p => p.theme.colors.secondaryBtn};
-  border: 7px solid rgba(55, 53, 53, 0.4);
-
-  &:hover {
-    color: ${p => p.theme.colors.primaryBgBtn};
-    border: 1px solid ${p => p.theme.colors.primaryBgBtn};
-  }
-
-  transition: all 300ms linear;
+export const spin = keyframes`
+    0% {
+      border: 7px solid rgba(55, 53, 53, 0.4);
+      /* transform: scale(0.6);
+      opacity: 1; */
+    }
+    50% {
+      border: 1px solid rgba(55, 53, 53, 0.4);
+      /* transform: scale(1);
+      opacity: 0.7; */
+    }
+    100% {
+      border: 7px solid rgba(55, 53, 53, 0.4);
+      /* transform: scale(0.6);
+      opacity: 1; */
+    }
 `;
