@@ -42,14 +42,14 @@ export const Switch = styled.p`
   background-color: ${p => p.theme.colors.expense};
   transition: transform 300ms linear;
 
-  background-color: ${prop => (prop.isChecked ? '#24CCA7' : '#FF6596')};
-  transform: ${prop => (prop.isChecked ? 'translateX(0)' : 'translateX(40px)')};
+  background-color: ${prop => (prop.isIncome ? '#24CCA7' : '#FF6596')};
+  transform: ${prop => (prop.isIncome ? 'translateX(0)' : 'translateX(40px)')};
 `;
 
 export const TextIncome = styled.p`
-  color: ${prop => (prop.isChecked ? '#24CCA7' : '#e0e0e0')};
+  color: ${prop => (prop.isIncome ? '#24CCA7' : '#e0e0e0')};
 `;
 
 export const TextExpense = styled.p`
-  color: ${prop => (prop.isChecked ? '#e0e0e0' : '#ff6596')};
+  color: ${prop => (prop.isExpense ? '#ff6596' : '#e0e0e0')};
 `;
