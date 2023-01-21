@@ -11,16 +11,18 @@ import SwithChecbox from "components/SwithChecbox";
 import FormInput from "components/FormInput";
 import DateInput from "components/TransactionForm/DateInput";
 import { ErrorText } from "components/FormInput/FormInput.styled";
-import { ButtonAdd, ButtonCancel } from "components/Buttons/Buttons.styled";
 import { DateWrapper, SumWrapper } from "components/TransactionForm/TransactionForm.styled";
 
 import { optionsExpense, optionsIncome } from "helpers/formAddTransaction/options";
 import { selectStyles } from "helpers/formAddTransaction/selectStyles";
 import { checksFutureDate } from "helpers/formAddTransaction/checksFutureDate";
+import EnterButton from 'components/Buttons/EnterButton/EnterButton';
+import CancelButton from 'components/Buttons/CancelButton';
 
-const FormTransaction = ({ formik, setIsIncome, isIncome, submitText, cancelText }) => {
-    const { setFieldValue, isSubmitting } = formik;
-
+const FormTransaction = ({ formik, setIsIncome, isIncome }) => {
+    const { setFieldValue, isValid, dirty, isSubmitting } = formik;
+    const isDisabled = !(isValid && dirty) || isSubmitting
+   
     const dispatch = useDispatch();
     const selectInputRef = useRef();
 
@@ -34,7 +36,7 @@ const FormTransaction = ({ formik, setIsIncome, isIncome, submitText, cancelText
 
     const onCancelClick = () => {
         dispatch(modalClose(false));
-      };
+    };
 
     return <>
         <SwithChecbox isIncome={isIncome} onChangeSwitch={onChangeSwitch} />
@@ -66,14 +68,15 @@ const FormTransaction = ({ formik, setIsIncome, isIncome, submitText, cancelText
                 onChange={e => setFieldValue('date', new Date(e).toString())}
                 inputProps={{onKeyDown: e => e.preventDefault()}}
                 renderInput={(p, openCalendar) => (
-                <DateInput  props={p} onOpen={openCalendar}  />)}
+                    <DateInput  props={p} onOpen={openCalendar} />
+                )}
             />
         </DateWrapper>
 
         <FormInput name="comment" placeholder="Comment" autoComplete="off" />
         
-        <ButtonAdd type="submit" disabled={isSubmitting} >{submitText}</ButtonAdd>
-        <ButtonCancel type="button" onClick={onCancelClick}>{cancelText}</ButtonCancel>
+        <EnterButton type='submit' enterText="add"  disabled={isDisabled} />
+        <CancelButton cancelText="cancel" onClick={onCancelClick} />            
     </>
 }
  
