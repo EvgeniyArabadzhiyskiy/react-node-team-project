@@ -9,11 +9,11 @@ import FlipCard from './FlipCard';
 import ModalLogout from './ModalLogout';
 import ModalWindow from './ModalWindow';
 
+import { useGoogleAuth } from 'hooks';
 import { GlobalStyle } from './GlobalStyle';
 import { nightTheme, dayTheme } from '../theme';
 import { AnimatePresence } from 'framer-motion';
 import { useGetBalanceQuery, useUserRefreshQuery } from 'redux/walletsApiServise/wallet-api';
-import { useGoogleAuth } from 'hooks/useGoogleAuth';
 
 // user100@mail.com
 
