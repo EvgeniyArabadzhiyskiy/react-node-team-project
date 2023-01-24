@@ -3,7 +3,6 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { BALANCE, BASE_URL, TRANSACTIONS, USER_CURRENT, USER_LOGIN, USER_LOGOUT, USER_REGISTER } from 'constants/apiPath';
 import { getQueryString } from 'helpers/getQueryString';
 
-// const BASE_URL = 'https://wallet-backend-xmk0.onrender.com/api';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -43,12 +42,11 @@ export const walletsApi = createApi({
     userLogout: builder.mutation({
       query: () => ({ url: `${USER_LOGOUT}`, method: 'POST' }),
 
-      // invalidatesTags: ['User'],
     }),
 
     getAllTransactions: builder.query({
       query: ({ pageNum = 1, limit = 10 } = {}) => ({
-        url: `${TRANSACTIONS}?page=${pageNum}&limit=${limit}`,
+        url: `${TRANSACTIONS}?page=${pageNum}&limit=10`,
         method: 'GET',
       }),
 
@@ -63,6 +61,12 @@ export const walletsApi = createApi({
 
     addTransaction: builder.mutation({
       query: body => ({ url: `${TRANSACTIONS}`, method: 'POST', body: body }),
+
+      invalidatesTags: ['Transaction'],
+    }),
+
+    deleteTransaction: builder.mutation({
+      query: (id) => ({ url: `${TRANSACTIONS}/${id}`, method: 'DELETE'}),
 
       invalidatesTags: ['Transaction'],
     }),
@@ -87,6 +91,7 @@ export const {
 
   useGetAllTransactionsQuery,
   useAddTransactionMutation,
+  useDeleteTransactionMutation,
   useGetBalanceQuery,
 
   useGetStatisticQuery,
