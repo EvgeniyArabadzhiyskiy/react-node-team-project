@@ -4,28 +4,25 @@ import { StyledList, CategoryName, StyledItem } from './HomeTab.styled';
 import { getSymbolType } from 'helpers/formAddTransaction/getSymbolType';
 import { sendMsg } from 'helpers/formAddTransaction/sendMessage';
 import { useDeleteTransactionMutation } from 'redux/walletsApiServise/wallet-api';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { resetTransactions, setRemovedSum } from 'redux/transactions/transactionsSlice';
+import {  setRemovedAmount } from 'redux/transactions/transactionsSlice';
 import { toast } from 'react-toastify';
 
-
-
-const HomeTabItem = forwardRef(({ transaction, setTransId }, ref) => {
+const HomeTabItem = forwardRef(({ transaction, setDeletedId }, ref) => {
   const { _id, date, typeOperation, category, comment, amount, itemBalance } = transaction;
   const operationDate = moment(new Date(date)).format('DD.MM.YYYY');
   
+  const timeoutId = useRef()
   const dispatch = useDispatch()
 
-  const timeoutId = useRef()
+  const [deleteTrans] =  useDeleteTransactionMutation()
 
-  const getRemoveAmount = (typeOperation) => {
+  const getRemovedAmount = (typeOperation) => {
     switch (typeOperation) {
       case 'income':
-        
         return  amount;
-        case 'expense':
-        
+
+      case 'expense':
         return -amount;
     
       default:
@@ -33,24 +30,23 @@ const HomeTabItem = forwardRef(({ transaction, setTransId }, ref) => {
     }
   }
 
-  const [deleteTrans] =  useDeleteTransactionMutation()
+  
 
   const handleClick = (id) => {
-    // setTransId(id)
+    // setDeletedId(id)
 
-    setTransId(prev => [...prev, id])
+    setDeletedId(prev => [...prev, id])
 
-    const removeAmount = getRemoveAmount(typeOperation)
+    const removedAmount = getRemovedAmount(typeOperation)
 
-    dispatch(setRemovedSum(removeAmount))
+    dispatch(setRemovedAmount(removedAmount))
 
 
     timeoutId.current = setTimeout( async () => {
-      // await deleteTrans(id)
+      await deleteTrans(id)
 
-      // setTransId('')   // Очистить фильтр ??
+      setDeletedId([])   // Очистить фильтр ??
       console.log("DELETE");
-      // dispatch(resetTransactions());
       
     }, 6000);
 
@@ -66,13 +62,13 @@ const HomeTabItem = forwardRef(({ transaction, setTransId }, ref) => {
     
 
   const clear = (id) => {
-    setTransId(prev => prev.filter(transRemoveId => transRemoveId !== id ))
-    const removeAmount = getRemoveAmount(typeOperation)
-    dispatch(setRemovedSum(-removeAmount))
+    setDeletedId(prev => prev.filter(removedId => removedId !== id ))
+    const removedAmount = getRemovedAmount(typeOperation)
+    dispatch(setRemovedAmount(-removedAmount))
     
     
-    // setTransId('')
-    // dispatch(setRemovedSum(0))
+    // setDeletedId('')
+    // dispatch(setRemovedAmount(0))
 
     clearTimeout(timeoutId.current)
   }
