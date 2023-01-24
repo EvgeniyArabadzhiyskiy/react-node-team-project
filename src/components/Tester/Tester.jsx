@@ -1,20 +1,22 @@
 import { useGetTransaction } from 'hooks';
-import { useRef } from 'react';
+// import { useRef } from 'react';
 import { useState } from 'react';
 // import { useState } from 'react';
-import { useEffect } from 'react';
-import { useDispatch, /* useSelector*/ } from 'react-redux';
+// import { useEffect } from 'react';
+// import { useDispatch, /* useSelector*/ } from 'react-redux';
 // import { useMedia } from 'react-use';
 // import { addInfo } from 'redux/transactions/transactionsSlice';
-import { useDeleteTransactionMutation, useGetAllTransactionsQuery } from 'redux/walletsApiServise/wallet-api';
+import { useDeleteTransactionMutation,
+  //  useGetAllTransactionsQuery 
+  } from 'redux/walletsApiServise/wallet-api';
 
 const Tester = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   // const isMobie = useMedia('(max-width: 767px)');
   // const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   // const isDesktop = useMedia('(min-width: 1280px)');
 
-  let header = useRef('4292');
+  // let header = useRef('4292');
   // console.log("Tester  header", header.current);
 
   const [ddd, setDDD] = useState(1);
@@ -85,16 +87,15 @@ const Tester = () => {
     // };
   // });
 
-  // console.log('Djon'); 
-  const onBtn = () => {
-    console.log('Tester  header', header.current);
-    // setHey(p => p + ' Poly');
-    // setDDD(p => !p);
-    // console.log('re-render');
-    // console.log('Djon');
-    header.current += 'Djon'
+  // const onBtn = () => {
+  //   console.log('Tester  header', header.current);
+  //   // setHey(p => p + ' Poly');
+  //   // setDDD(p => !p);
+  //   // console.log('re-render');
+  //   // console.log('Djon');
+  //   header.current += 'Djon'
 
-  };
+  // };
 
   const onRender = () => {
     setDDD(p => p + 1);
