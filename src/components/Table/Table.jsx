@@ -141,8 +141,7 @@ const Table = () => {
             <p>Category</p>
             <p>Sum</p>
           </StyledTableHeader>
-          <StyledTableBody>
-            <ul>
+          <StyledTableBody> 
               {data.map(({ _id, type, totalSum }) => {
                 if (type === 'expense') {
                   return (
@@ -165,8 +164,7 @@ const Table = () => {
                   );
                 }
                 return null;
-              })}
-            </ul>
+              })}            
           </StyledTableBody>
           <StyledTableFooter>
             <li>
@@ -275,7 +273,6 @@ const Table = () => {
           </StyledTableHeader>
 
           <StyledTableBody>
-            <ul>
               {data.map(({ _id, type, totalSum }) => {
                 if (type === 'expense') {
                   return (
@@ -299,7 +296,6 @@ const Table = () => {
                 }
                 return null;
               })}
-            </ul>
           </StyledTableBody>
           <StyledTableFooter>
             <li>
