@@ -1,20 +1,23 @@
+import { useGetTransaction } from 'hooks';
 import { useRef } from 'react';
+import { useState } from 'react';
 // import { useState } from 'react';
 import { useEffect } from 'react';
-// import { useDispatch, /* useSelector*/ } from 'react-redux';
+import { useDispatch, /* useSelector*/ } from 'react-redux';
 // import { useMedia } from 'react-use';
 // import { addInfo } from 'redux/transactions/transactionsSlice';
-// import { useGetAllTransactionsQuery } from 'redux/walletsApiServise/wallet-api';
+import { useDeleteTransactionMutation, useGetAllTransactionsQuery } from 'redux/walletsApiServise/wallet-api';
 
 const Tester = () => {
+  const dispatch = useDispatch()
   // const isMobie = useMedia('(max-width: 767px)');
   // const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   // const isDesktop = useMedia('(min-width: 1280px)');
 
   let header = useRef('4292');
-  console.log("Tester  header", header.current);
+  // console.log("Tester  header", header.current);
 
-  // const [ddd, setDDD] = useState('');
+  const [ddd, setDDD] = useState(1);
   // console.log('Tester  ddd', ddd);
 
   // const [hey, setHey] = useState('Cool');
@@ -26,7 +29,18 @@ const Tester = () => {
   // console.log('Tester  info', info);
 
   // const { data = {} } = useGetAllTransactionsQuery();
-  // // console.log("Tester  data", data);
+  // console.log("Tester  data", data);
+
+  const transactions = useGetTransaction(ddd);
+  console.log("Tester  transactions", transactions);
+
+  const [deleteTrans] =  useDeleteTransactionMutation()
+
+  const handleClick = (id) => {
+    console.log("handleClick  id", );
+    deleteTrans('63cd2a8ca301d1b91d874912')
+    // dispatch(resetTransactions());
+  }
 
   // useEffect(() => {
   //   // console.log("Tester  header", header.current);
@@ -46,9 +60,9 @@ const Tester = () => {
   
 
   // header.current += 'Djon'  
-  useEffect(() => {
+  // useEffect(() => {
 
-    console.log('UseEffect ');
+    // console.log('UseEffect ');
     // header.current = 555
     // console.log('Tester  header', header.current);
 
@@ -66,11 +80,10 @@ const Tester = () => {
 
     // window.addEventListener('resize', onResize);
 
-    return () => {
-      console.log('Clear onResize');
-      // window.removeEventListener('resize', onResize);
-    };
-  });
+    // return () => {
+    //   console.log('Clear onResize');
+    // };
+  // });
 
   // console.log('Djon'); 
   const onBtn = () => {
@@ -84,7 +97,7 @@ const Tester = () => {
   };
 
   const onRender = () => {
-    // setDDD(p => !p);
+    setDDD(p => p + 1);
     // console.log('Prosto LOG');
   };
 
@@ -141,7 +154,7 @@ const Tester = () => {
       {/* info.length > 0 */}
    
 
-      <button type="button" onClick={onBtn}>
+      <button type="button" onClick={handleClick}>
         Click
       </button>
 
