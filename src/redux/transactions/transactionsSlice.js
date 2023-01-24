@@ -7,6 +7,8 @@ const initialState = {
   pageNum: 1,
   isWasUnmounted: false,
 
+  removedSum: 0,
+
   info: [],
 };
 
@@ -34,6 +36,10 @@ const transactionsSlice = createSlice({
       state.isWasUnmounted = action.payload;
     },
 
+    setRemovedSum: (state, action) => {
+      state.removedSum += action.payload
+    },
+
     addInfo: (state, action) => {
       state.info = [...state.info, ...action.payload.transactions];
     },
@@ -55,5 +61,6 @@ export const {
   getTransactions,
   addInfo,
   setUnmount,
+  setRemovedSum,
 } = transactionsSlice.actions;
 export const transactionsReducer = transactionsSlice.reducer;
