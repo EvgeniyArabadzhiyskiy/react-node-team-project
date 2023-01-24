@@ -19,7 +19,9 @@ const Chart = () => {
   const {data: stats = [] } = useGetStatisticQuery({ month, year })
 
   const { data: balance = {} } = useGetBalanceQuery();
-  const totalBalance = balance.userBalance || 0;
+  const totalBalance = balance.userBalance 
+  // -1000
+   || 0;
 
   const { sum, colors, chartCategories } = getStatsResult(stats)
 
