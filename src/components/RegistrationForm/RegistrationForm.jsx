@@ -1,5 +1,5 @@
 import schema from 'helpers';
-import { useScaleForm } from 'hooks/useScaleForm';
+import { useScaleForm } from 'hooks';
 
 import Logo from 'components/Logo';
 import Spinner from 'components/Spinner';
