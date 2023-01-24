@@ -12,7 +12,7 @@ const HomTabMobile = ({ transactions, balances, lastElement }) => {
             <HomeTabMobItem
               ref={lastElement}
               key={transaction._id}
-              transaction={{ ...transaction, ...itemBalance }}
+              transaction={{ ...transaction, itemBalance }}
             />
           );
         }
@@ -20,7 +20,7 @@ const HomTabMobile = ({ transactions, balances, lastElement }) => {
         return (
           <HomeTabMobItem
             key={transaction._id}
-            transaction={{ ...transaction, ...itemBalance }}
+            transaction={{ ...transaction, itemBalance }}
           />
         );
       })}
