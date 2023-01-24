@@ -3,7 +3,9 @@ import { Container, Title, CurrencySign, Text } from './Balance.styled';
 
 const Balance = () => {
   const { data = {} } = useGetBalanceQuery();
-  const userBalance = data.userBalance || 0;
+  const userBalance = data.userBalance
+  //  - 1000 
+   || 0;
 
   return (
     <Container>
