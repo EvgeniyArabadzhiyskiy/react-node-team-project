@@ -1,7 +1,8 @@
 import { HomeTabItem } from "./HomeTabItem";
 import { CategoryName, StyledTable, StyledTableBody, StyledTableHeader } from "./HomeTab.styled";
 
-const HomeTabDesctop = ({ transactions, balances, lastElement, getTransId
+const HomeTabDesctop = ({ transactions, balances, lastElement, setTransId,
+  //  getTransId
   //  handleClick, clear 
   }) => {
 
@@ -26,7 +27,9 @@ const HomeTabDesctop = ({ transactions, balances, lastElement, getTransId
                 key={transaction._id}
                 ref={lastElement}
 
-                getTransId={getTransId}
+                setTransId={setTransId}
+
+                // getTransId={getTransId}
                 // clear={clear}
                 // handleClick={handleClick}
 
@@ -39,7 +42,9 @@ const HomeTabDesctop = ({ transactions, balances, lastElement, getTransId
             <HomeTabItem
               key={transaction._id}
 
-              getTransId={getTransId}
+              setTransId={setTransId}
+
+              // getTransId={getTransId}
               // clear={clear}
               // handleClick={handleClick}
 
