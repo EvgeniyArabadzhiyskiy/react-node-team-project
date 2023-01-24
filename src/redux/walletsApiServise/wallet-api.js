@@ -68,7 +68,7 @@ export const walletsApi = createApi({
     deleteTransaction: builder.mutation({
       query: (id) => ({ url: `${TRANSACTIONS}/${id}`, method: 'DELETE'}),
 
-      invalidatesTags: ['Transaction'],
+      // invalidatesTags: ['Transaction'],
     }),
 
     getStatistic: builder.query({
