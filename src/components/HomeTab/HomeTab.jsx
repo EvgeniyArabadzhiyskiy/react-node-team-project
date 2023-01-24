@@ -7,9 +7,9 @@ import { useGetTransaction } from 'hooks';
 import HomTabMobile from './HomTabMobile';
 import HomeTabDesctop from './HomeTabDesctop';
 import ButtonAddTransactions from 'components/Buttons/ButtonAddTransactions';
-import { useDispatch } from 'react-redux';
-import { useDeleteTransactionMutation } from 'redux/walletsApiServise/wallet-api';
-import { resetTransactions } from 'redux/transactions/transactionsSlice';
+// import { useDispatch } from 'react-redux';
+// import { useDeleteTransactionMutation } from 'redux/walletsApiServise/wallet-api';
+// import { resetTransactions } from 'redux/transactions/transactionsSlice';
 import {  useState } from 'react';
 
 
@@ -20,40 +20,22 @@ const HomeTab = () => {
   const transactions = useGetTransaction();
   const lastElement = useInfiniteScroll();
 
-
+  const [deletedId, setDeletedId] = useState([])
+  console.log("deletedId", deletedId);
   
-  const [transId, setTransId] = useState([])
-  // console.log("HomeTab  transId", transId);
-  
-  // const getTransId = (id) => {
-  //   setTransId(id)
+  const visibleTransactions = deletedId.reduce((acc, id) => {
+    return acc.filter(item => item._id !== id)
 
-  //   // setTransId(prev => [...prev, id])
-
-  // }
-
-
-
-  
-
-  const visibleTransactions = transId.reduce((acc, elem) => {
-    const kkk = acc.filter(item => item._id !== elem)
-
-    return kkk
   },[...transactions])
-  // console.log("visibleTransactions  visibleTransactions", visibleTransactions);
   
-  
-  // const visibleTransactions = transactions.filter((trans) => {
-  //   const fff = trans._id !== transId
-  //   return fff
-  // })
-    
   const balances = useBalanceList(visibleTransactions);
 
 
 
-  
+  // const visibleTransactions = transactions.filter((trans) => {
+  //   const result = trans._id !== transId
+  //   return result
+  // })
 
   // const timeoutId = useRef()
   // const dispatch = useDispatch()
@@ -102,10 +84,9 @@ const HomeTab = () => {
           lastElement={lastElement}
           transactions={visibleTransactions}
 
+          setDeletedId={setDeletedId}
+          
           // getTransId={getTransId}
-          setTransId={setTransId}
-
-
           // clear={clear}
           // handleClick={handleClick}
         />
