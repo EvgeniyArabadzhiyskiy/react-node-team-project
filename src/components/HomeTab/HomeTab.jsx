@@ -22,25 +22,38 @@ const HomeTab = () => {
 
 
   
-  const [transId, setTransId] = useState('')
+  const [transId, setTransId] = useState([])
   // console.log("HomeTab  transId", transId);
   
-  const getTransId = (id) => {
-    setTransId(id)
+  // const getTransId = (id) => {
+  //   setTransId(id)
 
-    // setTransId(prev => [...prev, id])
+  //   // setTransId(prev => [...prev, id])
 
-  }
+  // }
+
+
+
+  
+
+  const visibleTransactions = transId.reduce((acc, elem) => {
+    const kkk = acc.filter(item => item._id !== elem)
+
+    return kkk
+  },[...transactions])
+  // console.log("visibleTransactions  visibleTransactions", visibleTransactions);
   
   
-  const visibleTransactions = transactions.filter((trans) => {
-      const fff = trans._id !== transId
-      return fff
-    })
-    // console.log("visibleTransactions  visibleTransactions", visibleTransactions);
+  // const visibleTransactions = transactions.filter((trans) => {
+  //   const fff = trans._id !== transId
+  //   return fff
+  // })
     
-    const balances = useBalanceList(visibleTransactions);
-    console.log("HomeTab  balances", balances);
+  const balances = useBalanceList(visibleTransactions);
+
+
+
+  
 
   // const timeoutId = useRef()
   // const dispatch = useDispatch()
@@ -89,7 +102,10 @@ const HomeTab = () => {
           lastElement={lastElement}
           transactions={visibleTransactions}
 
-          getTransId={getTransId}
+          // getTransId={getTransId}
+          setTransId={setTransId}
+
+
           // clear={clear}
           // handleClick={handleClick}
         />
