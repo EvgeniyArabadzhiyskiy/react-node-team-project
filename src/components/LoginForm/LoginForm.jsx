@@ -1,6 +1,6 @@
 import schema from 'helpers';
 
-import { useScaleForm } from 'hooks/useScaleForm';
+import { useScaleForm } from 'hooks';
 import { useUserLoginMutation } from 'redux/walletsApiServise/wallet-api';
 
 import Logo from 'components/Logo';
