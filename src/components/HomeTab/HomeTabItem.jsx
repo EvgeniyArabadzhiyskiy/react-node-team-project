@@ -5,10 +5,10 @@ import { getSymbolType } from 'helpers/formAddTransaction/getSymbolType';
 import { sendMsg } from 'helpers/formAddTransaction/sendMessage';
 import { useDeleteTransactionMutation } from 'redux/walletsApiServise/wallet-api';
 import { useDispatch } from 'react-redux';
-import {  setRemovedAmount } from 'redux/transactions/transactionsSlice';
+import {  clearDeletedId, setDeletedId, setRemovedAmount } from 'redux/transactions/transactionsSlice';
 import { toast } from 'react-toastify';
 
-const HomeTabItem = forwardRef(({ transaction, setDeletedId }, ref) => {
+const HomeTabItem = forwardRef(({ transaction,  }, ref) => {
   const { _id, date, typeOperation, category, comment, amount, itemBalance } = transaction;
   const operationDate = moment(new Date(date)).format('DD.MM.YYYY');
   
@@ -30,22 +30,15 @@ const HomeTabItem = forwardRef(({ transaction, setDeletedId }, ref) => {
     }
   }
 
-  
-
   const handleClick = (id) => {
-    // setDeletedId(id)
+    // setDeletedId(prev => [...prev, id])
 
-    setDeletedId(prev => [...prev, id])
-
+    dispatch(setDeletedId(id))
     const removedAmount = getRemovedAmount(typeOperation)
-
     dispatch(setRemovedAmount(removedAmount))
-
 
     timeoutId.current = setTimeout( async () => {
       await deleteTrans(id)
-
-      setDeletedId([])   // Очистить фильтр ??
       console.log("DELETE");
       
     }, 6000);
@@ -62,14 +55,12 @@ const HomeTabItem = forwardRef(({ transaction, setDeletedId }, ref) => {
     
 
   const clear = (id) => {
-    setDeletedId(prev => prev.filter(removedId => removedId !== id ))
+    // setDeletedId(prev => prev.filter(removedId => removedId !== id ))
+
+    dispatch(clearDeletedId(id))
     const removedAmount = getRemovedAmount(typeOperation)
     dispatch(setRemovedAmount(-removedAmount))
     
-    
-    // setDeletedId('')
-    // dispatch(setRemovedAmount(0))
-
     clearTimeout(timeoutId.current)
   }
 
