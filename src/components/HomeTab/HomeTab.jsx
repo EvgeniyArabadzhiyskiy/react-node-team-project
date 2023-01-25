@@ -1,4 +1,6 @@
 import { useMedia } from 'react-use';
+import { useSelector } from 'react-redux';
+// import {  useState } from 'react';
 
 import { useBalanceList } from 'hooks';
 import { useInfiniteScroll } from 'hooks';
@@ -7,10 +9,6 @@ import { useGetTransaction } from 'hooks';
 import HomTabMobile from './HomTabMobile';
 import HomeTabDesctop from './HomeTabDesctop';
 import ButtonAddTransactions from 'components/Buttons/ButtonAddTransactions';
-// import { useDispatch } from 'react-redux';
-// import { useDeleteTransactionMutation } from 'redux/walletsApiServise/wallet-api';
-// import { resetTransactions } from 'redux/transactions/transactionsSlice';
-import {  useState } from 'react';
 
 
 const HomeTab = () => {
@@ -20,8 +18,9 @@ const HomeTab = () => {
   const transactions = useGetTransaction();
   const lastElement = useInfiniteScroll();
 
-  const [deletedId, setDeletedId] = useState([])
+  const { deletedId } = useSelector(state => state.transactions);
   console.log("deletedId", deletedId);
+  // const [deletedId, setDeletedId] = useState([])
   
   const visibleTransactions = deletedId.reduce((acc, id) => {
     return acc.filter(item => item._id !== id)
@@ -84,7 +83,7 @@ const HomeTab = () => {
           lastElement={lastElement}
           transactions={visibleTransactions}
 
-          setDeletedId={setDeletedId}
+          // setDeletedId={setDeletedId}
           
           // getTransId={getTransId}
           // clear={clear}
