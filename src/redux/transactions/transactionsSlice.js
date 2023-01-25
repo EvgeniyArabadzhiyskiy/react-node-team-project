@@ -7,7 +7,7 @@ const initialState = {
   isWasUnmounted: false,
 
   removedSum: 0,
-
+  deletedId: [],
 };
 
 const transactionsSlice = createSlice({
@@ -35,10 +35,18 @@ const transactionsSlice = createSlice({
     },
 
     setRemovedAmount: (state, action) => {
-      state.removedSum += action.payload
+      state.removedSum += action.payload;
     },
 
-   
+    setDeletedId: (state, action) => {
+      state.deletedId = [...state.deletedId, action.payload];
+    },
+
+    clearDeletedId: (state, action) => {
+      state.deletedId = state.deletedId.filter(
+        removedId => removedId !== action.payload
+      );
+    },
   },
 });
 
@@ -49,5 +57,8 @@ export const {
   addInfo,
   setUnmount,
   setRemovedAmount,
+
+  setDeletedId,
+  clearDeletedId,
 } = transactionsSlice.actions;
 export const transactionsReducer = transactionsSlice.reducer;
