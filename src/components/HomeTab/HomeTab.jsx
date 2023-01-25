@@ -26,6 +26,7 @@ const HomeTab = () => {
     return acc.filter(item => item._id !== id)
 
   },[...transactions])
+  // console.log("visibleTransactions  visibleTransactions", visibleTransactions);
   
   const balances = useBalanceList(visibleTransactions);
 
@@ -78,17 +79,17 @@ const HomeTab = () => {
         />
       )}
       {isDesctop && (
-        <HomeTabDesctop
-          balances={balances}
-          lastElement={lastElement}
-          transactions={visibleTransactions}
+          <HomeTabDesctop
+            balances={balances}
+            lastElement={lastElement}
+            transactions={visibleTransactions}
 
-          // setDeletedId={setDeletedId}
-          
-          // getTransId={getTransId}
-          // clear={clear}
-          // handleClick={handleClick}
-        />
+            // setDeletedId={setDeletedId}
+            
+            // getTransId={getTransId}
+            // clear={clear}
+            // handleClick={handleClick}
+          />      
       )}
 
       <ButtonAddTransactions />
