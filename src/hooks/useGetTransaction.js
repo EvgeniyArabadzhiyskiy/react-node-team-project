@@ -6,8 +6,6 @@ import { useGetAllTransactionsQuery } from 'redux/walletsApiServise/wallet-api';
 export const useGetTransaction = () => {
   const dispatch = useDispatch();
   const { transactions, pageNum } = useSelector(state => state.transactions);
- ;
-  // console.log("useGetTransaction  transactions", transactions);
 
   const { data = {} } = useGetAllTransactionsQuery({ pageNum, limit: 10 });
 
