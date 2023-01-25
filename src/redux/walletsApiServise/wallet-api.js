@@ -51,6 +51,16 @@ export const walletsApi = createApi({
       }),
 
       providesTags: ['Transaction', 'User'],
+
+      // providesTags: (result, error, arg) => {
+      //   const fff = [...result.transactions.map(({ _id }) => { return { type: 'Transaction', _id }}),
+      //     { type: 'Transaction', id: 'LIST' }]
+
+      //   console.log("fff", fff);
+      //   return result
+      //   ? [...result.transactions.map(({ _id }) => { return { type: 'Transaction', _id }}), { type: 'Transaction', id: 'ADD_LIST' } ]
+      //   : [{ type: 'Transaction', id: 'LIST' }]
+      // },
     }),
 
     getBalance: builder.query({
@@ -63,12 +73,19 @@ export const walletsApi = createApi({
       query: body => ({ url: `${TRANSACTIONS}`, method: 'POST', body: body }),
 
       invalidatesTags: ['Transaction'],
+
+      // invalidatesTags: [{ type: 'Transaction', id: 'LIST' }],
     }),
 
     deleteTransaction: builder.mutation({
       query: (id) => ({ url: `${TRANSACTIONS}/${id}`, method: 'DELETE'}),
 
-      // invalidatesTags: ['Transaction'],
+      invalidatesTags: ['Statistic'],
+      
+      // invalidatesTags: (result, error, arg) => {
+      //   // console.log("arg", arg);
+      //   return  [{ type: 'Transaction', _id: arg }]
+      // },
     }),
 
     getStatistic: builder.query({
@@ -78,7 +95,7 @@ export const walletsApi = createApi({
         return { url: query, method: 'GET' };
       },
 
-      providesTags: ['Statistics'],
+      providesTags: [ 'Statistic'],
     }),
   }),
 });
