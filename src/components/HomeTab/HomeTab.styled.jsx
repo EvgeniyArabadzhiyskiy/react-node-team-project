@@ -99,7 +99,11 @@ export const ContextMenu = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ae6d6d57;
+  background-color: #3d3a3a92;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
   transform: translateX(100%);
   transition: transform 300ms linear;
@@ -108,7 +112,7 @@ export const ContextMenu = styled.div`
   &::before{
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 5px;
@@ -116,7 +120,7 @@ export const ContextMenu = styled.div`
 
     transform: translateX(0%);
 
-    transition: ${p => !p.isDelete && 'transform 3000ms linear'}  ;
+    transition: ${p => !p.isDelete && 'transform 6000ms linear'}  ;
 
     transform: ${p => p.isDelete && 'translateX(100%)'} 
     

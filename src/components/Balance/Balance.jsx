@@ -5,7 +5,9 @@ import { Container, Title, CurrencySign, Text } from './Balance.styled';
 const Balance = () => {
   const { removedSum } = useSelector(state => state.transactions);
   const { data = {} } = useGetBalanceQuery();
-  const userBalance = data.userBalance - removedSum || 0;
+  const userBalance = data.userBalance 
+  // - removedSum 
+  || 0;
 
   return (
     <Container>

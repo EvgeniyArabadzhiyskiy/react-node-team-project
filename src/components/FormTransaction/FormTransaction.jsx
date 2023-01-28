@@ -73,7 +73,9 @@ const FormTransaction = ({ formik, setIsIncome, isIncome }) => {
             />
         </DateWrapper>
 
-        <FormInput name="comment" placeholder="Comment" autoComplete="off" />
+        <Box marginTop="28px">
+          <FormInput name="comment" placeholder="Comment" autoComplete="off" />
+        </Box>
         
         <EnterButton type='submit' enterText="add"  disabled={isDisabled} />
         <CancelButton cancelText="cancel" onClick={onCancelClick} />            

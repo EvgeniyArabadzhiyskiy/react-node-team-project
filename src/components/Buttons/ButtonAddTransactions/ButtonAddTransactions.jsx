@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { modalTransactionOpen } from 'redux/modal/modalSlice';
+import { modalTransactionOpen, setModalKey } from 'redux/modal/modalSlice';
 
 import { ReactComponent as Plus } from '../../../images/plus.svg';
 import { Button } from './ButtonAddTransactions.styled';
@@ -7,12 +7,13 @@ import { Button } from './ButtonAddTransactions.styled';
 const ButtonAddTransactions = () => {
   const dispatch = useDispatch();
 
-  const onBtnAddClick = () => {
+  const handleClick = () => {
     dispatch(modalTransactionOpen(true));
+    dispatch(setModalKey("ADD"));
   };
 
   return (
-    <Button type="button" onClick={onBtnAddClick}>
+    <Button type="button" onClick={handleClick}>
       <Plus />
     </Button>
   );

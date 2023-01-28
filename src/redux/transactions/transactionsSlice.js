@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { walletsApi } from 'redux/walletsApiServise/wallet-api';
 
 const initialState = {
   transactions: [],
@@ -6,8 +7,11 @@ const initialState = {
   pageNum: 1,
   isWasUnmounted: false,
 
-  removedSum: 0,
+  // removedSum: 0,
+  editId: "",
+  editedTransaction: null,
   deletedId: [],
+
 };
 
 const transactionsSlice = createSlice({
@@ -34,8 +38,13 @@ const transactionsSlice = createSlice({
       state.isWasUnmounted = action.payload;
     },
 
-    setRemovedAmount: (state, action) => {
-      state.removedSum += action.payload;
+    // setRemovedAmount: (state, action) => {
+    //   state.removedSum += action.payload;
+    // },
+
+    setEditId: (state, action) => {
+      // console.log("action", action);
+      state.editId = action.payload
     },
 
     setDeletedId: (state, action) => {
@@ -48,6 +57,14 @@ const transactionsSlice = createSlice({
       );
     },
   },
+
+  extraReducers: builder => {
+    builder.addMatcher(walletsApi.endpoints.editTransaction.matchFulfilled,
+      (state, action) => {
+        // console.log("action", action.payload);
+        state.editedTransaction = action.payload
+      })
+  }
 });
 
 export const {
@@ -58,6 +75,7 @@ export const {
   setUnmount,
   setRemovedAmount,
 
+  setEditId,
   setDeletedId,
   clearDeletedId,
 } = transactionsSlice.actions;

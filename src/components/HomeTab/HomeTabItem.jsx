@@ -5,12 +5,13 @@ import { getSymbolType } from 'helpers/formAddTransaction/getSymbolType';
 import { sendMsg } from 'helpers/formAddTransaction/sendMessage';
 import { useDeleteTransactionMutation } from 'redux/walletsApiServise/wallet-api';
 import { useDispatch } from 'react-redux';
-import {  clearDeletedId, setDeletedId, setRemovedAmount } from 'redux/transactions/transactionsSlice';
+import {  clearDeletedId, setDeletedId, setEditId, setRemovedAmount } from 'redux/transactions/transactionsSlice';
 // import { toast } from 'react-toastify';
 import { getRemovedAmount } from 'helpers/formAddTransaction/getRemovedAmount';
 import { useState } from 'react';
+import { modalTransactionOpen, setModalKey } from 'redux/modal/modalSlice';
 
-const HomeTabItem = forwardRef(({ transaction,  }, ref) => {
+const HomeTabItem = forwardRef(({ transaction }, ref) => {
   const { _id, date, typeOperation, category, comment, amount, itemBalance } = transaction;
   const operationDate = moment(new Date(date)).format('DD.MM.YYYY');
   
@@ -22,44 +23,42 @@ const HomeTabItem = forwardRef(({ transaction,  }, ref) => {
 
   const [deleteTrans] =  useDeleteTransactionMutation()
 
-  const handleClick = (id) => {
-    // setDeletedId(prev => [...prev, id])
-
+  const onDelete = (id) => {
     setIsDelete(false)
     
 
     timeoutId.current = setTimeout( async () => {
       await deleteTrans(id)
 
+      // setDeletedId(prev => [...prev, id]) // стирается данные в useState([]) при смене роута
       dispatch(setDeletedId(id))
       const removedAmount = getRemovedAmount(typeOperation, amount)
       dispatch(setRemovedAmount(removedAmount))
       
       console.log("DELETE");
       
-    }, 6000);
+    }, 3000);
 
 
     // toast(
     // <>
     //   <h1 style={{color: "tomato", width: '400px'}}>"Deleting Success"</h1>
     //   <button onClick={() => clear(id)}>Cancel??</button>
-    // </>, {pauseOnHover: false, autoClose: 5000,})
+    // </>, {pauseOnHover: false, autoClose: 5000,}) 
+  }
 
-    // return <>
-    //   <h1 style={{color: "tomato", width: '400px'}}>"Deleting Success"</h1>
-    //    <button onClick={() => clear(id)}>Cancel??</button>
-    // </>
-
-    
+  const onEdit = (id) => {
+    dispatch(modalTransactionOpen(true));
+    dispatch(setModalKey("EDIT"));
+    dispatch(setEditId(id))
+    setIsOpenMenu(false)
   }
     
 
   const clear = (id) => {
-    // setDeletedId(prev => prev.filter(removedId => removedId !== id ))
-    
     setIsDelete(true)
     
+    // setDeletedId(prev => prev.filter(removedId => removedId !== id ))   // стирается данные в useState([]) при смене роута
     dispatch(clearDeletedId(id))
     clearTimeout(timeoutId.current)
     
@@ -75,8 +74,6 @@ const HomeTabItem = forwardRef(({ transaction,  }, ref) => {
   }
 
  
-
-  
 
   const isLongAmount = String(amount).length > 9 ? "Amount" : ""
   const isLongBalance = String(itemBalance).length > 10 ? "Balance" : ""
@@ -105,8 +102,9 @@ const HomeTabItem = forwardRef(({ transaction,  }, ref) => {
       </>
       <ContextMenu isOpenMenu={isOpenMenu} isDelete={isDelete}>
         <button onClick={handleMenu} >X</button>
-        { isDelete && <button onClick={() => handleClick(_id)}>Delete</button>}
-        { !isDelete &&  <button onClick={() => clear(_id)}>Отмена??</button>}
+        <button onClick={() => onEdit(_id)}>EDIT</button>
+        { isDelete && <button onClick={() => onDelete(_id)}>DELETE</button>}
+        { !isDelete &&  <button onClick={() => clear(_id)}>CANCEL</button>}
       </ContextMenu>
     </>
   );

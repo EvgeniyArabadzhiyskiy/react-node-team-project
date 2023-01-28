@@ -4,6 +4,8 @@ const initialState = {
   isModalOpen: false,
   modalTransaction: false,
   modalExit: false,
+
+  modalKey: '',
 };
 
 const modalSlice = createSlice({
@@ -21,10 +23,15 @@ const modalSlice = createSlice({
       state.modalTransaction = true;
     },
 
+    setModalKey: (state, action) => {
+      // console.log("action", action);
+      state.modalKey = action.payload
+    },
+
     modalClose: () => initialState,
   },
 });
 
-export const { modalClose, modalTransactionOpen, modalExitOpen } = modalSlice.actions;
+export const { modalClose, modalTransactionOpen, modalExitOpen, setModalKey } = modalSlice.actions;
 
 export const modalReduser = modalSlice.reducer;

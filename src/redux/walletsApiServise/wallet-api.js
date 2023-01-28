@@ -66,7 +66,9 @@ export const walletsApi = createApi({
     getBalance: builder.query({
       query: () => `${BALANCE}`,
 
-      providesTags: ['Transaction', 'User'],
+      // providesTags: ['Transaction', 'User'],
+
+        providesTags: [{ type: 'Transaction', id: 'BALANCE' }, 'User'],
     }),
 
     addTransaction: builder.mutation({
@@ -80,12 +82,22 @@ export const walletsApi = createApi({
     deleteTransaction: builder.mutation({
       query: (id) => ({ url: `${TRANSACTIONS}/${id}`, method: 'DELETE'}),
 
-      invalidatesTags: ['Statistic'],
+      // invalidatesTags: [ 'Statistic'],
+
+      invalidatesTags: ['Statistic', { type: 'Transaction', id: 'BALANCE' }],
       
       // invalidatesTags: (result, error, arg) => {
       //   // console.log("arg", arg);
       //   return  [{ type: 'Transaction', _id: arg }]
       // },
+    }),
+
+    editTransaction: builder.mutation({
+      query: ({id, transaction}) => ({ url: `${TRANSACTIONS}/edit/${id}`, method: 'PUT', body: transaction }),
+
+      // invalidatesTags: [ 'Statistic'],
+
+      invalidatesTags: ['Statistic', { type: 'Transaction', id: 'BALANCE' }],
     }),
 
     getStatistic: builder.query({
@@ -109,6 +121,7 @@ export const {
   useGetAllTransactionsQuery,
   useAddTransactionMutation,
   useDeleteTransactionMutation,
+  useEditTransactionMutation,
   useGetBalanceQuery,
 
   useGetStatisticQuery,

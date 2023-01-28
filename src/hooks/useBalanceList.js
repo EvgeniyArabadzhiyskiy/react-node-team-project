@@ -7,7 +7,8 @@ export const useBalanceList = transactions => {
   const { removedSum } = useSelector(state => state.transactions);
 
   const { data: balance = {} } = useGetBalanceQuery();
-  const totalBalance = balance.userBalance - removedSum;
+  const totalBalance = balance.userBalance 
+  // - removedSum;
 
   const balances = useMemo(
     () => getBalances(transactions, totalBalance),
