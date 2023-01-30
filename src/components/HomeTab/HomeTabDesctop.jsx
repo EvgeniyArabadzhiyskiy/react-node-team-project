@@ -1,4 +1,5 @@
 import { HomeTabItem } from "./HomeTabItem";
+import {GoSettings} from 'react-icons/go';
 import { CategoryName, StyledTable, StyledTableBody, StyledTableHeader } from "./HomeTab.styled";
 
 const HomeTabDesctop = ({ transactions, balances, lastElement,
@@ -8,6 +9,7 @@ const HomeTabDesctop = ({ transactions, balances, lastElement,
   return (
     <StyledTable>
       <StyledTableHeader>
+        <CategoryName><GoSettings /></CategoryName>
         <CategoryName>Date</CategoryName>
         <CategoryName>Type</CategoryName>
         <CategoryName>Category</CategoryName>
