@@ -1,6 +1,9 @@
 import moment from 'moment';
 import { forwardRef, useRef } from 'react';
-import { StyledList, CategoryName, StyledItem, ContextMenu } from './HomeTab.styled';
+import { GoSettings } from 'react-icons/go';
+import { RxCross2 } from 'react-icons/rx';
+
+import { StyledList, CategoryName, StyledItem, ContextMenu, DeleteBtn, SettingBtn, CloseBtn } from './HomeTab.styled';
 import { getSymbolType } from 'helpers/formAddTransaction/getSymbolType';
 import { sendMsg } from 'helpers/formAddTransaction/sendMessage';
 import { useDeleteTransactionMutation } from 'redux/walletsApiServise/wallet-api';
@@ -81,11 +84,13 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
   const bodyTransaction = (
     <>
       <>
+        <CategoryName>
+          <SettingBtn onClick={handleMenu} ><GoSettings /></SettingBtn>
+        </CategoryName>
+        
         <CategoryName>{operationDate}</CategoryName>
         <CategoryName>
-          {/* <button onClick={() => handleClick(_id)}>Delete</button> */}
-          {/* <button onClick={() => clear()}>Cancel</button> */}
-          {/* {getSymbolType(typeOperation)} */}
+          {getSymbolType(typeOperation)}
         </CategoryName>
         <CategoryName>{category}</CategoryName>
         <CategoryName>{comment}</CategoryName>
@@ -98,13 +103,13 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
           onClick={() => sendMsg(isLongBalance, itemBalance)} 
         >{isLongBalance ? "Click" : itemBalance}
         </CategoryName>
-        <button onClick={handleMenu} >#</button>
+        
       </>
       <ContextMenu isOpenMenu={isOpenMenu} isDelete={isDelete}>
-        <button onClick={handleMenu} >X</button>
-        <button onClick={() => onEdit(_id)}>EDIT</button>
-        { isDelete && <button onClick={() => onDelete(_id)}>DELETE</button>}
-        { !isDelete &&  <button onClick={() => clear(_id)}>CANCEL</button>}
+        <CloseBtn onClick={handleMenu} ><RxCross2 /></CloseBtn>
+        <DeleteBtn onClick={() => onEdit(_id)}>EDIT</DeleteBtn>
+        { isDelete && <DeleteBtn onClick={() => onDelete(_id)}>DELETE</DeleteBtn>}
+        { !isDelete &&  <DeleteBtn onClick={() => clear(_id)}>CANCEL</DeleteBtn>}
       </ContextMenu>
     </>
   );
