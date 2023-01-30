@@ -5,19 +5,25 @@ export const CommonStyle = css`
   line-height: 1.5;
 
   display: grid;
-  grid-template-columns: 15% 15% 20% 20% 10% 15% 5%;
+  grid-template-columns: 5% 15% 15% 20% 20% 10% 15%;
   align-items: center;
 
   p {
-    &:nth-of-type(2) {
+    &:nth-child(1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &:nth-child(3) {
       text-align: center;
     }
 
-    &:nth-of-type(5) {
+    &:nth-child(6) {
       text-align: end;
     }
 
-    &:nth-of-type(6) {
+    &:nth-child(7) {
       text-align: end;
     }
   }
@@ -64,30 +70,8 @@ export const StyledItem = styled.li`
     border-bottom: 1px solid #dcdcdf;
   }
 
-  /* &::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ae6d6d57;
-
-    transform: translateX(100%);
-
-    transition: transform 300ms linear;
-
-    transform: ${p => p.isOpenMenu && 'translateX(0%)'} 
-    
-  } */
-
-  /* &:hover::before{
-    transform: ${p => p.isOpenMenu && 'translateX(0%)'} 
-    
-  } */
-
   p {
-    &:nth-of-type(3) {
+    &:nth-child(4) {
       padding-right: 32px;
     }
   }
@@ -95,21 +79,19 @@ export const StyledItem = styled.li`
 
 export const ContextMenu = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background-color: #3d3a3a92;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 
   transform: translateX(100%);
   transition: transform 300ms linear;
   transform: ${p => p.isOpenMenu && 'translateX(0%)'};
 
-  &::before{
+  &::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -120,10 +102,9 @@ export const ContextMenu = styled.div`
 
     transform: translateX(0%);
 
-    transition: ${p => !p.isDelete && 'transform 6000ms linear'}  ;
+    transition: ${p => !p.isDelete && 'transform 6000ms linear'};
 
-    transform: ${p => p.isDelete && 'translateX(100%)'} 
-    
+    transform: ${p => p.isDelete && 'translateX(100%)'};
   }
 `;
 
@@ -168,4 +149,42 @@ export const StyledWrap = styled.ul`
       margin-bottom: 8px;
     }
   }
+`;
+
+export const DeleteBtn = styled.button`
+  width: 100px;
+  height: 40px;
+  border: 7px solid rgba(55, 53, 53, 0.4);
+  color: ${p => p.theme.colors.primaryBg};
+  background-color: ${p => p.theme.colors.primaryBgBtn};
+
+  cursor: pointer;
+  text-transform: uppercase;
+`;
+
+export const SettingBtn = styled.button`
+  background: transparent;
+
+  svg {
+    display: block;
+    transition: fill 250ms linear;
+  }
+
+  svg:hover {
+    fill: ${p => p.theme.colors.primaryBgBtn};
+  }
+`;
+
+export const CloseBtn = styled(SettingBtn)`
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 20px;
+  height: 20px;
 `;
