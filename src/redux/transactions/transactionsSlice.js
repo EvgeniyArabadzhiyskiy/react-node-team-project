@@ -7,9 +7,8 @@ const initialState = {
   pageNum: 1,
   isWasUnmounted: false,
 
-  // removedSum: 0,
   editId: "",
-  editedTransaction: null,
+  // editedTransaction: null,
   deletedId: [],
 
 };
@@ -38,12 +37,7 @@ const transactionsSlice = createSlice({
       state.isWasUnmounted = action.payload;
     },
 
-    // setRemovedAmount: (state, action) => {
-    //   state.removedSum += action.payload;
-    // },
-
     setEditId: (state, action) => {
-      // console.log("action", action);
       state.editId = action.payload
     },
 
@@ -56,15 +50,34 @@ const transactionsSlice = createSlice({
         removedId => removedId !== action.payload
       );
     },
+
+    deleteTransaction: (state) => {
+      state.transactions =  state.deletedId.reduce((acc, id) => {
+        return acc.filter(item => item._id !== id)
+
+      },[...state.transactions])
+    },
   },
+
+
 
   extraReducers: builder => {
     builder.addMatcher(walletsApi.endpoints.editTransaction.matchFulfilled,
       (state, action) => {
-        // console.log("action", action.payload);
-        state.editedTransaction = action.payload
+        state.transactions = state.transactions.map(item => {
+          if (item._id === action.payload?._id) return action.payload
+        
+          return item
+        })
       })
   }
+
+  // extraReducers: builder => {
+  //   builder.addMatcher(walletsApi.endpoints.editTransaction.matchFulfilled,
+  //     (state, action) => {
+  //       state.editedTransaction = action.payload
+  //     })
+  // }
 });
 
 export const {
@@ -74,6 +87,7 @@ export const {
   addInfo,
   setUnmount,
   setRemovedAmount,
+  deleteTransaction,
 
   setEditId,
   setDeletedId,
