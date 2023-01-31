@@ -15,14 +15,11 @@ ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 const Chart = () => {
   const { month, year } = useSelector(state => state.statistic);
-  const { removedSum } = useSelector(state => state.transactions);
   
   const {data: stats = [] } = useGetStatisticQuery({ month, year })
 
   const { data: balance = {} } = useGetBalanceQuery();
-  const totalBalance = balance.userBalance 
-  // - removedSum 
-  || 0;
+  const totalBalance = balance.userBalance;
 
   const { sum, colors, chartCategories } = getStatsResult(stats)
 
