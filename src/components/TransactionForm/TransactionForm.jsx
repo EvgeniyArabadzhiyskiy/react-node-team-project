@@ -60,13 +60,10 @@ const TransactionForm = ({setIsIncome, isIncome}) => {
     }
 
     if (modalKey === "EDIT") {
-      // await addNewTransaction_RTKQ(transaction).unwrap();
       await editTransaction_RTKQ({id: editId, transaction})
       resetForm();
 
-      // dispatch(resetTransactions());
       dispatch(modalClose(false));
-
       toast.success("Successful EDIT"); 
     }
     
