@@ -1,10 +1,9 @@
 import { HomeTabItem } from "./HomeTabItem";
 import {GoSettings} from 'react-icons/go';
 import { CategoryName, StyledTable, StyledTableBody, StyledTableHeader } from "./HomeTab.styled";
+// import { memo } from "react";
 
-const HomeTabDesctop = ({ transactions, balances, lastElement,
-  //  setDeletedId 
-  }) => {
+const HomeTabDesctop = (({ transactions, balances, lastElement }) => {
 
   return (
     <StyledTable>
@@ -27,8 +26,6 @@ const HomeTabDesctop = ({ transactions, balances, lastElement,
               <HomeTabItem
                 key={transaction._id}
                 ref={lastElement}
-
-                // setDeletedId={setDeletedId}
                 transaction={{...transaction, itemBalance }}
               />
             )
@@ -37,8 +34,6 @@ const HomeTabDesctop = ({ transactions, balances, lastElement,
           return (
             <HomeTabItem
               key={transaction._id}
-
-              // setDeletedId={setDeletedId}
               transaction={{...transaction, itemBalance }}
             />
           )}
@@ -46,6 +41,6 @@ const HomeTabDesctop = ({ transactions, balances, lastElement,
       </StyledTableBody>}
     </StyledTable>
   )
-}
+})
  
 export default HomeTabDesctop;
