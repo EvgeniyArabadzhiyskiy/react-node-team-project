@@ -5,7 +5,7 @@ const ContextMenu = ({ isOpenMenu, isDelete, onContextMenu, onEdit, onDelete, on
     
   return (
     <Menu isOpenMenu={isOpenMenu} isDelete={isDelete}>
-      <CloseBtn onClick={onContextMenu}><RxCross2 /></CloseBtn>
+      <CloseBtn onClick={onContextMenu} aria-label="close"><RxCross2 /></CloseBtn>
       <DeleteBtn onClick={onEdit}>EDIT</DeleteBtn>
       {isDelete && <DeleteBtn onClick={onDelete}>DELETE</DeleteBtn>}
       {!isDelete && <DeleteBtn onClick={onClearId}>CANCEL</DeleteBtn>}
