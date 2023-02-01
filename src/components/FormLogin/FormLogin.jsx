@@ -5,7 +5,7 @@ import { ReactComponent as PasswordIcon } from 'images/password.svg';
 
 import { Box } from "components/Box";
 import FormInput from "components/FormInput";
-import EyesButton from "components/EyesButton";
+import EyesButton from "components/Buttons/EyesButton";
 import EnterButton from "components/Buttons/EnterButton";
 import ButtonLink from "components/Buttons/ButtonLink";
 import GoogleAuthLink from "components/Buttons/GoogleAuthLink";
