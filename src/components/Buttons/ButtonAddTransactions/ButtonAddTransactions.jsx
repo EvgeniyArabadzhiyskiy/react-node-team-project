@@ -13,7 +13,7 @@ const ButtonAddTransactions = () => {
   };
 
   return (
-    <Button type="button" onClick={handleClick}>
+    <Button type="button" onClick={handleClick} aria-label="add-transaction">
       <Plus />
     </Button>
   );
