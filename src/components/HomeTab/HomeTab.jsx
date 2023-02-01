@@ -17,14 +17,13 @@ const HomeTab = () => {
 
   const balances = useBalanceList(visibleTransactions);
 
-
   return (
     <div>
       {isMobile && (
         <HomTabMobile
           balances={balances}
           lastElement={lastElement}
-          transactions={visibleTransactions}   // ВКЛЮЧИ
+          transactions={visibleTransactions}  
         />
       )}
       {isDesctop && (
@@ -32,15 +31,8 @@ const HomeTab = () => {
             balances={balances}
             lastElement={lastElement}
             transactions={visibleTransactions}
-
-            // setDeletedId={setDeletedId}
-            
-            // getTransId={getTransId}
-            // clear={clear}
-            // handleClick={handleClick}
           />      
       )}
-      <h1>MOBILE</h1>
       <ButtonAddTransactions />
     </div>
   );
