@@ -1,9 +1,9 @@
 import { HomeTabItem } from "./HomeTabItem";
 import {GoSettings} from 'react-icons/go';
 import { CategoryName, StyledTable, StyledTableBody, StyledTableHeader } from "./HomeTab.styled";
-// import { memo } from "react";
+import { memo } from "react";
 
-const HomeTabDesctop = (({ transactions, balances, lastElement }) => {
+const HomeTabDesctop = memo(({ transactions, balances, lastElement }) => {
 
   return (
     <StyledTable>
