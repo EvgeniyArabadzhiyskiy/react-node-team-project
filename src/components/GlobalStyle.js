@@ -40,18 +40,25 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button {
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-input[type='number'] {
-  -moz-appearance: textfield;
-}
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
 `;
