@@ -6,7 +6,7 @@ import { ReactComponent as UserIcon } from 'images/user.svg';
 
 import { Box } from "components/Box";
 import FormInput from "components/FormInput";
-import EyesButton from "components/EyesButton";
+import EyesButton from "components/Buttons/EyesButton";
 import { PasswordIndicator } from "./FormRegistration.styled";
 import EnterButton from "components/Buttons/EnterButton";
 import ButtonLink from "components/Buttons/ButtonLink";
