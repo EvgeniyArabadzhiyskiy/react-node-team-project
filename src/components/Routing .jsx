@@ -9,7 +9,6 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 
 import { getPath } from "helpers/getPath";
-import Tester from "./Tester/Tester";
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
@@ -28,8 +27,6 @@ const Routing  = () => {
                 <LoginPage />
                 </PublicRoute>}
             />
-
-            <Route  path="/tester" element={<Tester />} />
 
             <Route path="/" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
             <Route index element={<Navigate to="/home" />} />
