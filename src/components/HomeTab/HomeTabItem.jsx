@@ -66,7 +66,7 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
   const bodyTransaction = (
     <>
       <CategoryName>
-        <SettingBtn onClick={onContextMenu} ><GoSettings /></SettingBtn>
+        <SettingBtn onClick={onContextMenu} aria-label="settings"><GoSettings /></SettingBtn>
       </CategoryName>
       
       <CategoryName>{operationDate}</CategoryName>
@@ -162,7 +162,7 @@ const HomeTabMobItem = forwardRef(({ transaction }, ref ) => {
 
   return (
     <StyledList borders={typeOperation}>
-    <li><SettingBtn onClick={onContextMenu} ><GoSettings /></SettingBtn></li>
+    <li><SettingBtn onClick={onContextMenu} aria-label="settings"><GoSettings /></SettingBtn></li>
     <li>Date <span>{operationDate}</span></li>
     <li>Type <span>{getSymbolType(typeOperation)}</span></li>
     <li>Category <span>{category}</span></li>
