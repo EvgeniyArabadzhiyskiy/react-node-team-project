@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import EWalletBg from '../../images/desctop.jpg';
+import EWalletBg from '../../images/desctop-webp.webp';
 import EWalletBgTab from '../../images/tablet.jpg';
 import EWalletBgMobile from '../../images/mobile.png';
 
