@@ -28,7 +28,7 @@ const Header = () => {
         <UserBox>
           <ThemeToggle />
           <TextName>{firstName}</TextName>
-          <IconContext.Provider value={{ color: '#BDBDBD', size: '25' }}>
+          <IconContext.Provider value={{ color: '#787272', size: '25' }}>
             <ButtonExit onClick={onBtnExitClick}>
               <IoExitOutline />
               <Text>Exit</Text>
