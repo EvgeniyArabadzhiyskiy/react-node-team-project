@@ -5,7 +5,7 @@ export const dayTheme = {
     secondaryBg: 'rgba(255, 255, 255, 0.4)',
     loginPageBg: '#E7EAF2',
     primaryText: '#000000',
-    secondaryText: '#BDBDBD',
+    secondaryText: '#787272',
     secondaryDarkText: '#A6A6A6',
     secondaryLightText: '#E0E0E0',
     primaryBtn: '#FFFFFF',
