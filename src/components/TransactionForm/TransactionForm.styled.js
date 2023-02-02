@@ -18,7 +18,6 @@ export const Title = styled.h2`
 `;
 
 export const DateWrapper = styled.div`
-  /* margin-bottom: ${p => p.theme.space[5]}px; */
 
   @media screen and (min-width: 768px) {
     display: flex;
