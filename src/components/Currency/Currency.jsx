@@ -78,6 +78,7 @@ const Currency = () => {
         <TextTitle>Purchase</TextTitle>
         <TextTitle>Sale</TextTitle>
       </PrivatTableList>
+      
       <CurrencyList>
         {!loading ? <CurrencyListItem arrow={arrow} /> : <Spinner />}
       </CurrencyList>
