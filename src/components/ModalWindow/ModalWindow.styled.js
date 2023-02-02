@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import EwalletBg2 from '../../images/ewallet-2.jpg'
+import EwalletBg2 from '../../images/ewallet-2.webp'
 
 export const Overlay = styled(motion.div)`
   position: fixed;
