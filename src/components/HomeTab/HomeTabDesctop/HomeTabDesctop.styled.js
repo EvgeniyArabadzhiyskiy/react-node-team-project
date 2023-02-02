@@ -64,5 +64,5 @@ export const CategoryName = styled.p`
 `;
 
 export const SumText = styled.p`
-  color: ${p => (p.textColor === '+' ? '#24CCA7' : '#FF6596')};
+  color: ${p => (p.textColor === '+' ? '#24CCA7' : 'red')}; //#FF6596
 `;
