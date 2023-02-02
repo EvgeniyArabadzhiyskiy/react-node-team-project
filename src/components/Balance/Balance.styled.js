@@ -23,7 +23,7 @@ export const Title = styled.p`
   font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.5;
 
-  color: ${p => p.theme.colors.secondaryDarkText};
+  color: ${p => p.theme.colors.secondaryText};
   text-transform: uppercase;
 `;
 
