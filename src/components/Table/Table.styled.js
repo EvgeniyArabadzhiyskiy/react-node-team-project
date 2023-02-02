@@ -1,19 +1,6 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
 
-export const StyledStatisticWraper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-  }
-  @media (min-width: 1024px) {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
-
 export const StyledFilters = styled.div`
   font-weight: 700;
   font-size: 18px;
@@ -222,39 +209,6 @@ export const StyledTableFooter = styled.ul`
   }
   li > p {
     color: ${p => p.theme.colors.primaryText};
-  }
-`;
-
-export const StyledList = styled.ul`
-  margin: 0;
-  border-radius: 10px;
-  li {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.5;
-    padding: 12px 20px;
-
-    border-bottom: 1px solid #dcdcdf;
-
-    display: flex;
-    justify-content: space-between;
-  }
-  li > span {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.5;
-  }
-`;
-
-export const StyledWrap = styled.div`
-  max-width: 280px;
-  margin: auto;
-  border-left: 5px;
-
-  ul {
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
   }
 `;
 
