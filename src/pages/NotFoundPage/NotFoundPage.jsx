@@ -4,7 +4,7 @@ import {
   Container,
 } from '../LoginPage/LoginPage.styled';
 import { useMedia } from 'react-use';
-import errorImg from '../../images/404error.png'
+import errorImg from '../../images/404error.webp'
 import { Box } from 'components/Box';
 import { Btn, Text, Title } from './NotFoundPage.styled';
 
