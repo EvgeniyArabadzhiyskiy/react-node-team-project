@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/react-node-team-project/static/css/main.c772e297.css",
-    "main.js": "/react-node-team-project/static/js/main.16d964f4.js",
+    "main.css": "/react-node-team-project/static/css/main.30cb072d.css",
+    "main.js": "/react-node-team-project/static/js/main.ec232ae4.js",
     "static/js/221.56cbac05.chunk.js": "/react-node-team-project/static/js/221.56cbac05.chunk.js",
     "static/css/790.350b852d.chunk.css": "/react-node-team-project/static/css/790.350b852d.chunk.css",
     "static/js/790.23db9e74.chunk.js": "/react-node-team-project/static/js/790.23db9e74.chunk.js",
     "static/js/38.18def89c.chunk.js": "/react-node-team-project/static/js/38.18def89c.chunk.js",
     "static/js/71.9087a701.chunk.js": "/react-node-team-project/static/js/71.9087a701.chunk.js",
     "static/js/617.cce31b71.chunk.js": "/react-node-team-project/static/js/617.cce31b71.chunk.js",
-    "static/media/Circe-Bold.ttf": "/react-node-team-project/static/media/Circe-Bold.d9332714c66b14bb30e5.ttf",
     "static/media/desctop-webp.webp": "/react-node-team-project/static/media/desctop-webp.5bfcec3a6fc33503f7d7.webp",
     "static/media/Rectangle.webp": "/react-node-team-project/static/media/Rectangle.bab5699c45fe45b400f7.webp",
     "static/media/Poppins-Regular.ttf": "/react-node-team-project/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
@@ -29,8 +28,8 @@
     "static/media/home.svg": "/react-node-team-project/static/media/home.eb636e056b285c5250963c49d6eca833.svg",
     "static/media/plus.svg": "/react-node-team-project/static/media/plus.6194a661e88e1e5113d28da2398b6404.svg",
     "static/media/minus.svg": "/react-node-team-project/static/media/minus.c1930871236002c803c7b6a6c0b99024.svg",
-    "main.c772e297.css.map": "/react-node-team-project/static/css/main.c772e297.css.map",
-    "main.16d964f4.js.map": "/react-node-team-project/static/js/main.16d964f4.js.map",
+    "main.30cb072d.css.map": "/react-node-team-project/static/css/main.30cb072d.css.map",
+    "main.ec232ae4.js.map": "/react-node-team-project/static/js/main.ec232ae4.js.map",
     "221.56cbac05.chunk.js.map": "/react-node-team-project/static/js/221.56cbac05.chunk.js.map",
     "790.350b852d.chunk.css.map": "/react-node-team-project/static/css/790.350b852d.chunk.css.map",
     "790.23db9e74.chunk.js.map": "/react-node-team-project/static/js/790.23db9e74.chunk.js.map",
@@ -39,7 +38,7 @@
     "617.cce31b71.chunk.js.map": "/react-node-team-project/static/js/617.cce31b71.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c772e297.css",
-    "static/js/main.16d964f4.js"
+    "static/css/main.30cb072d.css",
+    "static/js/main.ec232ae4.js"
   ]
 }
