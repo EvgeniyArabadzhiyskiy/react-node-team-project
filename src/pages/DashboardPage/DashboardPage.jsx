@@ -5,7 +5,7 @@ import Balance from 'components/Balance';
 import { useMedia } from 'react-use';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import bgImg from '../../images/Rectangle.png';
+import bgImg from '../../images/Rectangle.webp';
 import {
   Section,
   Container,
