@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import EWalletBg from '../../images/desctop-webp.webp';
-import EWalletBgTab from '../../images/tablet.jpg';
-import EWalletBgMobile from '../../images/mobile.png';
+import EWalletBgTab from '../../images/tablet.webp';
+import EWalletBgMobile from '../../images/mobile.webp';
 
 export const Section = styled.section`
   display: flex;
