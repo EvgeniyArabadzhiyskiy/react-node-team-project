@@ -92,7 +92,7 @@ export const ImageVektor = styled.img`
   }
 `;
 
-export const TextTitle = styled.p`
+export const TextTitle = styled.li`
   color: white;
   @media ${p => p.theme.media.medium} {
     &:nth-child(2) {
