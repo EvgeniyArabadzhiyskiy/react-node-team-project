@@ -14,12 +14,12 @@ export const List = styled.ul`
 `;
 
 export const ItemLink = styled.li`
-  display: flex;
-  gap: 23px;
   padding: 4px 0;
 `;
 
 export const Link = styled(NavLink)`
+  display: flex;
+  gap: 23px;
   color: ${p => p.theme.colors.navIconBg};
 
   &.active {
