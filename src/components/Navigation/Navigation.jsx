@@ -29,19 +29,19 @@ const Navigation = () => {
         </ListMob>
       ) : (
         <List>
-          <Link to="/home">
-            <ItemLink>
+          <ItemLink>
+            <Link to="/home">
               <HomeSvg />
               <LinkText>Home</LinkText>
-            </ItemLink>
-          </Link>
+            </Link>
+          </ItemLink>
 
-          <Link to="/statistic">
-            <ItemLink>
+          <ItemLink>
+            <Link to="/statistic">
               <StatisticSvg />
               <LinkText>Statistic</LinkText>
-            </ItemLink>
-          </Link>
+            </Link>
+          </ItemLink>
         </List>
       )}
     </div>
