@@ -31,12 +31,14 @@ export const GlobalStyle = createGlobalStyle`
 
   ul {
     margin: 0;
-    padding-left: 0;
+    padding: 0;
     list-style: none;
   }
 
   a {
     text-decoration: none;
+    font-family: inherit;
+    color: inherit;
   }
 
   button {
