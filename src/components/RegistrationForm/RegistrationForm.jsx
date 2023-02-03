@@ -6,8 +6,7 @@ import Spinner from 'components/Spinner';
 import FormDefault from 'components/FormDefault';
 import FormRegistration from 'components/FormRegistration';
 import { FormWrap, LogoWrap } from 'components/LoginForm/LoginForm.styled';
-
-import { useUserRegistrationMutation } from 'redux/walletsApiServise/wallet-api';
+import { useUserRegistrationMutation } from 'redux/walletsApiServise/userApi';
 
 const RegisterForm = () => {
   const isScale = useScaleForm()
