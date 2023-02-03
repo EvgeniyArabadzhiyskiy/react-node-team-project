@@ -1,3 +1,8 @@
+export const breakpoints = {
+  tablet: 768,
+  desctop: 1280,
+}
+
 export const dayTheme = {
   colors: {
     primaryBg: '#FFFFFF',
@@ -65,9 +70,10 @@ export const dayTheme = {
     btn: '20px',
   },
   media: {
-    large: '(min-width: 1280px)',
-    medium: '(min-width: 768px)',
-    small: '(max-width: 767px)',
+    small: `(max-width: ${breakpoints.tablet - 0.1}px)`,
+    medium: `(min-width: ${breakpoints.tablet}px)`,
+    mediumToLarge: `(min-width: ${breakpoints.tablet}px) and (max-width: ${breakpoints.desctop - 0.1}px)`,
+    large: `(min-width: ${breakpoints.desctop}px)`,
   },
 };
 
@@ -104,8 +110,6 @@ export const nightTheme = {
   },
   space: [0, 8, 12, 16, 20, 28, 36, 40, 60],
   fonts: {
-    // body: 'Circe-Regular, sans-serif',
-    // bodyBold: 'Circe-Bold, sans-serif',
     heading: 'Poppins-Regular, sans-serif',
     headingBold: 'Poppins-Bold, sans-serif',
   },
@@ -138,8 +142,9 @@ export const nightTheme = {
     btn: '20px',
   },
   media: {
-    large: '(min-width: 1280px)',
-    medium: '(min-width: 768px)',
-    small: '(max-width: 540px)',
+    small: `(max-width: ${breakpoints.tablet - 0.1}px)`,
+    medium: `(min-width: ${breakpoints.tablet}px)`,
+    mediumToLarge: `(min-width: ${breakpoints.tablet}px) and (max-width: ${breakpoints.desctop - 0.1}px)`,
+    large: `(min-width: ${breakpoints.desctop}px)`,
   },
 };
