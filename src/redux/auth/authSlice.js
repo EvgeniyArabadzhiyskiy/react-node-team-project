@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { walletsApi } from 'redux/walletsApiServise/wallet-api';
+import { userApi } from 'redux/walletsApiServise/userApi';
+// import { walletsApi } from 'redux/walletsApiServise/wallet-api';
 
 const initialState = {
   user: { firstName: null, email: null, balance: 0 },
@@ -20,7 +21,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addMatcher(
-        walletsApi.endpoints.userRegistration.matchFulfilled,
+        userApi.endpoints.userRegistration.matchFulfilled,
         (state, action) => {
           state.user = action.payload.user;
           state.token = action.payload.token;
@@ -28,7 +29,7 @@ const authSlice = createSlice({
         }
       )
       .addMatcher(
-        walletsApi.endpoints.userLogin.matchFulfilled,
+        userApi.endpoints.userLogin.matchFulfilled,
         (state, action) => {
           state.user = action.payload.user;
           state.token = action.payload.token;
@@ -36,7 +37,7 @@ const authSlice = createSlice({
         }
       )
       .addMatcher(
-        walletsApi.endpoints.userLogout.matchFulfilled,
+        userApi.endpoints.userLogout.matchFulfilled,
         (state, action) => {
           state.user = { name: null, email: null, balance: 0 };
           state.token = null;
@@ -44,7 +45,7 @@ const authSlice = createSlice({
         }
       )
       .addMatcher(
-        walletsApi.endpoints.userRefresh.matchFulfilled,
+        userApi.endpoints.userRefresh.matchFulfilled,
         (state, action) => {
           state.user = action.payload;
           state.isLoggedIn = true;
