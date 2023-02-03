@@ -2,14 +2,13 @@ import { useGetBalanceQuery } from 'redux/walletsApiServise/wallet-api';
 import { Container, Title, CurrencySign, Text } from './Balance.styled';
 
 const Balance = () => {
-  const { data = {} } = useGetBalanceQuery();
-  const userBalance = data.userBalance;
+  const { data: totalBalance = 0 } = useGetBalanceQuery();
 
   return (
     <Container>
       <Title>Your balance</Title>
       <CurrencySign>₴ </CurrencySign>
-      <Text>{userBalance}</Text>
+      <Text>{totalBalance}</Text>
     </Container>
   );
 };
