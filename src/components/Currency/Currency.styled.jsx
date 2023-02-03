@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const CurrencyBox = styled.div`
   position: relative;
   width: 280px;
