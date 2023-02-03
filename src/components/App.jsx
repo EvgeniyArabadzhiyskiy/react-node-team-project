@@ -13,7 +13,9 @@ import { useGoogleAuth } from 'hooks';
 import { GlobalStyle } from './GlobalStyle';
 import { nightTheme, dayTheme } from '../theme';
 import { AnimatePresence } from 'framer-motion';
-import { useGetBalanceQuery, useUserRefreshQuery } from 'redux/walletsApiServise/wallet-api';
+
+import { useUserRefreshQuery } from 'redux/walletsApiServise/userApi';
+import { useGetBalanceQuery } from 'redux/walletsApiServise/wallet-api';
 
 // user100@mail.com
 
