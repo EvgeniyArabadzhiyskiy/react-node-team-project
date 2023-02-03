@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import { modalClose } from 'redux/modal/modalSlice';
 import { resetTransactions } from 'redux/transactions/transactionsSlice';
-import { useUserLogoutMutation } from 'redux/walletsApiServise/wallet-api';
+import { useUserLogoutMutation } from 'redux/walletsApiServise/userApi';
 
 import Spinner from 'components/Spinner';
 import EnterButton from 'components/Buttons/EnterButton';
