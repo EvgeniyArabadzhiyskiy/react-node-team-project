@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledChartWraper = styled.div`
+  position: relative;
+  align-self: flex-start;
   margin-bottom: 32px;
 
   @media (min-width: 768px) {
@@ -13,12 +15,8 @@ export const StyledChartWraper = styled.div`
 `;
 
 export const StyledTitle = styled.h2`
-  font-family: 'Circe-Regular';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 45px;
-  color: #000000;
+  font-size: ${p => p.theme.fontSizes.l};
+  font-weight: ${p => p.theme.fontWeights.normal};
   margin: 20px 0;
 
   @media (min-width: 1280px) {
