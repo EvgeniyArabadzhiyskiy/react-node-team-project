@@ -8,11 +8,13 @@ export const Container = styled.div`
   border-radius: 30px;
 
   background-color: ${p => p.theme.colors.primaryBg};
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+
+  @media ${p => p.theme.media.mediumToLarge} {
     width: 336px;
     margin-bottom: 0;
   }
-  @media screen and (min-width: 1280px) {
+  
+  @media ${p => p.theme.media.large} {
     width: 395px;
   }
 `;
