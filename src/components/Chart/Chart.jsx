@@ -1,53 +1,30 @@
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  DoughnutController,
-} from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { useGetBalanceQuery, useGetStatisticQuery } from 'redux/walletsApiServise/wallet-api';
-import { getStatsResult } from 'helpers/statistics/getStatsResult';
-import { drawInnerText, options } from 'helpers/statistics/doughnutOptions';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
+import { TitleBalance } from './Chart.styled';
+import {  options } from 'helpers/statistics/doughnutOptions';
+import { getChartData } from 'helpers/statistics/getChartData';
+import { getStatsResult } from 'helpers/statistics/getStatsResult';
+import { useGetBalanceQuery, useGetStatisticQuery } from 'redux/walletsApiServise/wallet-api';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Chart = () => {
   const { month, year } = useSelector(state => state.statistic);
   
-  const {data: stats = [] } = useGetStatisticQuery({ month, year })
+  const { data: totalBalance = 0 } = useGetBalanceQuery();
+  const { data: stats = [] } = useGetStatisticQuery({ month, year })
 
-  const { data: balance = {} } = useGetBalanceQuery();
-  const totalBalance = balance.userBalance;
-
-  const { sum, colors, chartCategories } = getStatsResult(stats)
-
-  const data = {
-    labels: chartCategories.length > 0 ? chartCategories : ['empty'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: sum.length > 0 ? sum : ['100'],
-        text: 'summ',
-        backgroundColor: 
-          colors.length > 0 ? colors : ['rgba(255, 99, 132, 0.2)'],
-        borderWidth: 0,
-      },
-    ],
-  };
+  const result = getStatsResult(stats)
+  const data = getChartData(result)
 
   return (
-    <Doughnut
-      width={336}
-      height={336}
-      data={data}
-      options={options}
-      plugins={[{beforeDraw: (chart) => drawInnerText(chart, totalBalance)}]}
-    />
+    <>
+      <Doughnut data={data} options={options}  />
+      <TitleBalance>₴{totalBalance}</TitleBalance>
+    </>
   );
 };
 
 export default Chart;
-
-
