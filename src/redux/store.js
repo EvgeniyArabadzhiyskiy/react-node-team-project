@@ -19,6 +19,7 @@ import { statisticReducer } from './statistic';
 import { modalReduser } from './modal/modalSlice';
 import { transactionsReducer } from './transactions/transactionsSlice';
 import { walletsApi } from './walletsApiServise/wallet-api';
+import { userApi } from './walletsApiServise/userApi'
 
 
 
@@ -41,6 +42,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     theme: persistReducer(themePersistConfig, themeReducer),
     [walletsApi.reducerPath]: walletsApi.reducer,
+    [userApi.reducerPath]: userApi.reducer
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -48,7 +50,7 @@ export const store = configureStore({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
-  }).concat(walletsApi.middleware),
+  }).concat(walletsApi.middleware, userApi.middleware),
 });
 
 setupListeners(store.dispatch);
