@@ -1,14 +1,47 @@
-import { useGetTransaction } from 'hooks';
+// import { useGetTransaction } from 'hooks';
 // import { useRef } from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 // import { useState } from 'react';
 // import { useEffect } from 'react';
 // import { useDispatch, /* useSelector*/ } from 'react-redux';
 // import { useMedia } from 'react-use';
 // import { addInfo } from 'redux/transactions/transactionsSlice';
-import { useDeleteTransactionMutation,
-  //  useGetAllTransactionsQuery 
-  } from 'redux/walletsApiServise/wallet-api';
+// import { useDeleteTransactionMutation,
+//    useGetAllTransactionsQuery 
+//   } from 'redux/walletsApiServise/wallet-api';
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2'; 
+import { Box } from 'components/Box';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+export const data = {
+  // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgb(255, 99, 133)',
+        'rgb(54, 163, 235)',
+        'rgb(255, 206, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(153, 102, 255)',
+        'rgb(255, 159, 64)',
+      ],
+      // borderColor: [
+      //   'rgba(255, 99, 132, 1)',
+      //   'rgba(54, 162, 235, 1)',
+      //   'rgba(255, 206, 86, 1)',
+      //   'rgba(75, 192, 192, 1)',
+      //   'rgba(153, 102, 255, 1)',
+      //   'rgba(255, 159, 64, 1)',
+      // ],
+      borderWidth: 1,
+    },
+  ],
+};
 
 const Tester = () => {
   // const dispatch = useDispatch()
@@ -19,7 +52,7 @@ const Tester = () => {
   // let header = useRef('4292');
   // console.log("Tester  header", header.current);
 
-  const [ddd, setDDD] = useState(1);
+  // const [ddd, setDDD] = useState(1);
   // console.log('Tester  ddd', ddd);
 
   // const [hey, setHey] = useState('Cool');
@@ -33,14 +66,14 @@ const Tester = () => {
   // const { data = {} } = useGetAllTransactionsQuery();
   // console.log("Tester  data", data);
 
-  const transactions = useGetTransaction(ddd);
-  console.log("Tester  transactions", transactions);
+  // const transactions = useGetTransaction(ddd);
+  // console.log("Tester  transactions", transactions);
 
-  const [deleteTrans] =  useDeleteTransactionMutation()
+  // const [deleteTrans] =  useDeleteTransactionMutation()
 
   const handleClick = (id) => {
-    console.log("handleClick  id", );
-    deleteTrans('63cd2a8ca301d1b91d874912')
+    // console.log("handleClick  id", );
+    // deleteTrans('63cd2a8ca301d1b91d874912')
     // dispatch(resetTransactions());
   }
 
@@ -98,13 +131,19 @@ const Tester = () => {
   // };
 
   const onRender = () => {
-    setDDD(p => p + 1);
+    // setDDD(p => p + 1);
     // console.log('Prosto LOG');
   };
 
   // console.log('re-render');
   return (
+
     <div>
+      <Box width="200px" height="200px" >
+      <Doughnut data={data} />
+
+      </Box>
+
          {true && (
 
         <div
