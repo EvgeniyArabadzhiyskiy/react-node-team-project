@@ -1,19 +1,7 @@
-import { fetchBaseQuery } from '@reduxjs/toolkit/query';
+import { baseQuery } from './baseQuery';
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { BALANCE, BASE_URL, TRANSACTIONS, USER_CURRENT, USER_LOGIN, USER_LOGOUT, USER_REGISTER } from 'constants/apiPath';
+import { BALANCE,  TRANSACTIONS } from 'constants/apiPath';
 import { getQueryString } from 'helpers/getQueryString';
-
-
-const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_URL,
-  prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token;
-    if (token) {
-      headers.set('authorization', `Bearer ${token}`);
-    }
-    return headers;
-  },
-});
 
 export const walletsApi = createApi({
   reducerPath: 'walletsApi',
@@ -21,81 +9,36 @@ export const walletsApi = createApi({
   tagTypes: ['Transaction', 'Statistics', 'User'],
   
   endpoints: builder => ({
-    userRefresh: builder.query({
-      query: () => `${USER_CURRENT}`,
-
-      providesTags: ['User'],
-    }),
-
-    userRegistration: builder.mutation({
-      query: user => ({ url: `${USER_REGISTER}`, method: 'POST', body: user }),
-
-      invalidatesTags: ['User'],
-    }),
-
-    userLogin: builder.mutation({
-      query: user => ({ url: `${USER_LOGIN}`, method: 'POST', body: user }),
-
-      invalidatesTags: ['User'],
-    }),
-
-    userLogout: builder.mutation({
-      query: () => ({ url: `${USER_LOGOUT}`, method: 'POST' }),
-
-    }),
-
     getAllTransactions: builder.query({
       query: ({ pageNum = 1, limit = 10 } = {}) => ({
         url: `${TRANSACTIONS}?page=${pageNum}&limit=10`,
         method: 'GET',
       }),
 
-      providesTags: ['Transaction', 'User'],
-
-      // providesTags: (result, error, arg) => {
-      //   const fff = [...result.transactions.map(({ _id }) => { return { type: 'Transaction', _id }}),
-      //     { type: 'Transaction', id: 'LIST' }]
-
-      //   console.log("fff", fff);
-      //   return result
-      //   ? [...result.transactions.map(({ _id }) => { return { type: 'Transaction', _id }}), { type: 'Transaction', id: 'ADD_LIST' } ]
-      //   : [{ type: 'Transaction', id: 'LIST' }]
-      // },
+      providesTags: ['Transaction', 'User']
     }),
 
     getBalance: builder.query({
       query: () => `${BALANCE}`,
-
-      // providesTags: ['Transaction', 'User'],
-
-        providesTags: [{ type: 'Transaction', id: 'BALANCE' }, 'User'],
+      transformResponse: (result) => result.userBalance,
+      
+      providesTags: [{ type: 'Transaction', id: 'BALANCE' }, 'User']
     }),
 
     addTransaction: builder.mutation({
       query: body => ({ url: `${TRANSACTIONS}`, method: 'POST', body: body }),
 
-      invalidatesTags: ['Transaction'],
-
-      // invalidatesTags: [{ type: 'Transaction', id: 'LIST' }],
+      invalidatesTags: ['Transaction']
     }),
 
     deleteTransaction: builder.mutation({
       query: (id) => ({ url: `${TRANSACTIONS}/${id}`, method: 'DELETE'}),
 
-      // invalidatesTags: [ 'Statistic'],
-
       invalidatesTags: ['Statistic', { type: 'Transaction', id: 'BALANCE' }],
-      
-      // invalidatesTags: (result, error, arg) => {
-      //   // console.log("arg", arg);
-      //   return  [{ type: 'Transaction', _id: arg }]
-      // },
     }),
 
     editTransaction: builder.mutation({
       query: ({id, transaction}) => ({ url: `${TRANSACTIONS}/edit/${id}`, method: 'PUT', body: transaction }),
-
-      // invalidatesTags: [ 'Statistic'],
 
       invalidatesTags: ['Statistic', { type: 'Transaction', id: 'BALANCE' }],
     }),
@@ -113,16 +56,10 @@ export const walletsApi = createApi({
 });
 
 export const {
-  useUserRegistrationMutation,
-  useUserLoginMutation,
-  useUserLogoutMutation,
-  useUserRefreshQuery,
-
   useGetAllTransactionsQuery,
   useAddTransactionMutation,
   useDeleteTransactionMutation,
   useEditTransactionMutation,
   useGetBalanceQuery,
-
   useGetStatisticQuery,
 } = walletsApi;
