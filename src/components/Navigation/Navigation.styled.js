@@ -59,7 +59,7 @@ export const LinkText = styled.p`
 export const HomeSvg = styled(Home)`
   fill: currentColor;
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     width: 18px;
     height: 18px;
   }
@@ -68,7 +68,7 @@ export const HomeSvg = styled(Home)`
 export const StatisticSvg = styled(Statistic)`
   fill: currentColor;
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     width: 18px;
     height: 18px;
   }
