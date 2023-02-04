@@ -28,7 +28,7 @@ export const walletsApi = createApi({
     addTransaction: builder.mutation({
       query: body => ({ url: `${TRANSACTIONS}`, method: 'POST', body: body }),
 
-      invalidatesTags: ['Transaction']
+      invalidatesTags: ['Transaction', 'Statistic']
     }),
 
     deleteTransaction: builder.mutation({
@@ -50,7 +50,7 @@ export const walletsApi = createApi({
         return { url: query, method: 'GET' };
       },
 
-      providesTags: [ 'Statistic'],
+      providesTags: ['Statistic'],
     }),
   }),
 });
