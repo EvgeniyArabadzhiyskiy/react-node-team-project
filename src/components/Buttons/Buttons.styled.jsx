@@ -17,7 +17,7 @@ export const baseBtnStyle = css`
   cursor: pointer;
   text-transform: uppercase;
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.medium}  {
     width: 300px;
   }
 `;
@@ -56,7 +56,7 @@ export const GoogleLink = styled(StyledLink)`
   }
 `;
 
-export const spin = keyframes`
+export const scale = keyframes`
     0% {
       border: 7px solid rgba(55, 53, 53, 0.4);
       /* transform: scale(0.6);
