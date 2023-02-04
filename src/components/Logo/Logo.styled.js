@@ -5,7 +5,7 @@ export const LogoBox = styled.div`
   font-family: ${p => p.theme.fonts.headingBold};
   font-size: ${p => p.theme.fontSizes.l};
 
-  @media (max-width: 768px) {
+  @media ${p => p.theme.media.small} {
     font-size: 23px;
   }
 `;
@@ -13,7 +13,7 @@ export const LogoBox = styled.div`
 export const LogoWallet = styled.img`
   margin-right: 16px;
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     margin-right: 20px;
   }
 `;
