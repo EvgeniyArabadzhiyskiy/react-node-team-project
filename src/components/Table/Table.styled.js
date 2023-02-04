@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
 
 export const StyledFilters = styled.div`
   font-weight: 700;
@@ -7,22 +6,20 @@ export const StyledFilters = styled.div`
   line-height: 1.5;
   padding: 0;
   border-radius: 30px;
-  @media (min-width: 768px) {
-    padding: 15px 0;
-    display: flex;
-    justify-content: space-between;
-  }
-  @media (min-width: 768px) {
+
+  @media ${p => p.theme.media.medium} {
     padding: 0 0 15px 0;
     display: flex;
     justify-content: space-between;
   }
-  @media (min-width: 1024px) {
+
+  @media ${p => p.theme.media.large} {
     display: flex;
     justify-content: space-between;
   }
+
   p {
-    @media (min-width: 768px) {
+    @media ${p => p.theme.media.medium} {
       margin: 0;
       &:nth-child(1) {
         width: 15%;
@@ -52,30 +49,7 @@ export const StyledFilters = styled.div`
   }
 `;
 
-export const CheckBoxLabel = styled.label`
-  background-color: ${p => p.theme.colors.primaryBg};
-  position: relative;
-  height: 50px;
-  border: 1px solid ${p => p.theme.colors.primaryText};
-  border-radius: 30px;
-  margin-bottom: 20px;
-  width: 280px;
-  @media screen and (max-width: 767px) {
-    width: 160px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 160px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 181px;
-  }
-`;
 
-export const CheckBox = styled(Field)`
-  width: 20px;
-  height: 20px;
-  visibility: hidden;
-`;
 
 export const StyledTableHeader = styled.div`
   display: flex;
@@ -90,17 +64,20 @@ export const StyledTableHeader = styled.div`
   border-radius: 30px;
   height: 58px;
   color: ${p => p.theme.colors.primaryText};
-  @media (min-width: 768px) {
+
+  @media ${p => p.theme.media.medium} {
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
   }
+
   @media (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
   }
+
   p {
-    @media (min-width: 768px) {
+    @media ${p => p.theme.media.medium} {
       margin: 0;
       &:nth-child(1) {
         width: 15%;
@@ -132,13 +109,17 @@ export const StyledTableHeader = styled.div`
 
 export const StyledTable = styled.div`
   margin: 0 auto;
-  max-width: 336px;
-  @media (min-width: 768px) {
-    margin: 0 20px;
+  /* max-width: 336px; */
+
+  @media ${p => p.theme.media.medium} {
+    /* margin: 0 20px; */
+    margin-right: 0;
     width: 336px;
   }
-  @media (min-width: 1024px) {
-    margin: 0 16px 0 32px;
+
+  @media ${p => p.theme.media.large} {
+    /* margin: 0 16px 0 32px; */
+    margin-left: 32px;
     width: 395px;
   }
 `;
@@ -157,7 +138,8 @@ export const StyledTableBody = styled.ul`
   }
   li > p {
     margin: 0;
-    @media (min-width: 768px) {
+
+    @media ${p => p.theme.media.medium} {
       &:nth-child(1) {
         width: 40%;
       }
@@ -207,9 +189,6 @@ export const StyledTableFooter = styled.ul`
     font-size: 18px;
     line-height: 1.5;
   }
-  li > p {
-    color: ${p => p.theme.colors.primaryText};
-  }
 `;
 
 export const StyledItem = styled.div`
@@ -217,10 +196,15 @@ export const StyledItem = styled.div`
   justify-content: space-between;
   color: ${p => p.theme.colors.primaryText};
 `;
-export const StyledInnerSpan = styled.div`
+
+export const ColorSpan = styled.span`
   display: block;
-  width: '24px';
-  height: '24px';
-  margin-right: '10px';
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
   background-color: ${p => p.category};
+`;
+
+export const StyledText = styled.p`
+  color: ${p => (p.type === 'expense' ? '#FF6596' : '#24CCA7')};
 `;
