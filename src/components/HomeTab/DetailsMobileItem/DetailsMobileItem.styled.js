@@ -6,7 +6,7 @@ export const StyledList = styled.ul`
 
   margin: 0;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.primaryBg};
 
   line-height: 1.5;
 
