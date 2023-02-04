@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { baseBtnStyle, spin } from '../Buttons.styled';
+import { baseBtnStyle, scale } from '../Buttons.styled';
 
 export const StyledEnterBtn = styled.button`
   ${baseBtnStyle}
@@ -33,6 +33,6 @@ export const StyledEnterBtn = styled.button`
   &:hover,
   &:focus {
     /* border: 4px solid rgb(255, 3, 3); */
-    animation: 2000ms ${spin} infinite;
+    animation: 2000ms ${scale} infinite;
   }
 `;
