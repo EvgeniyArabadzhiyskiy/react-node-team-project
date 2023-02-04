@@ -5,13 +5,13 @@ export const StyledChartWraper = styled.div`
   align-self: flex-start;
   margin-bottom: 32px;
 
-  @media (min-width: 768px) {
-    width: 336px;
-  }
+  /* @media ${p => p.theme.media.medium} {
+    width: 314px;
+  } */
 
-  @media (min-width: 1280px) {
+  /* @media ${p => p.theme.media.large} {
     width: 288px;
-  }
+  } */
 `;
 
 export const StyledTitle = styled.h2`
@@ -19,7 +19,7 @@ export const StyledTitle = styled.h2`
   font-weight: ${p => p.theme.fontWeights.normal};
   margin: 20px 0;
 
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     margin: 32px 0 20px 20px;
   }
 `;
