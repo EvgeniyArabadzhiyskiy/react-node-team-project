@@ -11,7 +11,7 @@ import ModalWindow from './ModalWindow';
 
 import { useGoogleAuth } from 'hooks';
 import { GlobalStyle } from './GlobalStyle';
-import { nightTheme, dayTheme } from '../theme';
+import { nightTheme, dayTheme } from '../styles/theme';
 import { AnimatePresence } from 'framer-motion';
 
 import { useUserRefreshQuery } from 'redux/walletsApiServise/userApi';
