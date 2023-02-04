@@ -7,6 +7,7 @@ const FormInput = ({
   icon = null,
   ...allProps
 }) => {
+  
   return (
     <Label>
       {icon}
