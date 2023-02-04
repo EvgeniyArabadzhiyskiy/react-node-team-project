@@ -7,10 +7,11 @@ import { useGetTransaction } from 'hooks';
 import HomTabMobile from './HomTabMobile';
 import HomeTabDesctop from './HomeTabDesctop';
 import ButtonAddTransactions from 'components/Buttons/ButtonAddTransactions';
+import { breakpoints } from 'styles/breakpoints';
 
 const HomeTab = () => {
-  const isMobile = useMedia('(max-width: 767px)');
-  const isDesctop = useMedia('(min-width: 768px)');
+  const isMobile = useMedia(breakpoints.small);
+  const isDesctop = useMedia(breakpoints.medium);
 
   const visibleTransactions = useGetTransaction();
   const lastElement = useInfiniteScroll();
