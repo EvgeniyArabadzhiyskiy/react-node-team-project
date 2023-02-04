@@ -10,15 +10,17 @@ export const Container = styled.div`
   align-items: center;
   margin: 0 auto;
 
-  @media screen and (max-width: 767px) {
+  @media ${p => p.theme.media.small} {
     max-width: 480px;
     padding: 15px 20px;
   }
-  @media screen and (min-width: 768px) {
+
+  @media ${p => p.theme.media.medium} {
     width: 768px;
     padding: 20px 32px;
   }
-  @media screen and (min-width: 1280px) {
+
+  @media ${p => p.theme.media.large} {
     width: 1280px;
     padding: 20px 16px;
   }
@@ -43,11 +45,11 @@ export const ButtonExit = styled.button`
 
   padding-right: 0;
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.media.small} {
     padding-left: 8px;
   }
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     padding-left: 12px;
     margin-left: 12px;
     border-left: 1px solid #bdbdbd;
@@ -62,7 +64,7 @@ export const ButtonExit = styled.button`
 `;
 
 export const Text = styled.span`
-  @media (max-width: 767px) {
+  @media ${p => p.theme.media.small} {
     display: none;
   }
   margin-left: 8px;
