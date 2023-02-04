@@ -9,13 +9,15 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 
 import { getPath } from "helpers/getPath";
+import { breakpoints } from "styles/breakpoints";
+
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 const Routing  = () => {
   const { pathname } = useLocation()
-  const isMobile = useMedia('(max-width: 767px)');
+  const isMobile = useMedia(breakpoints.small);
 
   return  (
     <Suspense fallback={null}>
