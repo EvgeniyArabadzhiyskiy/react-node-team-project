@@ -10,24 +10,23 @@ import {
   ItemLink,
 } from './Navigation.styled';
 import { useMedia } from 'react-use';
+import { breakpoints } from 'styles/breakpoints';
 
 const Navigation = () => {
-  const isMobie = useMedia('(max-width: 767px)');
+  const isMobile = useMedia(breakpoints.small);
+  const isDesctop = useMedia(breakpoints.medium);
+
   return (
     <div>
-      {isMobie ? (
+      {isMobile && (
         <ListMob>
-          <LinkMob to="/home">
-            <HomeSvg />
-          </LinkMob>
-          <LinkMob to="/statistic">
-            <StatisticSvg />
-          </LinkMob>
-          <LinkMob to="/currency">
-            <CurrencySvg />
-          </LinkMob>
+          <LinkMob to="/home"><HomeSvg /></LinkMob>
+          <LinkMob to="/statistic"><StatisticSvg /></LinkMob>
+          <LinkMob to="/currency"><CurrencySvg /></LinkMob>
         </ListMob>
-      ) : (
+      )} 
+
+      {isDesctop && (
         <List>
           <ItemLink>
             <Link to="/home">
