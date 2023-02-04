@@ -3,10 +3,11 @@ import logoBig from '../../images/logoBig.png';
 import { LogoBox, LogoLink, LogoText, LogoWallet } from './Logo.styled';
 import { useMedia } from 'react-use';
 import { useLocation } from 'react-router-dom';
+import { breakpoints } from 'styles/breakpoints';
 
 const Logo = () => {
   const location = useLocation();
-  const isDesctop = useMedia('(min-width: 768px)');
+  const isDesctop = useMedia(breakpoints.medium);
 
   const isLoginPage =
     location.pathname === '/login' || location.pathname === '/register';
