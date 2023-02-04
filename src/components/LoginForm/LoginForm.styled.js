@@ -11,7 +11,7 @@ export const FormWrap = styled.div`
   transition: transform 400ms linear 100ms;
   transform: ${p => (p.isScale ? 'scaleY(1)' : 'scaleY(0)')};
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     width: 500px;
     margin-right: 50px;
     padding: 36px 60px;
