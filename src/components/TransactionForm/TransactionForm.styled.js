@@ -8,10 +8,9 @@ export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.normal};
   color: ${p => p.theme.colors.white};
   text-align: center;
-
   margin-bottom: 40px;
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     font-size: ${p => p.theme.fontSizes.l};
     line-height: 45px;
   }
@@ -19,7 +18,7 @@ export const Title = styled.h2`
 
 export const DateWrapper = styled.div`
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     display: flex;
     align-items: flex-end;
     column-gap: 30px;
@@ -30,7 +29,7 @@ export const DateWrapper = styled.div`
 export const SumWrapper = styled.div`
   margin-bottom: ${p => p.theme.space[5]}px;
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     margin: ${p => p.theme.space[0]}px;
   }
 `;
