@@ -8,7 +8,7 @@ export const getChartData = data => {
         label: '# of Votes',
         data: sum.length > 0 ? sum : ['100'],
         backgroundColor:
-          colors.length > 0 ? colors : ['rgba(245, 238, 240, 0.2)'],
+          colors.length > 0 ? colors : ['#be2d3236'],
         borderWidth: 0,
       },
     ],
