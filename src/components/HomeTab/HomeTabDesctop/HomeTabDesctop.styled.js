@@ -40,11 +40,8 @@ export const StyledTableHeader = styled.div`
 
 export const StyledTable = styled.div`
   margin-top: 46px;
-  @media (max-width: 1279px) {
-    width: 704px;
-  }
 
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.media.large} {
     width: 715px;
   }
 `;
@@ -64,5 +61,5 @@ export const CategoryName = styled.p`
 `;
 
 export const SumText = styled.p`
-  color: ${p => (p.textColor === '+' ? '#24CCA7' : 'red')}; //#FF6596
+  color: ${p => (p.textColor === '+' ? '#24CCA7' : '#FF6596')};
 `;
