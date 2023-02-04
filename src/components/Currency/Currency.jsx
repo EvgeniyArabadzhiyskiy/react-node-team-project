@@ -7,10 +7,11 @@ import {
 } from './Currency.styled';
 import grafSvg from '../../images/currencyVektor.svg';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
+
 import Spinner from 'components/Spinner';
 import CurrencyListItem from './CurrencyListItem';
-import { toast } from 'react-toastify';
 
 const getApiMono = async () => {
   const res = await axios
