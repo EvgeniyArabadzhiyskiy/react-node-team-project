@@ -5,7 +5,7 @@ export const Card = styled.div`
   height: 600px;
   perspective: 700px;
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     width: 540px;
   }
 `;
@@ -34,7 +34,7 @@ const CardFace = styled.div`
   padding-left: ${p => p.theme.space[4]}px;
   padding-right: ${p => p.theme.space[4]}px;
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.medium} {
     padding: 36px 60px;
   }
 `;
