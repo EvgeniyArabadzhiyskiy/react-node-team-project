@@ -8,7 +8,6 @@ const initialState = {
   isWasUnmounted: false,
 
   editId: "",
-  // editedTransaction: null,
   deletedId: [],
 
 };
@@ -71,13 +70,6 @@ const transactionsSlice = createSlice({
         })
       })
   }
-
-  // extraReducers: builder => {
-  //   builder.addMatcher(walletsApi.endpoints.editTransaction.matchFulfilled,
-  //     (state, action) => {
-  //       state.editedTransaction = action.payload
-  //     })
-  // }
 });
 
 export const {
