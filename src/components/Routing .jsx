@@ -23,18 +23,18 @@ const Routing  = () => {
     <Suspense fallback={null}>
         <Routes>
             <Route
-            path={getPath(pathname)}
-            element={
+                path={getPath(pathname)}
+                element={
                 <PublicRoute restricted navigateTo="/home">
-                <LoginPage />
+                    <LoginPage />
                 </PublicRoute>}
             />
 
             <Route path="/" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
-            <Route index element={<Navigate to="/home" />} />
-            <Route path="home" element={<HomeTab />}/>
-            <Route path="statistic" element={<DiagramTab />} />
-            {isMobile &&  <Route path="currency" element={<Currency /> }/>} 
+                <Route index element={<Navigate to="/home" />} />
+                <Route path="home" element={<HomeTab />}/>
+                <Route path="statistic" element={<DiagramTab />} />
+                {isMobile &&  <Route path="currency" element={<Currency /> }/>} 
             </Route>
 
             <Route path="*" element={<NotFoundPage />} />
