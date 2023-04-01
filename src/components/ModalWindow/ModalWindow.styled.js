@@ -11,10 +11,10 @@ export const Overlay = styled(motion.div)`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  /* background: url(${EwalletBg2});
+  background: url(${EwalletBg2});
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; */
+  background-position: center;
 `;
 
 export const Modal = styled(motion.div)`
